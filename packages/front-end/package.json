@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@feedback/front-end",
+  "description": "Interface for Feedback",
+  "license": "MIT",
+  "author": "Nirmalya Ghosh <nirmalya.email@gmail.com>",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "10.0.4",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  }
+}

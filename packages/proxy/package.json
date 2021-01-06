@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@feedback/proxy",
+  "description": "Proxy for Feedback",
+  "license": "MIT",
+  "author": "Nirmalya Ghosh <nirmalya.email@gmail.com>",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start"
+  },
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  }
+}
