@@ -1,26 +1,22 @@
-const playwright = require("playwright-aws-lambda");
+import { launchChromium } from "playwright-aws-lambda";
 
-const launchPlaywright = async (
-  browserType: string,
-  args: string[],
-  url: string
-) => {
-  console.log(`========== Running Playwright for ${browserType} ==========`);
-
+const launchPlaywright = async (url: string) => {
   let browser = null;
   let image = "";
 
   try {
-    browser = await playwright.launchChromium();
+    browser = await launchChromium({
+      headless: true,
+    });
     const context = await browser.newContext();
-
     const page = await context.newPage();
+
     await page.goto(url);
 
     const buffer = await page.screenshot();
     image = buffer.toString("base64");
 
-    console.log(image, url, browserType);
+    console.log(image, url);
   } catch (error) {
     throw error;
   } finally {
@@ -28,8 +24,6 @@ const launchPlaywright = async (
       await browser.close();
     }
   }
-
-  console.log(`========== /Running Playwright for ${browserType} ==========`);
 
   return image;
 };
