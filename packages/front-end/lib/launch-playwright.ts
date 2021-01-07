@@ -1,4 +1,4 @@
-const playwright = require("playwright");
+const playwright = require("playwright-aws-lambda");
 
 const launchPlaywright = async (
   browserType: string,
@@ -7,17 +7,27 @@ const launchPlaywright = async (
 ) => {
   console.log(`========== Running Playwright for ${browserType} ==========`);
 
-  const browser = await playwright[browserType].launch({ args });
-  const browserPage = await browser.newPage();
+  let browser = null;
+  let image = "";
 
-  await browserPage.goto(url);
+  try {
+    browser = await playwright.launchChromium();
+    const context = await browser.newContext();
 
-  const buffer = await browserPage.screenshot();
-  const image = buffer.toString("base64");
+    const page = await context.newPage();
+    await page.goto(url);
 
-  console.log(image, url, browserType);
+    const buffer = await page.screenshot();
+    image = buffer.toString("base64");
 
-  await browser.close();
+    console.log(image, url, browserType);
+  } catch (error) {
+    throw error;
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
 
   console.log(`========== /Running Playwright for ${browserType} ==========`);
 
