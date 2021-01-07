@@ -11,8 +11,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "capture-website": "^1.2.7",
     "next": "10.0.4",
+    "playwright": "^1.7.1",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   }
