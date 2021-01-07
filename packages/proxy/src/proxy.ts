@@ -1,12 +1,16 @@
 import httpProxy from "http-proxy";
 
-httpProxy
-  .createProxyServer({
-    target: {
-      protocol: "https:",
-      host: "hashnode.com",
-      port: 443,
-    },
-    changeOrigin: true,
-  })
-  .listen(8000);
+function proxy(protocol: string, host: string) {
+  httpProxy
+    .createProxyServer({
+      target: {
+        protocol,
+        host,
+        port: 443,
+      },
+      changeOrigin: true,
+    })
+    .listen(8000);
+}
+
+export default proxy;

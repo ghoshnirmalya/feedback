@@ -6,9 +6,8 @@
   "author": "Nirmalya Ghosh <nirmalya.email@gmail.com>",
   "version": "0.0.1",
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "start": "next start"
+    "build": "rollup -c",
+    "dev": "rollup -cw"
   },
   "dependencies": {
     "http-proxy": "^1.18.1"
