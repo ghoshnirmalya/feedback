@@ -1,3 +1,15 @@
+# [0.1.0](https://github.com/ghoshnirmalya/feedback/compare/0.0.2...0.1.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* fixes overflow issue with image ([91dbd5f](https://github.com/ghoshnirmalya/feedback/commit/91dbd5fb83c694796dafc026c7700685c23a24ad))
+
+
+### Features
+
+* adds basic layout ([989f4ea](https://github.com/ghoshnirmalya/feedback/commit/989f4ea5ef1cea77481eb38c5be48d354e2386c0))
+
 ## 0.0.2 (2021-01-07)
 
 ### Features
