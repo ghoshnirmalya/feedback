@@ -8,7 +8,7 @@ const TopNavbar: FC = () => {
       <Flex justifyContent="space-between" w="100%">
         <HStack spacing={4} align="center">
           <Link href="/" fontWeight="bold">
-            Writy
+            Feedback
           </Link>
         </HStack>
         <HStack spacing={4} align="center">
@@ -18,7 +18,7 @@ const TopNavbar: FC = () => {
             rel="noopener"
             icon={<MdBugReport size={24} />}
             as="a"
-            href="https://github.com/ghoshnirmalya/writy/issues/new"
+            href="https://github.com/ghoshnirmalya/feedback/issues/new"
             target="_blank"
           />
         </HStack>

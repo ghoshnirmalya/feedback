@@ -18,7 +18,7 @@ const ContentArea: FC = () => {
 
   return (
     <Box h="calc(100vh - 50px)" w="calc(100vw - 300px)" p={14} overflow="hidden">
-      <Box shadow="xl" h="calc(100vh - 50px - 120px)" overflowY="auto" mx="auto">
+      <Box shadow="xl" overflowY="auto" mx="auto">
         <div
           style={{
             position: "relative",
