@@ -5,6 +5,7 @@
     "build": "blitz build",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "migrate": "blitz db migrate",
+    "release": "release-it",
     "start": "docker-compose up -d && blitz start",
     "studio": "blitz db studio",
     "test": "jest",
@@ -32,6 +33,7 @@
     "zod": "1.11.11"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^2.0.0",
     "@testing-library/jest-dom": "5.11.8",
     "@testing-library/react": "11.2.3",
     "@testing-library/react-hooks": "3.7.0",
@@ -56,6 +58,7 @@
     "prettier": "2.2.1",
     "pretty-quick": "3.1.0",
     "react-test-renderer": "17.0.1",
+    "release-it": "^14.2.2",
     "ts-jest": "26.4.4"
   },
   "browserslist": [
