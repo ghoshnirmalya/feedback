@@ -1,20 +1,20 @@
-import { NextPage } from "next";
-import React, { useState } from "react";
+import { NextPage } from "next"
+import React, { useState } from "react"
 
 const IndexPage: NextPage = () => {
-  const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
+  const [annotation, setAnnotation] = useState({ x: 0, y: 0 })
 
   const handleClick = (e) => {
     // Calcualate co-ordinates in percentages in order to support responsive mode
-    const rect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.clientX - rect.x;
-    const offsetY = e.clientY - rect.y;
+    const rect = e.currentTarget.getBoundingClientRect()
+    const offsetX = e.clientX - rect.x
+    const offsetY = e.clientY - rect.y
 
     setAnnotation({
       x: (offsetX / rect.width) * 100,
       y: (offsetY / rect.height) * 100,
-    });
-  };
+    })
+  }
 
   return (
     <div
@@ -43,7 +43,7 @@ const IndexPage: NextPage = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage

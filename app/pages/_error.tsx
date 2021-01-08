@@ -1,9 +1,9 @@
-import { NextPage } from "next";
-import Head from "next/head";
-import React from "react";
+import { NextPage } from "next"
+import Head from "next/head"
+import React from "react"
 
 interface IProps {
-  statusCode: number;
+  statusCode: number
 }
 
 const ErrorPage: NextPage<IProps> = ({ statusCode }) => {
@@ -13,20 +13,18 @@ const ErrorPage: NextPage<IProps> = ({ statusCode }) => {
         <title>500</title>
       </Head>
       <p>
-        {statusCode
-          ? `An error ${statusCode} occurred on server`
-          : "An error occurred on client"}
+        {statusCode ? `An error ${statusCode} occurred on server` : "An error occurred on client"}
       </p>
     </>
-  );
-};
+  )
+}
 
 export async function getServerSideProps({ res, err }) {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
 
   return {
     props: { statusCode },
-  };
+  }
 }
 
-export default ErrorPage;
+export default ErrorPage

@@ -1,16 +1,13 @@
-import { Flex, Text, useColorModeValue } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
-import React, { FC } from "react";
+import { Flex, Text, useColorModeValue } from "@chakra-ui/react"
+import dynamic from "next/dynamic"
+import React, { FC } from "react"
 
 const LazyContentArea = dynamic(
-  () =>
-    import(
-      /* webpackChunkName: 'lazyContentArea' */ "components/pages/index/content-area"
-    ),
+  () => import(/* webpackChunkName: 'lazyContentArea' */ "components/pages/index/content-area"),
   {
     ssr: false,
     loading: () => {
-      const bgColor = useColorModeValue("brand.100", "brand.900");
+      const bgColor = useColorModeValue("brand.100", "brand.900")
 
       return (
         <Flex
@@ -24,16 +21,13 @@ const LazyContentArea = dynamic(
             Loading...
           </Text>
         </Flex>
-      );
+      )
     },
   }
-);
+)
 
 const LazyRightSidebar = dynamic(
-  () =>
-    import(
-      /* webpackChunkName: 'lazyRightSidebar' */ "components/pages/index/right-sidebar"
-    ),
+  () => import(/* webpackChunkName: 'lazyRightSidebar' */ "components/pages/index/right-sidebar"),
   {
     ssr: false,
     loading: () => {
@@ -43,10 +37,10 @@ const LazyRightSidebar = dynamic(
             Loading...
           </Text>
         </Flex>
-      );
+      )
     },
   }
-);
+)
 
 const IndexPageComponent: FC = () => {
   return (
@@ -56,7 +50,7 @@ const IndexPageComponent: FC = () => {
         <LazyRightSidebar />
       </Flex>
     </Flex>
-  );
-};
+  )
+}
 
-export default IndexPageComponent;
+export default IndexPageComponent
