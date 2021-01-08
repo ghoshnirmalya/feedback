@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "**/.blitz": true,
+    "**/.blitz-*": true,
+  }
+}
