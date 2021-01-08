@@ -1,19 +1,17 @@
-import { Flex, Text, useColorModeValue } from "@chakra-ui/react"
-import dynamic from "next/dynamic"
+import { Flex, Text } from "@chakra-ui/react"
+import { dynamic } from "blitz"
 import React, { FC } from "react"
 
 const LazyContentArea = dynamic(
-  () => import(/* webpackChunkName: 'lazyContentArea' */ "components/pages/index/content-area"),
+  () =>
+    import(/* webpackChunkName: 'lazyContentArea' */ "app/components/Pages/Feedback/ContentArea"),
   {
     ssr: false,
     loading: () => {
-      const bgColor = useColorModeValue("brand.100", "brand.900")
-
       return (
         <Flex
           h="calc(100vh - 50px)"
-          w="calc(100vw - 500px)"
-          bg={bgColor}
+          w="calc(100vw - 300px)"
           alignItems="center"
           justifyContent="center"
         >
@@ -27,7 +25,8 @@ const LazyContentArea = dynamic(
 )
 
 const LazyRightSidebar = dynamic(
-  () => import(/* webpackChunkName: 'lazyRightSidebar' */ "components/pages/index/right-sidebar"),
+  () =>
+    import(/* webpackChunkName: 'lazyRightSidebar' */ "app/components/Pages/Feedback/RightSidebar"),
   {
     ssr: false,
     loading: () => {
@@ -42,7 +41,7 @@ const LazyRightSidebar = dynamic(
   }
 )
 
-const IndexPageComponent: FC = () => {
+const FeedbackPageComponent: FC = () => {
   return (
     <Flex flexDir="column">
       <Flex>
@@ -53,4 +52,4 @@ const IndexPageComponent: FC = () => {
   )
 }
 
-export default IndexPageComponent
+export default FeedbackPageComponent

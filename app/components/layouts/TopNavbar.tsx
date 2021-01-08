@@ -1,13 +1,10 @@
-import { Flex, HStack, IconButton, Link, useColorMode, useColorModeValue } from "@chakra-ui/react"
+import { Flex, HStack, IconButton, Link } from "@chakra-ui/react"
 import React, { FC } from "react"
-import { MdBugReport, MdWbIncandescent, MdWbSunny } from "react-icons/md"
+import { MdBugReport } from "react-icons/md"
 
 const TopNavbar: FC = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
-  const bgColor = useColorModeValue("brand.100", "brand.900")
-
   return (
-    <Flex h="50px" borderBottomWidth={1} px={4} alignItems="center" bg={bgColor}>
+    <Flex h="50px" borderBottomWidth={1} px={4} alignItems="center">
       <Flex justifyContent="space-between" w="100%">
         <HStack spacing={4} align="center">
           <Link href="/" fontWeight="bold">
@@ -23,12 +20,6 @@ const TopNavbar: FC = () => {
             as="a"
             href="https://github.com/ghoshnirmalya/writy/issues/new"
             target="_blank"
-          />
-          <IconButton
-            size="sm"
-            aria-label="Report bug"
-            icon={colorMode === "light" ? <MdWbIncandescent size={24} /> : <MdWbSunny size={24} />}
-            onClick={toggleColorMode}
           />
         </HStack>
       </Flex>

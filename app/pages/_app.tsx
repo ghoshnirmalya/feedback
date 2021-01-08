@@ -1,6 +1,6 @@
-import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { ChakraProvider, extendTheme, LightMode } from "@chakra-ui/react"
 import LoginForm from "app/auth/components/LoginForm"
-import Layout from "app/components/layouts"
+import Layout from "app/components/Layouts"
 import { wrapper } from "app/store"
 import { AppProps, AuthenticationError, AuthorizationError, ErrorComponent, useRouter } from "blitz"
 import "focus-visible/dist/focus-visible"
@@ -31,40 +31,29 @@ function App({ Component, pageProps }: AppProps) {
 
   const config = {
     useSystemColorMode: false,
-    initialColorMode: "dark",
+    initialColorMode: "light",
   }
   const customTheme = extendTheme({
     config,
-    colors: {
-      brand: {
-        100: "#ffffff",
-        200: "#bfbfbf",
-        300: "#a6a6a6",
-        400: "#8c8c8c",
-        500: "#737373",
-        600: "#595959",
-        700: "#404040",
-        800: "#262626",
-        900: "#151515",
-      },
-    },
   })
 
   return (
     <ChakraProvider theme={customTheme}>
-      <Layout>
-        <ErrorBoundary
-          FallbackComponent={RootErrorFallback}
-          resetKeys={[router.asPath]}
-          onReset={() => {
-            // This ensures the Blitz useQuery hooks will automatically refetch
-            // data any time you reset the error boundary
-            queryCache.resetErrorBoundaries()
-          }}
-        >
-          {getLayout(<Component {...pageProps} />)}
-        </ErrorBoundary>
-      </Layout>
+      <LightMode>
+        <Layout>
+          <ErrorBoundary
+            FallbackComponent={RootErrorFallback}
+            resetKeys={[router.asPath]}
+            onReset={() => {
+              // This ensures the Blitz useQuery hooks will automatically refetch
+              // data any time you reset the error boundary
+              queryCache.resetErrorBoundaries()
+            }}
+          >
+            {getLayout(<Component {...pageProps} />)}
+          </ErrorBoundary>
+        </Layout>
+      </LightMode>
     </ChakraProvider>
   )
 }
