@@ -1,58 +1,25 @@
-import { Suspense } from "react"
-import Layout from "app/layouts/Layout"
-import { Link, useRouter, useQuery, useMutation, useParam, BlitzPage } from "blitz"
-import getProject from "app/projects/queries/getProject"
-import updateProject from "app/projects/mutations/updateProject"
-import ProjectForm from "app/projects/components/ProjectForm"
-
-export const EditProject = () => {
-  const router = useRouter()
-  const projectId = useParam("projectId", "number")
-  const [project, { setQueryData }] = useQuery(getProject, { where: { id: projectId } })
-  const [updateProjectMutation] = useMutation(updateProject)
-
-  return (
-    <div>
-      <h1>Edit Project {project.id}</h1>
-      <pre>{JSON.stringify(project)}</pre>
-
-      <ProjectForm
-        initialValues={project}
-        onSubmit={async () => {
-          try {
-            const updated = await updateProjectMutation({
-              where: { id: project.id },
-              data: { name: "MyNewName" },
-            })
-            await setQueryData(updated)
-            alert("Success!" + JSON.stringify(updated))
-            router.push(`/projects/${updated.id}`)
-          } catch (error) {
-            console.log(error)
-            alert("Error editing project " + JSON.stringify(error, null, 2))
-          }
-        }}
-      />
-    </div>
-  )
-}
+import { Container, Spinner, VStack } from "@chakra-ui/react";
+import Layout from "app/layouts/Layout";
+import EditProjectForm from "app/projects/components/EditProjectForm";
+import EditProjectHeading from "app/projects/components/EditProjectHeading";
+import { BlitzPage } from "blitz";
+import React, { Suspense } from "react";
 
 const EditProjectPage: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <EditProject />
+    <Container maxW="6xl">
+      <Suspense fallback={<Spinner />}>
+        <VStack spacing={8} w="100%" align="left">
+          <EditProjectHeading />
+          <EditProjectForm />
+        </VStack>
       </Suspense>
+    </Container>
+  );
+};
 
-      <p>
-        <Link href="/projects">
-          <a>Projects</a>
-        </Link>
-      </p>
-    </div>
-  )
-}
+EditProjectPage.getLayout = (page) => (
+  <Layout title={"Edit Project"}>{page}</Layout>
+);
 
-EditProjectPage.getLayout = (page) => <Layout title={"Edit Project"}>{page}</Layout>
-
-export default EditProjectPage
+export default EditProjectPage;

@@ -78,10 +78,6 @@
       "prettier --write"
     ]
   },
-  "prettier": {
-    "semi": false,
-    "printWidth": 100
-  },
   "prisma": {
     "schema": "db/schema.prisma"
   }

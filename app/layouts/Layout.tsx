@@ -1,21 +1,27 @@
-import { ChakraProvider, extendTheme, Flex, LightMode } from "@chakra-ui/react"
-import TopNavbar from "app/layouts/TopNavbar"
-import { Head } from "blitz"
-import { ReactNode } from "react"
+import {
+  Box,
+  ChakraProvider,
+  extendTheme,
+  Flex,
+  LightMode,
+} from "@chakra-ui/react";
+import TopNavbar from "app/layouts/TopNavbar";
+import { Head } from "blitz";
+import React, { ReactNode } from "react";
 
 type LayoutProps = {
-  title?: string
-  children: ReactNode
-}
+  title?: string;
+  children: ReactNode;
+};
 
 const Layout = ({ title, children }: LayoutProps) => {
   const config = {
     useSystemColorMode: false,
     initialColorMode: "light",
-  }
+  };
   const customTheme = extendTheme({
     config,
-  })
+  });
 
   return (
     <>
@@ -25,14 +31,14 @@ const Layout = ({ title, children }: LayoutProps) => {
       </Head>
       <ChakraProvider theme={customTheme}>
         <LightMode>
-          <TopNavbar />
-          <Flex h="calc(100vh - 50px)" w="100vw" justifyContent="center" alignItems="center">
-            {children}
-          </Flex>
+          <Box minH="100vh" bgColor="gray.100">
+            <TopNavbar />
+            <Flex p={8}>{children}</Flex>
+          </Box>
         </LightMode>
       </ChakraProvider>
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

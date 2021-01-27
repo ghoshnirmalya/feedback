@@ -1,17 +1,48 @@
-import { Flex, HStack, IconButton, Link } from "@chakra-ui/react"
-import React, { FC } from "react"
-import { MdBugReport } from "react-icons/md"
+import { Box, Flex, HStack, IconButton } from "@chakra-ui/react";
+import { Link } from "blitz";
+import React, { FC } from "react";
+import { MdBugReport } from "react-icons/md";
+
+const links = [
+  {
+    href: "/",
+    label: "Home",
+  },
+  {
+    href: "/projects",
+    label: "Projects",
+  },
+];
 
 const TopNavbar: FC = () => {
+  const linksNode = () => {
+    return links.map((link) => {
+      return (
+        <Link key={link.href} href={link.href} passHref>
+          <Box as="a" fontWeight="bold">
+            {link.label}
+          </Box>
+        </Link>
+      );
+    });
+  };
+
   return (
-    <Flex h="50px" borderBottomWidth={1} px={4} alignItems="center">
+    <Flex
+      h="80px"
+      borderBottomWidth={1}
+      px={8}
+      alignItems="center"
+      pos="sticky"
+      top={0}
+      bg="white"
+      zIndex={1}
+    >
       <Flex justifyContent="space-between" w="100%">
-        <HStack spacing={4} align="center">
-          <Link href="/" fontWeight="bold">
-            Feedback
-          </Link>
+        <HStack spacing={8} align="center">
+          {linksNode()}
         </HStack>
-        <HStack spacing={4} align="center">
+        <HStack spacing={8} align="center">
           <IconButton
             size="sm"
             aria-label="Report an issue"
@@ -24,7 +55,7 @@ const TopNavbar: FC = () => {
         </HStack>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default TopNavbar
+export default TopNavbar;
