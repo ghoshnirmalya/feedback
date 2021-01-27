@@ -1,14 +1,20 @@
-# [0.1.0](https://github.com/ghoshnirmalya/feedback/compare/0.0.2...0.1.0) (2021-01-08)
-
-
-### Bug Fixes
-
-* fixes overflow issue with image ([91dbd5f](https://github.com/ghoshnirmalya/feedback/commit/91dbd5fb83c694796dafc026c7700685c23a24ad))
-
+# [0.2.0](https://github.com/ghoshnirmalya/feedback/compare/0.1.0...0.2.0) (2021-01-27)
 
 ### Features
 
-* adds basic layout ([989f4ea](https://github.com/ghoshnirmalya/feedback/commit/989f4ea5ef1cea77481eb38c5be48d354e2386c0))
+- adds file model ([d3cb65c](https://github.com/ghoshnirmalya/feedback/commit/d3cb65cdff8897f1904befe94bf40aa4e449fd40))
+- adds option to create and edit project ([a6f3d61](https://github.com/ghoshnirmalya/feedback/commit/a6f3d6143a712be6d67e27f0a4e9b013eb0a88ea))
+- migrates code to Blitz format ([7030326](https://github.com/ghoshnirmalya/feedback/commit/7030326e2ef65b8fe7e8221cc1daa68e9d7f7001))
+
+# [0.1.0](https://github.com/ghoshnirmalya/feedback/compare/0.0.2...0.1.0) (2021-01-08)
+
+### Bug Fixes
+
+- fixes overflow issue with image ([91dbd5f](https://github.com/ghoshnirmalya/feedback/commit/91dbd5fb83c694796dafc026c7700685c23a24ad))
+
+### Features
+
+- adds basic layout ([989f4ea](https://github.com/ghoshnirmalya/feedback/commit/989f4ea5ef1cea77481eb38c5be48d354e2386c0))
 
 ## 0.0.2 (2021-01-07)
 
