@@ -3,6 +3,16 @@
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./",
+    "paths": {
+      "app/*": ["app/*"],
+      "components/*": ["app/components/*"],
+      "pages/*": ["app/pages/*"],
+      "types/*": ["app/types/*"],
+      "lib/*": ["app/lib/*"],
+      "thunks/*": ["app/thunks/*"],
+      "selectors/*": ["app/selectors/*"],
+      "slices/*": ["app/slices/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
