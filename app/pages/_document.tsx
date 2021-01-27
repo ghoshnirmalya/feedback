@@ -1,5 +1,4 @@
-import { BlitzScript /*DocumentContext*/, Document, DocumentHead, Html, Main, Head } from "blitz"
-import { Box } from "@chakra-ui/react"
+import { BlitzScript /*DocumentContext*/, Document, DocumentHead, Head, Html, Main } from "blitz"
 
 class MyDocument extends Document {
   // Only uncomment if you need to customize this behaviour
