@@ -1,25 +1,25 @@
-import { Box } from "@chakra-ui/react"
-import React, { FC, MouseEvent, useState } from "react"
+import { Box } from "@chakra-ui/react";
+import React, { FC, MouseEvent, useState } from "react";
 
 const ContentArea: FC = () => {
-  const [annotation, setAnnotation] = useState({ x: 0, y: 0 })
+  const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
 
   const handleClick = (e: MouseEvent<HTMLInputElement>) => {
     // Calcualate co-ordinates in percentages in order to support responsive mode
-    const rect = e.currentTarget.getBoundingClientRect()
-    const offsetX = e.clientX - rect.x
-    const offsetY = e.clientY - rect.y
+    const rect = e.currentTarget.getBoundingClientRect();
+    const offsetX = e.clientX - rect.x;
+    const offsetY = e.clientY - rect.y;
 
     setAnnotation({
       x: (offsetX / rect.width) * 100,
       y: (offsetY / rect.height) * 100,
-    })
+    });
 
     // Open the comment box to let the user add comments
-  }
+  };
 
   return (
-    <Box h="calc(100vh - 50px)" w="calc(100vw - 300px)" p={14} overflow="hidden">
+    <Box h="calc(100vh - 140px)" overflow="hidden">
       <Box shadow="xl" overflowY="auto" mx="auto">
         <Box pos="relative">
           <img src="/images/demo.png" width="100%" alt="presentation" />
@@ -40,7 +40,7 @@ const ContentArea: FC = () => {
         </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default ContentArea
+export default ContentArea;

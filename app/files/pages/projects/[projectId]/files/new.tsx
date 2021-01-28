@@ -17,7 +17,7 @@ const NewFilePage: BlitzPage = () => {
         onSubmit={async () => {
           try {
             const file = await createFileMutation({
-              data: { name: "MyName" },
+              data: { name: "MyName", url: "" },
               projectId,
             });
             alert("Success!" + JSON.stringify(file));
