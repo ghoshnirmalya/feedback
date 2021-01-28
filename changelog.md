@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/ghoshnirmalya/feedback/compare/0.2.0...0.3.0) (2021-01-28)
+
+### Features
+
+- adds association between files and urls ([f1f8764](https://github.com/ghoshnirmalya/feedback/commit/f1f876440cd607e66047084e3c9a3176a4756bce))
+- cleans up UI to show list of files for a project ([e5e1d1d](https://github.com/ghoshnirmalya/feedback/commit/e5e1d1d4faf23279c3b5d217bb22053da7963e49))
+
 # [0.2.0](https://github.com/ghoshnirmalya/feedback/compare/0.1.0...0.2.0) (2021-01-27)
 
 ### Features
