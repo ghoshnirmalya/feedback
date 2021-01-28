@@ -7,7 +7,7 @@ import React, { Suspense } from "react";
 
 const EditProjectPage: BlitzPage = () => {
   return (
-    <Container maxW="6xl">
+    <Container maxW="6xl" p={8}>
       <Suspense fallback={<Spinner />}>
         <VStack spacing={8} w="100%" align="left">
           <EditProjectHeading />

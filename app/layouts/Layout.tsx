@@ -33,7 +33,7 @@ const Layout = ({ title, children }: LayoutProps) => {
         <LightMode>
           <Box minH="100vh" bgColor="gray.100">
             <TopNavbar />
-            <Flex p={8}>{children}</Flex>
+            <Flex>{children}</Flex>
           </Box>
         </LightMode>
       </ChakraProvider>

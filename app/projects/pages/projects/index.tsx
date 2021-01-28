@@ -24,7 +24,7 @@ const ProjectsPage: BlitzPage = () => {
   };
 
   return (
-    <Container maxW="6xl" centerContent>
+    <Container maxW="6xl" centerContent p={8}>
       <Suspense fallback={<Spinner />}>
         <VStack spacing={8} w="100%" align="left">
           {headingNode()}

@@ -1,9 +1,7 @@
-import { Flex, Grid, Spinner } from "@chakra-ui/react";
+import { Center, Flex, Grid, Spinner } from "@chakra-ui/react";
 import Layout from "app/layouts/Layout";
-import LeftSidebar from "app/projects/components/LeftSidebar";
-import RightSidebar from "app/projects/components/RightSidebar";
 import { BlitzPage, dynamic } from "blitz";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 
 const LazyContentArea = dynamic(
   () =>
@@ -14,27 +12,65 @@ const LazyContentArea = dynamic(
     ssr: false,
     loading: () => {
       return (
-        <Flex
-          h="calc(100vh - 50px)"
-          w="calc(100vw - 300px)"
-          alignItems="center"
-          justifyContent="center"
-        >
+        <Center>
           <Spinner />
-        </Flex>
+        </Center>
+      );
+    },
+  }
+);
+
+const LazyLeftSidebar = dynamic(
+  () =>
+    import(
+      /* webpackChunkName: 'lazyLeftSidebar' */ "app/projects/components/LeftSidebar"
+    ),
+  {
+    ssr: false,
+    loading: () => {
+      return (
+        <Center>
+          <Spinner />
+        </Center>
+      );
+    },
+  }
+);
+
+const LazyRightSidebar = dynamic(
+  () =>
+    import(
+      /* webpackChunkName: 'lazyRightSidebar' */ "app/projects/components/RightSidebar"
+    ),
+  {
+    ssr: false,
+    loading: () => {
+      return (
+        <Center>
+          <Spinner />
+        </Center>
       );
     },
   }
 );
 
 const ShowProjectPage: BlitzPage = () => {
+  useEffect(() => {
+    // This is a hack to prevent overflow due to the accordion component
+    document.body.style.overflow = "hidden";
+
+    return function cleanup() {
+      document.body.style.overflow = "visible";
+    };
+  }, []);
+
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" w="100%" h="calc(100vh - 80px)">
       <Suspense fallback={<Spinner />}>
-        <Grid templateColumns={["0.5fr 3fr 1fr"]} gap={8} w="100%">
-          <LeftSidebar />
+        <Grid templateColumns={["1fr 3fr 2fr"]} gap={8} w="100%" h="100%">
+          <LazyLeftSidebar />
           <LazyContentArea />
-          <RightSidebar />
+          <LazyRightSidebar />
         </Grid>
       </Suspense>
     </Flex>

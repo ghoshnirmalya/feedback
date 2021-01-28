@@ -13,7 +13,7 @@ const NewProjectPage: BlitzPage = () => {
   );
 
   return (
-    <Container maxW="6xl">
+    <Container maxW="6xl" p={8}>
       <VStack spacing={8} w="100%" align="left">
         <CreateProjectHeading />
         <ProjectForm

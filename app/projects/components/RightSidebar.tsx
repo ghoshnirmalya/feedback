@@ -8,7 +8,13 @@ const RightSidebar: FC = () => {
   const page = Number(router.query.page) || 0;
 
   return (
-    <Box h="calc(100vh - 140px)" overflowY="scroll">
+    <Box
+      h="calc(100vh - 80px)"
+      overflowY="scroll"
+      p={8}
+      bg="white"
+      borderLeftWidth={1}
+    >
       All comments will show up here.
     </Box>
   );
