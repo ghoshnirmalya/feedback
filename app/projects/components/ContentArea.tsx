@@ -1,5 +1,5 @@
 import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
-import { getFileData } from "app/selectors/file";
+import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { setCoordinates } from "app/slices/file";
 import React, { FC, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ const ContentArea: FC = () => {
   const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
   const { url, name } = useSelector(getFileData());
   const dispatch = useDispatch();
+  const { coordinateX, coordinateY } = useSelector(getCommentCoordinates());
 
   const handleClick = (e: MouseEvent<HTMLInputElement>) => {
     // Calcualate co-ordinates in percentages in order to support responsive mode
@@ -25,6 +26,26 @@ const ContentArea: FC = () => {
 
     // Open the comment box to let the user add comments
     dispatch(setCoordinates({ coordinateX: x, coordinateY: y }));
+  };
+
+  const annotatorPointerNode = () => {
+    if (!coordinateX || !coordinateY) {
+      return false;
+    }
+
+    return (
+      <Box
+        pos="absolute"
+        top={`${annotation.y - 2.5}%`}
+        left={`${annotation.x - 1.5}%`}
+        w={8}
+        h={8}
+        bgColor="blue.100"
+        borderRadius="50%"
+        borderWidth={2}
+        borderColor="blue.900"
+      />
+    );
   };
 
   const imageNode = () => {
@@ -55,17 +76,7 @@ const ContentArea: FC = () => {
             }
           />
           <Box pos="absolute" inset="0" id="js-image" onClick={handleClick}>
-            <Box
-              pos="absolute"
-              top={`${annotation.y - 2.5}%`}
-              left={`${annotation.x - 1.5}%`}
-              w={8}
-              h={8}
-              bgColor="blue.100"
-              borderRadius="50%"
-              borderWidth={2}
-              borderColor="blue.900"
-            />
+            {annotatorPointerNode()}
           </Box>
         </Box>
       </Box>
