@@ -1,8 +1,13 @@
-import { Box, Center } from "@chakra-ui/react";
+import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
+import { getFileData } from "app/selectors/file";
+import { setCoordinates } from "app/slices/file";
 import React, { FC, MouseEvent, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const ContentArea: FC = () => {
   const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
+  const { url, name } = useSelector(getFileData());
+  const dispatch = useDispatch();
 
   const handleClick = (e: MouseEvent<HTMLInputElement>) => {
     // Calcualate co-ordinates in percentages in order to support responsive mode
@@ -10,24 +15,45 @@ const ContentArea: FC = () => {
     const offsetX = e.clientX - rect.x;
     const offsetY = e.clientY - rect.y;
 
+    const x = (offsetX / rect.width) * 100;
+    const y = (offsetY / rect.height) * 100;
+
     setAnnotation({
-      x: (offsetX / rect.width) * 100,
-      y: (offsetY / rect.height) * 100,
+      x,
+      y,
     });
 
     // Open the comment box to let the user add comments
+    dispatch(setCoordinates({ coordinateX: x, coordinateY: y }));
   };
 
-  return (
-    <Center h="calc(100vh - 80px)" overflow="hidden" p={8}>
-      <Box shadow="xl" overflowY="auto" mx="auto" rounded="md">
+  const imageNode = () => {
+    if (!url) {
+      return (
+        <Text h="100%" fontWeight="bold">
+          Select an image from left
+        </Text>
+      );
+    }
+
+    return (
+      <Box shadow="xl" overflowY="auto" mx="auto" rounded="md" w="100%">
         <Box
           pos="relative"
           _hover={{
             cursor: "pointer",
           }}
         >
-          <img src="/images/demo.png" width="100%" alt="presentation" />
+          <Image
+            src={url}
+            alt={name}
+            width="100%"
+            fallback={
+              <Center p={4} w="100%">
+                <Spinner />
+              </Center>
+            }
+          />
           <Box pos="absolute" inset="0" id="js-image" onClick={handleClick}>
             <Box
               pos="absolute"
@@ -43,6 +69,12 @@ const ContentArea: FC = () => {
           </Box>
         </Box>
       </Box>
+    );
+  };
+
+  return (
+    <Center h="calc(100vh - 80px)" overflow="hidden" p={8}>
+      <Center>{imageNode()}</Center>
     </Center>
   );
 };

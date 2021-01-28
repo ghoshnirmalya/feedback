@@ -67,7 +67,7 @@ const ShowProjectPage: BlitzPage = () => {
   return (
     <Flex flexDir="column" w="100%" h="calc(100vh - 80px)">
       <Suspense fallback={<Spinner />}>
-        <Grid templateColumns={["1fr 3fr 2fr"]} gap={8} w="100%" h="100%">
+        <Grid templateColumns={["1fr 5fr 2fr"]} gap={8} w="100%" h="100%">
           <LazyLeftSidebar />
           <LazyContentArea />
           <LazyRightSidebar />

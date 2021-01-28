@@ -1,9 +1,9 @@
-import { combineReducers } from "@reduxjs/toolkit"
-import { projectsSlice } from "slices/projects"
+import { combineReducers } from "@reduxjs/toolkit";
+import { fileSlice } from "app/slices/file";
 
 const rootReducer = combineReducers({
-  projects: projectsSlice.reducer,
-})
+  file: fileSlice.reducer,
+});
 
-export type RootState = ReturnType<typeof rootReducer>
-export default rootReducer
+export type RootState = ReturnType<typeof rootReducer>;
+export default rootReducer;
