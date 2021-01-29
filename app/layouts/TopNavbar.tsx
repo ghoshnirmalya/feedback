@@ -39,10 +39,10 @@ const TopNavbar: FC = () => {
       zIndex={1}
     >
       <Flex justifyContent="space-between" w="100%">
-        <HStack spacing={8} align="center">
+        <HStack spacing={4} align="center">
           {linksNode()}
         </HStack>
-        <HStack spacing={8} align="center">
+        <HStack spacing={4} align="center">
           <IconButton
             size="sm"
             aria-label="Report an issue"

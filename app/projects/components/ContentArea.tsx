@@ -1,14 +1,28 @@
 import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
+import getComments from "app/comments/queries/getComments";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
+import { setComment } from "app/slices/comment";
 import { setCoordinates } from "app/slices/file";
+import { usePaginatedQuery, useRouter } from "blitz";
 import React, { FC, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
+const ITEMS_PER_PAGE = 100;
 
 const ContentArea: FC = () => {
   const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
   const { url, name } = useSelector(getFileData());
   const dispatch = useDispatch();
   const { coordinateX, coordinateY } = useSelector(getCommentCoordinates());
+  const file = useSelector(getFileData());
+  const router = useRouter();
+  const page = Number(router.query.page) || 0;
+  const [{ comments, hasMore }] = usePaginatedQuery(getComments, {
+    where: { file: { id: file.id } },
+    orderBy: { id: "asc" },
+    skip: ITEMS_PER_PAGE * page,
+    take: ITEMS_PER_PAGE,
+  });
 
   const handleClick = (e: MouseEvent<HTMLInputElement>) => {
     // Calcualate co-ordinates in percentages in order to support responsive mode
@@ -28,6 +42,38 @@ const ContentArea: FC = () => {
     dispatch(setCoordinates({ coordinateX: x, coordinateY: y }));
   };
 
+  const handleSelectComment = (commentId: number) => {
+    dispatch(setComment(commentId));
+  };
+
+  const annotationsNode = () => {
+    if (!comments.length) {
+      return false;
+    }
+
+    return comments.map((comment, index) => {
+      return (
+        <Box
+          key={comment.id}
+          pos="absolute"
+          top={`${comment.coordinateY - 1.5}%`}
+          left={`${comment.coordinateX - 1.5}%`}
+          w={8}
+          h={8}
+          bgColor="blue.100"
+          borderRadius="50%"
+          borderWidth={2}
+          borderColor="blue.900"
+          onClick={() => handleSelectComment(comment.id)}
+        >
+          <Center h="100%" fontWeight="bold" color="blue.900">
+            {index + 1}
+          </Center>
+        </Box>
+      );
+    });
+  };
+
   const annotatorPointerNode = () => {
     if (!coordinateX || !coordinateY) {
       return false;
@@ -36,10 +82,10 @@ const ContentArea: FC = () => {
     return (
       <Box
         pos="absolute"
-        top={`${annotation.y - 2.5}%`}
+        top={`${annotation.y - 1.5}%`}
         left={`${annotation.x - 1.5}%`}
-        w={8}
-        h={8}
+        w={4}
+        h={4}
         bgColor="blue.100"
         borderRadius="50%"
         borderWidth={2}
@@ -76,6 +122,7 @@ const ContentArea: FC = () => {
             }
           />
           <Box pos="absolute" inset="0" id="js-image" onClick={handleClick}>
+            {annotationsNode()}
             {annotatorPointerNode()}
           </Box>
         </Box>

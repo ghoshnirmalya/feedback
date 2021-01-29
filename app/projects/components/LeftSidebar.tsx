@@ -8,11 +8,12 @@ const LeftSidebar: FC = () => {
     <Box
       h="calc(100vh - 80px)"
       overflowY="scroll"
-      p={8}
+      px={8}
+      py={4}
       bg="white"
       borderRightWidth={1}
     >
-      <VStack spacing={8}>
+      <VStack spacing={4}>
         <FilesList />
         <AddImageButton />
       </VStack>

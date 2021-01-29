@@ -1,3 +1,4 @@
+import { Box, Center, Heading } from "@chakra-ui/react";
 import CommentForm from "app/comments/components/CommentForm";
 import createComment from "app/comments/mutations/createComment";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
@@ -13,7 +14,15 @@ const CommentBox: FC = () => {
   const currentUser = useCurrentUser();
 
   if (!coordinateX || !coordinateY) {
-    return null;
+    return (
+      <Box h={48} px={8} py={4} borderBottomWidth={1}>
+        <Center h="100%">
+          <Heading size="md" textAlign="center">
+            Click on the image to add a comment
+          </Heading>
+        </Center>
+      </Box>
+    );
   }
 
   return (
@@ -22,7 +31,7 @@ const CommentBox: FC = () => {
       onSubmit={async (event) => {
         try {
           await createCommentMutation({
-            data: { body: event.target[0].value },
+            data: { body: event.target[0].value, coordinateX, coordinateY },
             fileId: file.id,
             userId: currentUser?.id as number,
           });

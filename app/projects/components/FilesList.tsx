@@ -29,7 +29,7 @@ const FilesList: FC = () => {
   };
 
   return (
-    <VStack spacing={8}>
+    <VStack spacing={4}>
       {files.map((file) => {
         return (
           <Box

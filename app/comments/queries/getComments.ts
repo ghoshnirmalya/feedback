@@ -17,6 +17,9 @@ export default async function getComments(
     orderBy,
     take,
     skip,
+    include: {
+      user: true,
+    },
   });
 
   const count = await db.comment.count();

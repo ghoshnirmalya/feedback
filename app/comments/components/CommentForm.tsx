@@ -4,9 +4,12 @@ import {
   Button,
   FormControl,
   FormLabel,
+  HStack,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
+import { setCoordinates } from "app/slices/file";
+import { useDispatch } from "react-redux";
 
 type CommentFormProps = {
   initialValues: any;
@@ -15,6 +18,16 @@ type CommentFormProps = {
 
 const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
   const [comment, setComment] = useState<string>("");
+  const dispatch = useDispatch();
+
+  const handleClose = () => {
+    dispatch(
+      setCoordinates({
+        coordinateX: null,
+        coordinateY: null,
+      })
+    );
+  };
 
   return (
     <form
@@ -25,7 +38,7 @@ const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
         setComment("");
       }}
     >
-      <VStack spacing={4} align="left" p={8} borderBottomWidth={1}>
+      <VStack spacing={2} align="left" px={8} py={4} borderBottomWidth={1}>
         <Box>
           <FormControl id="name" isRequired>
             <FormLabel>Write your comment</FormLabel>
@@ -39,9 +52,19 @@ const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
           </FormControl>
         </Box>
         <Box>
-          <Button colorScheme="blue" type="submit" w="100%" size="sm">
-            Submit
-          </Button>
+          <HStack spacing={4} w="100%" justifyContent="flex-end">
+            <Button
+              colorScheme="red"
+              size="sm"
+              variant="outline"
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+            <Button colorScheme="blue" type="submit" size="sm">
+              Submit
+            </Button>
+          </HStack>
         </Box>
       </VStack>
     </form>
