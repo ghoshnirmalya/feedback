@@ -1,14 +1,9 @@
 import { Ctx } from "blitz";
-import db, { Prisma } from "db";
+import db, { Prisma, User, File } from "db";
 
-type CreateCommentInput = {
-  data: Omit<Prisma.CommentCreateArgs["data"], "file">;
-  fileId: number;
-  userId: number;
-};
-
+type CreateCommentInput = Pick<Prisma.CommentCreateArgs, "data">;
 export default async function createComment(
-  { data, fileId, userId }: CreateCommentInput,
+  { data }: CreateCommentInput,
   ctx: Ctx
 ) {
   ctx.session.authorize();
@@ -16,8 +11,8 @@ export default async function createComment(
   const comment = await db.comment.create({
     data: {
       ...data,
-      file: { connect: { id: fileId } },
-      user: { connect: { id: userId } },
+      file: { connect: { id: (data.file as File).id } },
+      user: { connect: { id: (data.user as User).id } },
     },
   });
 

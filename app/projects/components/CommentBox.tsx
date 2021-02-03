@@ -1,4 +1,8 @@
 import { Box, Center, Heading } from "@chakra-ui/react";
+import {
+  FileCreateOneWithoutCommentsInput,
+  UserCreateOneWithoutCommentsInput,
+} from "@prisma/client";
 import CommentForm from "app/comments/components/CommentForm";
 import createComment from "app/comments/mutations/createComment";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
@@ -31,9 +35,13 @@ const CommentBox: FC = () => {
       onSubmit={async (event) => {
         try {
           await createCommentMutation({
-            data: { body: event.target[0].value, coordinateX, coordinateY },
-            fileId: file.id,
-            userId: currentUser?.id as number,
+            data: {
+              body: event.target[0].value,
+              coordinateX,
+              coordinateY,
+              file: (file as unknown) as FileCreateOneWithoutCommentsInput,
+              user: (currentUser as unknown) as UserCreateOneWithoutCommentsInput,
+            },
           });
         } catch (error) {
           console.log(error);
