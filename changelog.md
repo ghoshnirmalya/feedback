@@ -1,3 +1,11 @@
+# [0.4.0](https://github.com/ghoshnirmalya/feedback/compare/0.3.0...0.4.0) (2021-02-04)
+
+### Features
+
+- adds option to add comments ([798d839](https://github.com/ghoshnirmalya/feedback/commit/798d8398d0141397aa470bafe5930faeda019d98))
+- adds option to show annotations ([201c9f0](https://github.com/ghoshnirmalya/feedback/commit/201c9f0ede9b2d69412f688638ba6f9bdb881692))
+- shows dynamic images in ContentArea ([b738caa](https://github.com/ghoshnirmalya/feedback/commit/b738caa18b921cc8fff3afa6cf139265e339f1b6))
+
 # [0.3.0](https://github.com/ghoshnirmalya/feedback/compare/0.2.0...0.3.0) (2021-01-28)
 
 ### Features
