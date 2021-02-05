@@ -1,3 +1,11 @@
+# [0.6.0](https://github.com/ghoshnirmalya/feedback/compare/0.5.0...0.6.0) (2021-02-05)
+
+### Features
+
+- removes files pages ([61be94a](https://github.com/ghoshnirmalya/feedback/commit/61be94ac124396e65de9a5685f6c667ad9666d15))
+- shows date properly ([16abda1](https://github.com/ghoshnirmalya/feedback/commit/16abda13c7976900d302bf73f34219b6df9f084b))
+- updates design of auth components ([b7e3f0b](https://github.com/ghoshnirmalya/feedback/commit/b7e3f0b06466ce504b5faab5647e86925996932c))
+
 # [0.5.0](https://github.com/ghoshnirmalya/feedback/compare/0.4.0...0.5.0) (2021-02-05)
 
 ### Features
