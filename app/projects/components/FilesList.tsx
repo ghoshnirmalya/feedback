@@ -45,10 +45,10 @@ const FilesList: FC = () => {
               src={file.url}
               alt={file.name}
               objectFit="cover"
-              boxSize="100px"
+              boxSize="50px"
               rounded="md"
               fallback={
-                <Center p={4} boxSize="100px">
+                <Center p={4} boxSize="50px">
                   <Spinner />
                 </Center>
               }

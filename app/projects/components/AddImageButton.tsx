@@ -4,6 +4,7 @@ import getFiles from "app/files/queries/getFiles";
 import { invoke, useMutation, useParam, useRouter } from "blitz";
 import React, { FC, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { MdAdd, MdPlusOne } from "react-icons/md";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -52,7 +53,7 @@ const AddImageButton: FC = () => {
   if (isUploadingFile || isLoading) {
     return (
       <Center
-        boxSize="100px"
+        boxSize="50px"
         shadow="sm"
         rounded="md"
         borderWidth={1}
@@ -66,7 +67,7 @@ const AddImageButton: FC = () => {
   return (
     <Flex
       {...getRootProps()}
-      boxSize="100px"
+      boxSize="50px"
       shadow="sm"
       rounded="md"
       borderWidth={1}
@@ -79,7 +80,13 @@ const AddImageButton: FC = () => {
       }}
     >
       <input {...getInputProps()} />
-      {isDragActive ? <p>Drop the files here ...</p> : <Box>Add new</Box>}
+      {isDragActive ? (
+        <p>Drop the files here ...</p>
+      ) : (
+        <Box>
+          <MdAdd size={24} />
+        </Box>
+      )}
     </Flex>
   );
 };

@@ -3,7 +3,7 @@ import AddImageButton from "app/projects/components/AddImageButton";
 import FilesList from "app/projects/components/FilesList";
 import React, { FC } from "react";
 
-const LeftSidebar: FC = () => {
+const FilesSidebar: FC = () => {
   return (
     <Box
       h="calc(100vh - 80px)"
@@ -21,4 +21,4 @@ const LeftSidebar: FC = () => {
   );
 };
 
-export default LeftSidebar;
+export default FilesSidebar;

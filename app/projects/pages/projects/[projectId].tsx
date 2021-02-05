@@ -20,10 +20,10 @@ const LazyContentArea = dynamic(
   }
 );
 
-const LazyLeftSidebar = dynamic(
+const LazyFilesSidebar = dynamic(
   () =>
     import(
-      /* webpackChunkName: 'lazyLeftSidebar' */ "app/projects/components/LeftSidebar"
+      /* webpackChunkName: 'lazyFilesSidebar' */ "app/projects/components/FilesSidebar"
     ),
   {
     ssr: false,
@@ -37,10 +37,10 @@ const LazyLeftSidebar = dynamic(
   }
 );
 
-const LazyRightSidebar = dynamic(
+const LazyDetailsSidebar = dynamic(
   () =>
     import(
-      /* webpackChunkName: 'lazyRightSidebar' */ "app/projects/components/RightSidebar"
+      /* webpackChunkName: 'lazyDetailsSidebar' */ "app/projects/components/DetailsSidebar"
     ),
   {
     ssr: false,
@@ -67,10 +67,10 @@ const ShowProjectPage: BlitzPage = () => {
   return (
     <Flex flexDir="column" w="100%" h="calc(100vh - 80px)">
       <Suspense fallback={<Spinner />}>
-        <Grid templateColumns={["1fr 6fr 2fr"]} gap={8} w="100%" h="100%">
-          <LazyLeftSidebar />
+        <Grid templateColumns={["1fr 8fr 3fr"]} w="100%" h="100%">
+          <LazyFilesSidebar />
           <LazyContentArea />
-          <LazyRightSidebar />
+          <LazyDetailsSidebar />
         </Grid>
       </Suspense>
     </Flex>

@@ -13,6 +13,7 @@ import { getFileData } from "app/selectors/file";
 import { usePaginatedQuery, useRouter } from "blitz";
 import React, { FC, useState } from "react";
 import { useSelector } from "react-redux";
+import CommentBox from "app/projects/components/CommentBox";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -50,10 +51,14 @@ const CommentsList: FC = () => {
       <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
         <Heading size="sm">Comments</Heading>
       </Box>
-      {comments.map((comment, index) => {
+      <Box id="js-comment-form-container">
+        <CommentBox />
+      </Box>
+      {comments.map((comment) => {
         return (
           <Box
-            key={index}
+            key={comment.id}
+            id={`js-comment-${comment.id}`}
             px={8}
             py={4}
             borderBottomWidth={1}

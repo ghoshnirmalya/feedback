@@ -4,7 +4,7 @@ import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { setComment } from "app/slices/comment";
 import { setCoordinates } from "app/slices/file";
 import { usePaginatedQuery, useRouter } from "blitz";
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ITEMS_PER_PAGE = 100;
@@ -24,7 +24,28 @@ const ContentArea: FC = () => {
     take: ITEMS_PER_PAGE,
   });
 
-  const handleClick = (e: MouseEvent<HTMLInputElement>) => {
+  const handleSetPointer = (e: any) => {
+    if (e.target.classList.contains("js-annotation")) {
+      dispatch(
+        setCoordinates({
+          coordinateX: null,
+          coordinateY: null,
+        })
+      );
+
+      return false;
+    }
+
+    const el = document.getElementById("js-comment-form-container");
+
+    el?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+
+    dispatch(setComment(null));
+
     // Calcualate co-ordinates in percentages in order to support responsive mode
     const rect = e.currentTarget.getBoundingClientRect();
     const offsetX = e.clientX - rect.x;
@@ -43,6 +64,14 @@ const ContentArea: FC = () => {
   };
 
   const handleSelectComment = (commentId: number) => {
+    const el = document.getElementById(`js-comment-${commentId}`);
+
+    el?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+
     dispatch(setComment(commentId));
   };
 
@@ -65,8 +94,19 @@ const ContentArea: FC = () => {
           borderWidth={2}
           borderColor="blue.900"
           onClick={() => handleSelectComment(comment.id)}
+          _hover={{
+            w: 10,
+            h: 10,
+            top: `${comment.coordinateY - 2.35}%`,
+            left: `${comment.coordinateX - 1.9}%`,
+          }}
         >
-          <Center h="100%" fontWeight="bold" color="blue.900">
+          <Center
+            h="100%"
+            fontWeight="bold"
+            color="blue.900"
+            className="js-annotation"
+          >
             {index + 1}
           </Center>
         </Box>
@@ -121,7 +161,12 @@ const ContentArea: FC = () => {
               </Center>
             }
           />
-          <Box pos="absolute" inset="0" id="js-image" onClick={handleClick}>
+          <Box
+            pos="absolute"
+            inset="0"
+            id="js-image"
+            onClick={handleSetPointer}
+          >
             {annotationsNode()}
             {annotatorPointerNode()}
           </Box>

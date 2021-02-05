@@ -1,9 +1,8 @@
 import { Box } from "@chakra-ui/react";
-import CommentBox from "app/projects/components/CommentBox";
 import CommentsList from "app/projects/components/CommentsList";
 import React, { FC } from "react";
 
-const RightSidebar: FC = () => {
+const DetailsSidebar: FC = () => {
   return (
     <Box
       h="calc(100vh - 80px)"
@@ -11,10 +10,9 @@ const RightSidebar: FC = () => {
       bg="white"
       borderLeftWidth={1}
     >
-      <CommentBox />
       <CommentsList />
     </Box>
   );
 };
 
-export default RightSidebar;
+export default DetailsSidebar;
