@@ -8,12 +8,16 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
+import CommentBox from "app/projects/components/CommentBox";
 import { getSelectedCommentData } from "app/selectors/comment";
 import { getFileData } from "app/selectors/file";
 import { usePaginatedQuery, useRouter } from "blitz";
-import React, { FC, useState } from "react";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import React, { FC } from "react";
 import { useSelector } from "react-redux";
-import CommentBox from "app/projects/components/CommentBox";
+
+dayjs.extend(localizedFormat);
 
 const ITEMS_PER_PAGE = 100;
 
@@ -28,6 +32,23 @@ const CommentsList: FC = () => {
     take: ITEMS_PER_PAGE,
   });
   const selectedCommentId = useSelector(getSelectedCommentData());
+
+  if (!file.url) {
+    return (
+      <>
+        <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
+          <Heading size="sm">Comments</Heading>
+        </Box>
+        <Box h={48} px={8} py={4} borderBottomWidth={1}>
+          <Center h="100%">
+            <Heading size="md" textAlign="center">
+              Please select a file to add your comments!
+            </Heading>
+          </Center>
+        </Box>
+      </>
+    );
+  }
 
   if (!comments.length) {
     return (
@@ -69,7 +90,9 @@ const CommentsList: FC = () => {
                 <Avatar size="sm" />
                 <VStack spacing={1} align="left">
                   <Text fontSize="sm">{comment.user.email}</Text>
-                  <Text fontSize="xs">{comment.createdAt.getTime()}</Text>
+                  <Text fontSize="xs">
+                    {dayjs(comment.createdAt).format("LL")}
+                  </Text>
                 </VStack>
               </HStack>
               <Text>{comment.body}</Text>

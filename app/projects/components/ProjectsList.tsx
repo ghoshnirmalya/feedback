@@ -1,4 +1,4 @@
-import { Box, Center, Grid, Image, Spinner } from "@chakra-ui/react";
+import { Box, Center, Grid } from "@chakra-ui/react";
 import getProjects from "app/projects/queries/getProjects";
 import { Link, usePaginatedQuery } from "blitz";
 import React from "react";
@@ -29,20 +29,9 @@ const ProjectsList = () => {
               shadow="sm"
               borderWidth={1}
             >
-              <Image
-                src="https://via.placeholder.com/150"
-                fallback={
-                  <Center p={4} minH={24}>
-                    <Spinner />
-                  </Center>
-                }
-                alt={project.name}
-                w="100%"
-                borderTopRadius={4}
-              />
-              <Box p={4} fontWeight="bold">
+              <Center p={4} fontWeight="bold" h={48}>
                 {project.name}
-              </Box>
+              </Center>
             </Box>
           </Link>
         );
