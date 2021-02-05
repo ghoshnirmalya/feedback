@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -80,5 +80,4 @@ model Team {
   updatedAt DateTime  @updatedAt
   users     User[]
   projects  Project[]
-  name      String
 }

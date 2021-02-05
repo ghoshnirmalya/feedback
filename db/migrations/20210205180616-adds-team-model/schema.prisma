@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -22,8 +22,6 @@ model User {
   role           String    @default("user")
   sessions       Session[]
   comments       Comment[]
-  Team           Team?     @relation(fields: [teamId], references: [id])
-  teamId         Int?
 }
 
 model Session {
@@ -46,8 +44,6 @@ model Project {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   files     File[]
-  Team      Team?    @relation(fields: [teamId], references: [id])
-  teamId    Int?
 }
 
 model File {
@@ -75,10 +71,7 @@ model Comment {
 }
 
 model Team {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  users     User[]
-  projects  Project[]
-  name      String
+  id        Int      @default(autoincrement()) @id
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

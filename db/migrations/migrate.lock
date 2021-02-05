@@ -8,3 +8,7 @@
 20210128042039-adds-url-to-file-model
 20210128172132-adds-comment-model
 20210128193240-adds-coordinates-to-comment-model
+20210205180616-adds-team-model
+20210205180727-adds-user-to-team-model
+20210205180901-adds-project-to-team
+20210205181144-adds-name-to-team

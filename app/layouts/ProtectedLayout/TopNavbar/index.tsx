@@ -13,6 +13,10 @@ const links = [
     href: "/projects",
     label: "Projects",
   },
+  {
+    href: "/teams",
+    label: "Teams",
+  },
 ];
 
 const TopNavbar: FC = () => {
