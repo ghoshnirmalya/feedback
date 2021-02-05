@@ -1,59 +1,31 @@
-import { Suspense } from "react";
+import { Box, Container, Spinner, Text, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
-import {
-  Link,
-  useRouter,
-  useQuery,
-  useParam,
-  BlitzPage,
-  useMutation,
-} from "blitz";
-import getTeam from "app/teams/queries/getTeam";
-import deleteTeam from "app/teams/mutations/deleteTeam";
-
-export const Team = () => {
-  const router = useRouter();
-  const teamId = useParam("teamId", "number");
-  const [team] = useQuery(getTeam, { where: { id: teamId } });
-  const [deleteTeamMutation] = useMutation(deleteTeam);
-
-  return (
-    <div>
-      <h1>Team {team.id}</h1>
-      <pre>{JSON.stringify(team, null, 2)}</pre>
-
-      <Link href={`/teams/${team.id}/edit`}>
-        <a>Edit</a>
-      </Link>
-
-      <button
-        type="button"
-        onClick={async () => {
-          if (window.confirm("This will be deleted")) {
-            await deleteTeamMutation({ where: { id: team.id } });
-            router.push("/teams");
-          }
-        }}
-      >
-        Delete
-      </button>
-    </div>
-  );
-};
+import TeamHeading from "app/teams/components/TeamHeading";
+import UsersList from "app/teams/components/UsersList";
+import { BlitzPage } from "blitz";
+import React, { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 const ShowTeamPage: BlitzPage = () => {
   return (
-    <div>
-      <p>
-        <Link href="/teams">
-          <a>Teams</a>
-        </Link>
-      </p>
-
-      <Suspense fallback={<div>Loading...</div>}>
-        <Team />
-      </Suspense>
-    </div>
+    <Container maxW="6xl" centerContent p={8}>
+      <ErrorBoundary
+        fallbackRender={({ error }) => {
+          return (
+            <Box p={8} bg="gray.100" rounded="md">
+              <Text fontWeight="bold">{error.message}</Text>
+            </Box>
+          );
+        }}
+      >
+        <Suspense fallback={<Spinner />}>
+          <VStack spacing={8} w="100%" align="left">
+            <TeamHeading />
+            <UsersList />
+          </VStack>
+        </Suspense>
+      </ErrorBoundary>
+    </Container>
   );
 };
 

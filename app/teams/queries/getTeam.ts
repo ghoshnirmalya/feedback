@@ -6,7 +6,12 @@ type GetTeamInput = Pick<Prisma.FindFirstTeamArgs, "where">;
 export default async function getTeam({ where }: GetTeamInput, ctx: Ctx) {
   ctx.session.authorize();
 
-  const team = await db.team.findFirst({ where });
+  const team = await db.team.findFirst({
+    where,
+    include: {
+      User: true,
+    },
+  });
 
   if (!team) throw new NotFoundError();
 

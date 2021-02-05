@@ -2,6 +2,7 @@ import TeamForm from "app/teams/components/TeamForm";
 import updateTeam from "app/teams/mutations/updateTeam";
 import getTeam from "app/teams/queries/getTeam";
 import { useMutation, useParam, useQuery, useRouter } from "blitz";
+import { Team, User, UserCreateManyWithoutTeamInput } from "db";
 import React, { FC } from "react";
 
 const EditTeamForm: FC = () => {
@@ -19,10 +20,12 @@ const EditTeamForm: FC = () => {
       isError={isError}
       onSubmit={async (event) => {
         try {
-          const updated = await updateTeamMutation({
+          const updated = (await updateTeamMutation({
             where: { id: team.id },
-            data: { name: event.target[0].value },
-          });
+            data: {
+              name: event.target[0].value,
+            },
+          })) as Team & { User: User[] };
 
           await setQueryData(updated);
 
