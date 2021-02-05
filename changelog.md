@@ -1,3 +1,9 @@
+## [0.6.1](https://github.com/ghoshnirmalya/feedback/compare/0.6.0...0.6.1) (2021-02-05)
+
+### Bug Fixes
+
+- fixes name of file ([b3da0ac](https://github.com/ghoshnirmalya/feedback/commit/b3da0ac329a4afe89f8e7db505d06a3f4d5c0ff3))
+
 # [0.6.0](https://github.com/ghoshnirmalya/feedback/compare/0.5.0...0.6.0) (2021-02-05)
 
 ### Features
