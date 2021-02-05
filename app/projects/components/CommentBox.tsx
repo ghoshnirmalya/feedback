@@ -1,4 +1,4 @@
-import { Box, Center, Heading } from "@chakra-ui/react";
+import { Box, Center, Text } from "@chakra-ui/react";
 import {
   FileCreateOneWithoutCommentsInput,
   UserCreateOneWithoutCommentsInput,
@@ -21,9 +21,7 @@ const CommentBox: FC = () => {
     return (
       <Box h={48} px={8} py={4} borderBottomWidth={1}>
         <Center h="100%">
-          <Heading size="md" textAlign="center">
-            Click on the image to add a comment
-          </Heading>
+          <Text fontWeight="bold">Click on the image to add a comment</Text>
         </Center>
       </Box>
     );

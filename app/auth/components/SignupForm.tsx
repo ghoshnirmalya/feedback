@@ -8,8 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import signup from "app/auth/mutations/signup";
-import { FORM_ERROR } from "app/components/Form";
-import { useMutation } from "blitz";
+import { Link, useMutation } from "blitz";
 import React from "react";
 
 type SignUpFormProps = {
@@ -46,7 +45,7 @@ export const SignUpForm = (props: SignUpFormProps) => {
               // This error comes from Prisma
               return { email: "This email is already being used" };
             } else {
-              return { [FORM_ERROR]: error.toString() };
+              return { error: error.toString() };
             }
           }
         }}
@@ -65,7 +64,12 @@ export const SignUpForm = (props: SignUpFormProps) => {
             </FormControl>
           </Box>
           <Box>
-            <HStack spacing={4} w="100%" justifyContent="flex-end">
+            <HStack spacing={4} w="100%" justifyContent="space-between">
+              <Link href="/sign-in">
+                <Button colorScheme="blue" type="submit" variant="link">
+                  Already have an account?
+                </Button>
+              </Link>
               <Button colorScheme="blue" type="submit">
                 Sign Up
               </Button>

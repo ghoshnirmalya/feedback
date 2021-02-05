@@ -5,7 +5,7 @@ import {
   Flex,
   LightMode,
 } from "@chakra-ui/react";
-import TopNavbar from "app/layouts/TopNavbar";
+import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
 import { Head } from "blitz";
 import React, { ReactNode } from "react";
 

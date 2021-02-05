@@ -1,13 +1,15 @@
 import {
+  Button,
   Center,
   Container,
   Heading,
+  HStack,
   Link,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import Layout from "app/layouts/Layout";
-import { BlitzPage } from "blitz";
+import PublicLayout from "app/layouts/PublicLayout";
+import { BlitzPage, Link as _Link } from "blitz";
 import React from "react";
 
 const Home: BlitzPage = () => {
@@ -40,6 +42,23 @@ const Home: BlitzPage = () => {
               </Link>{" "}
               application powered by Next.js, Blitz.js and Chakra UI.
             </Text>
+            <HStack spacing={4}>
+              <_Link href="/sign-up">
+                <Button colorScheme="blue" type="submit" size="lg">
+                  Get started
+                </Button>
+              </_Link>
+              <_Link href="/sign-in">
+                <Button
+                  colorScheme="blue"
+                  type="submit"
+                  size="lg"
+                  variant="outline"
+                >
+                  Already have an account?
+                </Button>
+              </_Link>
+            </HStack>
           </VStack>
         </VStack>
       </Center>
@@ -47,6 +66,6 @@ const Home: BlitzPage = () => {
   );
 };
 
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>;
+Home.getLayout = (page) => <PublicLayout title="Home">{page}</PublicLayout>;
 
 export default Home;

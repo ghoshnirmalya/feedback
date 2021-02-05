@@ -8,7 +8,7 @@ import {
   Text,
   Box,
 } from "@chakra-ui/react";
-import Layout from "app/layouts/Layout";
+import ProtectedLayout from "app/layouts/ProtectedLayout";
 import ProjectsList from "app/projects/components/ProjectsList";
 import { BlitzPage, ErrorComponent, Link } from "blitz";
 import React, { Suspense } from "react";
@@ -48,6 +48,8 @@ const ProjectsPage: BlitzPage = () => {
   );
 };
 
-ProjectsPage.getLayout = (page) => <Layout title={"Projects"}>{page}</Layout>;
+ProjectsPage.getLayout = (page) => (
+  <ProtectedLayout title={"Projects"}>{page}</ProtectedLayout>
+);
 
 export default ProjectsPage;

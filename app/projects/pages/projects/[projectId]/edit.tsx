@@ -1,5 +1,5 @@
 import { Container, Spinner, VStack } from "@chakra-ui/react";
-import Layout from "app/layouts/Layout";
+import ProtectedLayout from "app/layouts/ProtectedLayout";
 import EditProjectForm from "app/projects/components/EditProjectForm";
 import EditProjectHeading from "app/projects/components/EditProjectHeading";
 import { BlitzPage } from "blitz";
@@ -19,7 +19,7 @@ const EditProjectPage: BlitzPage = () => {
 };
 
 EditProjectPage.getLayout = (page) => (
-  <Layout title={"Edit Project"}>{page}</Layout>
+  <ProtectedLayout title={"Edit Project"}>{page}</ProtectedLayout>
 );
 
 export default EditProjectPage;

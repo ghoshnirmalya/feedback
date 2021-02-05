@@ -1,5 +1,5 @@
 import { Container, VStack } from "@chakra-ui/react";
-import Layout from "app/layouts/Layout";
+import ProtectedLayout from "app/layouts/ProtectedLayout";
 import CreateProjectHeading from "app/projects/components/CreateProjectHeading";
 import ProjectForm from "app/projects/components/ProjectForm";
 import createProject from "app/projects/mutations/createProject";
@@ -38,7 +38,7 @@ const NewProjectPage: BlitzPage = () => {
 };
 
 NewProjectPage.getLayout = (page) => (
-  <Layout title={"Create New Project"}>{page}</Layout>
+  <ProtectedLayout title={"Create New Project"}>{page}</ProtectedLayout>
 );
 
 export default NewProjectPage;

@@ -1,6 +1,6 @@
 import { Center, Container } from "@chakra-ui/react";
 import { SignUpForm } from "app/auth/components/SignUpForm";
-import Layout from "app/layouts/PublicLayout";
+import PublicLayout from "app/layouts/PublicLayout";
 import { BlitzPage, useRouter } from "blitz";
 import React from "react";
 
@@ -16,6 +16,8 @@ const SignupPage: BlitzPage = () => {
   );
 };
 
-SignupPage.getLayout = (page) => <Layout title="Sign Up">{page}</Layout>;
+SignupPage.getLayout = (page) => (
+  <PublicLayout title="Sign Up">{page}</PublicLayout>
+);
 
 export default SignupPage;

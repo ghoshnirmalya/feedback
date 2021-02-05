@@ -8,8 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import login from "app/auth/mutations/login";
-import { FORM_ERROR } from "app/components/Form";
-import { AuthenticationError, useMutation } from "blitz";
+import { AuthenticationError, Link, useMutation } from "blitz";
 import React from "react";
 
 type SignInFormProps = {
@@ -40,10 +39,10 @@ export const SignInForm = (props: SignInFormProps) => {
             props.onSuccess?.();
           } catch (error) {
             if (error instanceof AuthenticationError) {
-              return { [FORM_ERROR]: "Sorry, those credentials are invalid" };
+              return { error: "Sorry, those credentials are invalid" };
             } else {
               return {
-                [FORM_ERROR]:
+                error:
                   "Sorry, we had an unexpected error. Please try again. - " +
                   error.toString(),
               };
@@ -65,7 +64,12 @@ export const SignInForm = (props: SignInFormProps) => {
             </FormControl>
           </Box>
           <Box>
-            <HStack spacing={4} w="100%" justifyContent="flex-end">
+            <HStack spacing={4} w="100%" justifyContent="space-between">
+              <Link href="/sign-up">
+                <Button colorScheme="blue" type="submit" variant="link">
+                  Don't have an account?
+                </Button>
+              </Link>
               <Button colorScheme="blue" type="submit">
                 Sign In
               </Button>

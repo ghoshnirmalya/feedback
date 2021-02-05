@@ -41,9 +41,7 @@ const CommentsList: FC = () => {
         </Box>
         <Box h={48} px={8} py={4} borderBottomWidth={1}>
           <Center h="100%">
-            <Heading size="md" textAlign="center">
-              Please select a file to add your comments!
-            </Heading>
+            <Text fontWeight="bold">Select a file to add your comments!</Text>
           </Center>
         </Box>
       </>
