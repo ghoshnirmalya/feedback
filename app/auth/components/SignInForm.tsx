@@ -7,17 +7,17 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
-import signup from "app/auth/mutations/signup";
+import login from "app/auth/mutations/login";
 import { FORM_ERROR } from "app/components/Form";
-import { useMutation } from "blitz";
+import { AuthenticationError, useMutation } from "blitz";
 import React from "react";
 
-type SignUpFormProps = {
+type SignInFormProps = {
   onSuccess?: () => void;
 };
 
-export const SignUpForm = (props: SignUpFormProps) => {
-  const [signupMutation] = useMutation(signup);
+export const SignInForm = (props: SignInFormProps) => {
+  const [loginMutation] = useMutation(login);
 
   return (
     <Box
@@ -33,20 +33,20 @@ export const SignUpForm = (props: SignUpFormProps) => {
           event.preventDefault();
 
           try {
-            await signupMutation({
+            await loginMutation({
               email: event.target[0].value,
-              password: event.target[0].value,
+              password: event.target[1].value,
             });
             props.onSuccess?.();
           } catch (error) {
-            if (
-              error.code === "P2002" &&
-              error.meta?.target?.includes("email")
-            ) {
-              // This error comes from Prisma
-              return { email: "This email is already being used" };
+            if (error instanceof AuthenticationError) {
+              return { [FORM_ERROR]: "Sorry, those credentials are invalid" };
             } else {
-              return { [FORM_ERROR]: error.toString() };
+              return {
+                [FORM_ERROR]:
+                  "Sorry, we had an unexpected error. Please try again. - " +
+                  error.toString(),
+              };
             }
           }
         }}
@@ -67,7 +67,7 @@ export const SignUpForm = (props: SignUpFormProps) => {
           <Box>
             <HStack spacing={4} w="100%" justifyContent="flex-end">
               <Button colorScheme="blue" type="submit">
-                Sign Up
+                Sign In
               </Button>
             </HStack>
           </Box>
@@ -77,4 +77,4 @@ export const SignUpForm = (props: SignUpFormProps) => {
   );
 };
 
-export default SignUpForm;
+export default SignInForm;

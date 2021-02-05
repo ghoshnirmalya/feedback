@@ -5,11 +5,14 @@ import {
   HStack,
   Spinner,
   VStack,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 import Layout from "app/layouts/Layout";
 import ProjectsList from "app/projects/components/ProjectsList";
-import { BlitzPage, Link } from "blitz";
+import { BlitzPage, ErrorComponent, Link } from "blitz";
 import React, { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 
 const ProjectsPage: BlitzPage = () => {
   const headingNode = () => {
@@ -25,12 +28,22 @@ const ProjectsPage: BlitzPage = () => {
 
   return (
     <Container maxW="6xl" centerContent p={8}>
-      <Suspense fallback={<Spinner />}>
-        <VStack spacing={8} w="100%" align="left">
-          {headingNode()}
-          <ProjectsList />
-        </VStack>
-      </Suspense>
+      <ErrorBoundary
+        fallbackRender={({ error }) => {
+          return (
+            <Box p={8} bg="gray.100" rounded="md">
+              <Text fontWeight="bold">{error.message}</Text>
+            </Box>
+          );
+        }}
+      >
+        <Suspense fallback={<Spinner />}>
+          <VStack spacing={8} w="100%" align="left">
+            {headingNode()}
+            <ProjectsList />
+          </VStack>
+        </Suspense>
+      </ErrorBoundary>
     </Container>
   );
 };

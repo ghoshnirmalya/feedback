@@ -1,6 +1,7 @@
 import { Box, Flex, HStack, IconButton } from "@chakra-ui/react";
+import UserDetails from "app/layouts/TopNavbar/UserDetails";
 import { Link } from "blitz";
-import React, { FC } from "react";
+import React, { FC, Suspense } from "react";
 import { MdBugReport } from "react-icons/md";
 
 const links = [
@@ -52,6 +53,9 @@ const TopNavbar: FC = () => {
             href="https://github.com/ghoshnirmalya/feedback/issues/new"
             target="_blank"
           />
+          <Suspense fallback="Loading...">
+            <UserDetails />
+          </Suspense>
         </HStack>
       </Flex>
     </Flex>
