@@ -1,3 +1,9 @@
+# [0.5.0](https://github.com/ghoshnirmalya/feedback/compare/0.4.0...0.5.0) (2021-02-05)
+
+### Features
+
+- updates how annotations are shown ([2265532](https://github.com/ghoshnirmalya/feedback/commit/2265532d71fe04d941819d71434ad433d33e0be2))
+
 # [0.4.0](https://github.com/ghoshnirmalya/feedback/compare/0.3.0...0.4.0) (2021-02-04)
 
 ### Features
