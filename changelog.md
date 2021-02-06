@@ -1,3 +1,14 @@
+# [0.7.0](https://github.com/ghoshnirmalya/feedback/compare/0.6.1...0.7.0) (2021-02-06)
+
+### Features
+
+- adds basic boilerplate for teams ([ba7bf0d](https://github.com/ghoshnirmalya/feedback/commit/ba7bf0d2d1446ffc4b990892f8bb990487fee49d))
+- adds minor design changes ([8d4e870](https://github.com/ghoshnirmalya/feedback/commit/8d4e870a5894332aa04e0daba98c9f5abed83cd0))
+- adds user to teams ([1ef7f2d](https://github.com/ghoshnirmalya/feedback/commit/1ef7f2d5d4580d593e63cbd5940d4a25d51ceff2))
+- associates projects with a team ([3ea0f46](https://github.com/ghoshnirmalya/feedback/commit/3ea0f4623c5d43e8029543302ee434c0b672206e))
+- shows error message for unauthenticated users ([10e1377](https://github.com/ghoshnirmalya/feedback/commit/10e1377ac2931b9aa16ee63769f30613926db0af))
+- shows teams to which the current user belongs to ([607bfb9](https://github.com/ghoshnirmalya/feedback/commit/607bfb97b87af01f2f54500ddfd4ff9960c188bd))
+
 ## [0.6.1](https://github.com/ghoshnirmalya/feedback/compare/0.6.0...0.6.1) (2021-02-05)
 
 ### Bug Fixes
