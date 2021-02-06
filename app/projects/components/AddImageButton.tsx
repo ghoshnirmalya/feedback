@@ -1,10 +1,11 @@
 import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
 import createFile from "app/files/mutations/createFile";
 import getFiles from "app/files/queries/getFiles";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import { invoke, useMutation, useParam, useRouter } from "blitz";
 import React, { FC, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { MdAdd, MdPlusOne } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -14,6 +15,7 @@ const AddImageButton: FC = () => {
   const page = Number(router.query.page) || 0;
   const [createFileMutation, { isLoading }] = useMutation(createFile);
   const [isUploadingFile, setUploadingFile] = useState<Boolean>(false);
+  const currentUser = useCurrentUser();
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setUploadingFile(true);
@@ -49,6 +51,10 @@ const AddImageButton: FC = () => {
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  if (!currentUser) {
+    return null;
+  }
 
   if (isUploadingFile || isLoading) {
     return (

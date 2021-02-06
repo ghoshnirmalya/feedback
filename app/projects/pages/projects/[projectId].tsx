@@ -1,5 +1,5 @@
 import { Center, Flex, Grid, Spinner } from "@chakra-ui/react";
-import ProtectedLayout from "app/layouts/ProtectedLayout";
+import AnonymousLayout from "app/layouts/AnonymousLayout";
 import { BlitzPage, dynamic } from "blitz";
 import React, { Suspense, useEffect } from "react";
 
@@ -78,7 +78,7 @@ const ShowProjectPage: BlitzPage = () => {
 };
 
 ShowProjectPage.getLayout = (page) => (
-  <ProtectedLayout title={"Project"}>{page}</ProtectedLayout>
+  <AnonymousLayout title={"Project"}>{page}</AnonymousLayout>
 );
 
 export default ShowProjectPage;

@@ -10,8 +10,6 @@ export default async function getComments(
   { where, orderBy, skip = 0, take }: GetCommentsInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
-
   const comments = await db.comment.findMany({
     where,
     orderBy,

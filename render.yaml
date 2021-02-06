@@ -3,7 +3,7 @@ services:
     name: feedback
     env: node
     plan: starter
-    buildCommand: yarn --frozen-lockfile --prod=false && blitz prisma migrate deploy --preview-feature && blitz build
+    buildCommand: yarn --frozen-lockfile --prod=true && yarn migrate && blitz build
     startCommand: blitz start --production
     envVars:
       - key: NODE_ENV

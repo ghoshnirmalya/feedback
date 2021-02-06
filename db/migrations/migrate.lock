@@ -16,3 +16,4 @@
 20210206040036-adds-description-to-team
 20210206062922-uses-consistent-schema-names
 20210206071341-fixes-attribute-naming-in-project-model
+20210206152942-adds-is-public-attribute-to-project-model

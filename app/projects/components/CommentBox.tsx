@@ -17,6 +17,10 @@ const CommentBox: FC = () => {
   const [createCommentMutation] = useMutation(createComment);
   const currentUser = useCurrentUser();
 
+  if (!currentUser) {
+    return null;
+  }
+
   if (!coordinateX || !coordinateY) {
     return (
       <Box h={48} px={8} py={4} borderBottomWidth={1}>
