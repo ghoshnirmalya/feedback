@@ -1,7 +1,7 @@
 import { Box, Container, Spinner, Text, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
+import ProjectsList from "app/teams/components/ProjectsList";
 import TeamHeading from "app/teams/components/TeamHeading";
-import UsersList from "app/teams/components/UsersList";
 import { BlitzPage } from "blitz";
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
@@ -21,7 +21,7 @@ const ShowTeamPage: BlitzPage = () => {
         <Suspense fallback={<Spinner />}>
           <VStack spacing={8} w="100%" align="left">
             <TeamHeading />
-            <UsersList />
+            <ProjectsList />
           </VStack>
         </Suspense>
       </ErrorBoundary>

@@ -10,12 +10,12 @@ const links = [
     label: "Home",
   },
   {
-    href: "/projects",
-    label: "Projects",
-  },
-  {
     href: "/teams",
     label: "Teams",
+  },
+  {
+    href: "/projects",
+    label: "Projects",
   },
 ];
 

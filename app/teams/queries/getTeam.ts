@@ -10,6 +10,7 @@ export default async function getTeam({ where }: GetTeamInput, ctx: Ctx) {
     where,
     include: {
       users: true,
+      projects: true,
     },
   });
 
