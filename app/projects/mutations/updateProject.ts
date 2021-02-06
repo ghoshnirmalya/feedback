@@ -1,12 +1,23 @@
-import { Ctx } from "blitz"
-import db, { Prisma } from "db"
+import { Ctx } from "blitz";
+import db, { Prisma, Team } from "db";
 
-type UpdateProjectInput = Pick<Prisma.ProjectUpdateArgs, "where" | "data">
+type UpdateProjectInput = Pick<Prisma.ProjectUpdateArgs, "where" | "data">;
 
-export default async function updateProject({ where, data }: UpdateProjectInput, ctx: Ctx) {
-  ctx.session.authorize()
+export default async function updateProject(
+  { where, data }: UpdateProjectInput,
+  ctx: Ctx
+) {
+  ctx.session.authorize();
 
-  const project = await db.project.update({ where, data })
+  const { team, ...rest } = data;
 
-  return project
+  const project = await db.project.update({
+    where,
+    data: {
+      ...rest,
+      team: { connect: { id: (data.team as Team).id } },
+    },
+  });
+
+  return project;
 }

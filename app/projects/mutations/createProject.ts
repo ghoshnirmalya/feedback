@@ -1,11 +1,21 @@
-import { Ctx } from "blitz"
-import db, { Prisma } from "db"
+import { Ctx } from "blitz";
+import db, { Prisma, Team } from "db";
 
-type CreateProjectInput = Pick<Prisma.ProjectCreateArgs, "data">
-export default async function createProject({ data }: CreateProjectInput, ctx: Ctx) {
-  ctx.session.authorize()
+type CreateProjectInput = Pick<Prisma.ProjectCreateArgs, "data">;
+export default async function createProject(
+  { data }: CreateProjectInput,
+  ctx: Ctx
+) {
+  ctx.session.authorize();
 
-  const project = await db.project.create({ data })
+  const { team, ...rest } = data;
 
-  return project
+  const project = await db.project.create({
+    data: {
+      ...rest,
+      team: { connect: { id: (data.team as Team).id } },
+    },
+  });
+
+  return project;
 }
