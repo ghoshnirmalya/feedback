@@ -88,7 +88,7 @@ const ProjectForm = ({
                 <FormLabel>Team</FormLabel>
                 <Select
                   placeholder="Select team"
-                  defaultValue={initialValues.team.id}
+                  defaultValue={initialValues.team?.id}
                 >
                   {teams.map((team) => {
                     return (
