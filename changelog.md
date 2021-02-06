@@ -1,3 +1,9 @@
+## [0.7.1](https://github.com/ghoshnirmalya/feedback/compare/0.7.0...0.7.1) (2021-02-06)
+
+### Bug Fixes
+
+- fixes creation of projects ([35f81ab](https://github.com/ghoshnirmalya/feedback/commit/35f81ab48a13b91ba0794e6552dc3eaecafcea1a))
+
 # [0.7.0](https://github.com/ghoshnirmalya/feedback/compare/0.6.1...0.7.0) (2021-02-06)
 
 ### Features
