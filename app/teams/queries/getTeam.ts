@@ -9,7 +9,7 @@ export default async function getTeam({ where }: GetTeamInput, ctx: Ctx) {
   const team = await db.team.findFirst({
     where,
     include: {
-      User: true,
+      users: true,
     },
   });
 

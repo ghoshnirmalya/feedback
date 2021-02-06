@@ -8,9 +8,10 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
-import React, { ChangeEvent, useState } from "react";
+import React from "react";
 
 type TeamFormProps = {
   initialValues: any;
@@ -25,8 +26,6 @@ const TeamForm = ({
   isError,
   initialValues,
 }: TeamFormProps) => {
-  const [name, setName] = useState<string>(initialValues.name);
-
   const alertNode = () => {
     if (!isError) {
       return false;
@@ -65,10 +64,16 @@ const TeamForm = ({
                 <FormLabel>Name</FormLabel>
                 <Input
                   placeholder="Personal portfolio"
-                  value={name}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setName(e.currentTarget.value)
-                  }
+                  defaultValue={initialValues.name}
+                />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl id="description" isDisabled={isLoading}>
+                <FormLabel>Description</FormLabel>
+                <Textarea
+                  placeholder="Personal portfolio"
+                  defaultValue={initialValues.description}
                 />
               </FormControl>
             </Box>

@@ -1,11 +1,11 @@
-import { Avatar, AvatarGroup, Box, Center, Grid } from "@chakra-ui/react";
+import { Avatar, AvatarGroup, Grid } from "@chakra-ui/react";
 import getTeam from "app/teams/queries/getTeam";
 import { useParam, useQuery } from "blitz";
 import React from "react";
 
 const UsersList = () => {
   const teamId = useParam("teamId", "number");
-  const [{ User }] = useQuery(getTeam, { where: { id: teamId } });
+  const [{ users }] = useQuery(getTeam, { where: { id: teamId } });
 
   return (
     <Grid
@@ -19,7 +19,7 @@ const UsersList = () => {
       w="100%"
     >
       <AvatarGroup size="md" max={2}>
-        {User.map((user) => {
+        {users.map((user) => {
           return <Avatar key={user.id} name={user.name || ""} />;
         })}
       </AvatarGroup>

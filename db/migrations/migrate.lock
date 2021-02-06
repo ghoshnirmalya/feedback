@@ -13,3 +13,5 @@
 20210205180901-adds-project-to-team
 20210205181144-adds-name-to-team
 20210205183152-adds-user-teams-model
+20210206040036-adds-description-to-team
+20210206062922-uses-consistent-schema-names

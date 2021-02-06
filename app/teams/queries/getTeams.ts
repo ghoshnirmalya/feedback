@@ -17,6 +17,9 @@ export default async function getTeams(
     orderBy,
     take,
     skip,
+    include: {
+      users: true,
+    },
   });
 
   const count = await db.team.count();

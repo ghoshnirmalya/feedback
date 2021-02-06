@@ -2,7 +2,7 @@ import TeamForm from "app/teams/components/TeamForm";
 import updateTeam from "app/teams/mutations/updateTeam";
 import getTeam from "app/teams/queries/getTeam";
 import { useMutation, useParam, useQuery, useRouter } from "blitz";
-import { Team, User, UserCreateManyWithoutTeamInput } from "db";
+import { Team, User } from "db";
 import React, { FC } from "react";
 
 const EditTeamForm: FC = () => {
@@ -24,8 +24,9 @@ const EditTeamForm: FC = () => {
             where: { id: team.id },
             data: {
               name: event.target[0].value,
+              description: event.target[1].value,
             },
-          })) as Team & { User: User[] };
+          })) as Team & { users: User[] };
 
           await setQueryData(updated);
 

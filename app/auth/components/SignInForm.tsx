@@ -66,7 +66,7 @@ export const SignInForm = (props: SignInFormProps) => {
           <Box>
             <HStack spacing={4} w="100%" justifyContent="space-between">
               <Link href="/sign-up">
-                <Button colorScheme="blue" type="submit" variant="link">
+                <Button colorScheme="blue" variant="link">
                   Don't have an account?
                 </Button>
               </Link>
