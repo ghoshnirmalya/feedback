@@ -1,8 +1,7 @@
 import {
-  Box,
   ChakraProvider,
+  ColorModeOptions,
   extendTheme,
-  Flex,
   LightMode,
   Spinner,
 } from "@chakra-ui/react";
@@ -16,7 +15,7 @@ type LayoutProps = {
 };
 
 const PublicLayout = ({ title, children }: LayoutProps) => {
-  const config = {
+  const config: ColorModeOptions = {
     useSystemColorMode: false,
     initialColorMode: "light",
   };
@@ -35,9 +34,6 @@ const PublicLayout = ({ title, children }: LayoutProps) => {
           <Suspense fallback={<Spinner />}>
             <Container>{children}</Container>
           </Suspense>
-          <Box minH="100vh">
-            <Flex>{children}</Flex>
-          </Box>
         </LightMode>
       </ChakraProvider>
     </>

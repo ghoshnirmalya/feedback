@@ -1,5 +1,6 @@
 import {
   ChakraProvider,
+  ColorModeOptions,
   extendTheme,
   LightMode,
   Spinner,
@@ -14,7 +15,7 @@ type LayoutProps = {
 };
 
 const Layout = ({ title, children }: LayoutProps) => {
-  const config = {
+  const config: ColorModeOptions = {
     useSystemColorMode: false,
     initialColorMode: "light",
   };
