@@ -1,7 +1,7 @@
 import { Container, Spinner, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
-import CreateTeamHeading from "app/teams/components/CreateTeamHeading";
 import CreateTeamForm from "app/teams/components/CreateTeamForm";
+import CreateTeamHeading from "app/teams/components/CreateTeamHeading";
 import { BlitzPage } from "blitz";
 import React, { Suspense } from "react";
 

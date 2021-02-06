@@ -4,9 +4,11 @@ import {
   extendTheme,
   Flex,
   LightMode,
+  Spinner,
 } from "@chakra-ui/react";
+import Container from "app/layouts/PublicLayout/Container";
 import { Head } from "blitz";
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 
 type LayoutProps = {
   title?: string;
@@ -30,6 +32,9 @@ const PublicLayout = ({ title, children }: LayoutProps) => {
       </Head>
       <ChakraProvider theme={customTheme}>
         <LightMode>
+          <Suspense fallback={<Spinner />}>
+            <Container>{children}</Container>
+          </Suspense>
           <Box minH="100vh">
             <Flex>{children}</Flex>
           </Box>

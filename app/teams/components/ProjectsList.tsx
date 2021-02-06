@@ -1,8 +1,9 @@
 import { Box, Center, Grid } from "@chakra-ui/react";
 import getProjects from "app/projects/queries/getProjects";
 import { Link, usePaginatedQuery, useParam } from "blitz";
-import React from "react";
-const ProjectsList = () => {
+import React, { FC } from "react";
+
+const ProjectsList: FC = () => {
   const teamId = useParam("teamId", "number");
   const [{ projects }] = usePaginatedQuery(getProjects, {
     orderBy: { updatedAt: "desc" },

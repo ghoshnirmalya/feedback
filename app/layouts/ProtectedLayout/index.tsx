@@ -1,13 +1,12 @@
 import {
-  Box,
   ChakraProvider,
   extendTheme,
-  Flex,
   LightMode,
+  Spinner,
 } from "@chakra-ui/react";
-import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
+import Container from "app/layouts/ProtectedLayout/Container";
 import { Head } from "blitz";
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
 
 type LayoutProps = {
   title?: string;
@@ -31,10 +30,9 @@ const Layout = ({ title, children }: LayoutProps) => {
       </Head>
       <ChakraProvider theme={customTheme}>
         <LightMode>
-          <Box minH="100vh">
-            <TopNavbar />
-            <Flex>{children}</Flex>
-          </Box>
+          <Suspense fallback={<Spinner />}>
+            <Container>{children}</Container>
+          </Suspense>
         </LightMode>
       </ChakraProvider>
     </>

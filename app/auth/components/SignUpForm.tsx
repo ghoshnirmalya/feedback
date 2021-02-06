@@ -1,18 +1,23 @@
 import {
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormLabel,
   HStack,
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { User } from "@prisma/client";
 import signup from "app/auth/mutations/signup";
 import { Link, useMutation } from "blitz";
 import React from "react";
 
 type SignUpFormProps = {
-  onSuccess?: () => void;
+  onSuccess?: (
+    user: User,
+    isCreateDefaultDataSelected: boolean
+  ) => Promise<void>;
 };
 
 export const SignUpForm = (props: SignUpFormProps) => {
@@ -31,12 +36,14 @@ export const SignUpForm = (props: SignUpFormProps) => {
         onSubmit={async (event) => {
           event.preventDefault();
 
+          const isCreateDefaultDataSelected = event.target[2].checked;
+
           try {
-            await signupMutation({
+            const user = await signupMutation({
               email: event.target[0].value,
-              password: event.target[0].value,
+              password: event.target[1].value,
             });
-            props.onSuccess?.();
+            props.onSuccess?.(user as User, isCreateDefaultDataSelected);
           } catch (error) {
             if (
               error.code === "P2002" &&
@@ -61,6 +68,11 @@ export const SignUpForm = (props: SignUpFormProps) => {
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <Input placeholder="Password" type="password" />
+            </FormControl>
+          </Box>
+          <Box>
+            <FormControl id="createDefaultData" isRequired>
+              <Checkbox defaultIsChecked>Create default data for me</Checkbox>
             </FormControl>
           </Box>
           <Box>
