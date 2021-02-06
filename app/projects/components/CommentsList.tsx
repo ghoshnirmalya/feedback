@@ -54,11 +54,12 @@ const CommentsList: FC = () => {
         <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
           <Heading size="sm">Comments</Heading>
         </Box>
+        <Box id="js-comment-form-container">
+          <CommentBox />
+        </Box>
         <Box h={48} px={8} py={4} borderBottomWidth={1}>
           <Center h="100%">
-            <Heading size="md" textAlign="center">
-              No comments yet!
-            </Heading>
+            <Text fontWeight="bold">No comments yet!</Text>
           </Center>
         </Box>
       </>
@@ -85,9 +86,11 @@ const CommentsList: FC = () => {
           >
             <VStack spacing={4} align="left">
               <HStack spacing={2}>
-                <Avatar size="sm" />
-                <VStack spacing={1} align="left">
-                  <Text fontSize="sm">{comment.user.email}</Text>
+                <Avatar size="sm" name={comment.user.email} />
+                <VStack spacing={0} align="left">
+                  <Text fontSize="sm" fontWeight="bold">
+                    {comment.user.email}
+                  </Text>
                   <Text fontSize="xs">
                     {dayjs(comment.createdAt).format("LL")}
                   </Text>

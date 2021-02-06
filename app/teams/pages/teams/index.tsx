@@ -9,18 +9,18 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
-import ProjectsList from "app/projects/components/ProjectsList";
+import TeamsList from "app/teams/components/TeamsList";
 import { BlitzPage, Link } from "blitz";
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
-const ProjectsPage: BlitzPage = () => {
+const TeamsPage: BlitzPage = () => {
   const headingNode = () => {
     return (
       <HStack spacing={8} justifyContent="space-between" w="100%">
-        <Heading>Projects</Heading>
-        <Link href="/projects/new" passHref>
-          <Button colorScheme="blue">Create Project</Button>
+        <Heading>Teams</Heading>
+        <Link href="/teams/new" passHref>
+          <Button colorScheme="blue">Create Team</Button>
         </Link>
       </HStack>
     );
@@ -40,7 +40,7 @@ const ProjectsPage: BlitzPage = () => {
         <Suspense fallback={<Spinner />}>
           <VStack spacing={8} w="100%" align="left">
             {headingNode()}
-            <ProjectsList />
+            <TeamsList />
           </VStack>
         </Suspense>
       </ErrorBoundary>
@@ -48,8 +48,8 @@ const ProjectsPage: BlitzPage = () => {
   );
 };
 
-ProjectsPage.getLayout = (page) => (
-  <ProtectedLayout title={"Projects"}>{page}</ProtectedLayout>
+TeamsPage.getLayout = (page) => (
+  <ProtectedLayout title={"Teams"}>{page}</ProtectedLayout>
 );
 
-export default ProjectsPage;
+export default TeamsPage;

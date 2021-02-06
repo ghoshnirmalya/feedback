@@ -1,20 +1,14 @@
 import { Box, Center, Grid } from "@chakra-ui/react";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getProjects from "app/projects/queries/getProjects";
-import { Link, usePaginatedQuery } from "blitz";
+import { Link, usePaginatedQuery, useParam } from "blitz";
 import React from "react";
-
 const ProjectsList = () => {
-  const currentUser = useCurrentUser();
+  const teamId = useParam("teamId", "number");
   const [{ projects }] = usePaginatedQuery(getProjects, {
     orderBy: { updatedAt: "desc" },
     where: {
       team: {
-        users: {
-          some: {
-            id: currentUser?.id,
-          },
-        },
+        id: teamId,
       },
     },
   });

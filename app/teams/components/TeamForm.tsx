@@ -8,39 +8,24 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Select,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
-import getTeams from "app/teams/queries/getTeams";
-import { useQuery } from "blitz";
-import React, { ChangeEvent, useState } from "react";
+import React from "react";
 
-type ProjectFormProps = {
+type TeamFormProps = {
   initialValues: any;
   onSubmit: React.FormEventHandler<HTMLFormElement>;
   isLoading: boolean;
   isError: boolean;
 };
 
-const ProjectForm = ({
+const TeamForm = ({
   onSubmit,
   isLoading,
   isError,
   initialValues,
-}: ProjectFormProps) => {
-  const [name, setName] = useState<string>(initialValues.name);
-  const currentUser = useCurrentUser();
-  const [{ teams }] = useQuery(getTeams, {
-    where: {
-      users: {
-        some: {
-          id: currentUser?.id,
-        },
-      },
-    },
-  });
-
+}: TeamFormProps) => {
   const alertNode = () => {
     if (!isError) {
       return false;
@@ -84,20 +69,12 @@ const ProjectForm = ({
               </FormControl>
             </Box>
             <Box>
-              <FormControl id="team" isRequired isDisabled={isLoading}>
-                <FormLabel>Team</FormLabel>
-                <Select
-                  placeholder="Select team"
-                  defaultValue={initialValues.team.id}
-                >
-                  {teams.map((team) => {
-                    return (
-                      <option key={team.id} value={team.id}>
-                        {team.name}
-                      </option>
-                    );
-                  })}
-                </Select>
+              <FormControl id="description" isDisabled={isLoading}>
+                <FormLabel>Description</FormLabel>
+                <Textarea
+                  placeholder="Personal portfolio"
+                  defaultValue={initialValues.description}
+                />
               </FormControl>
             </Box>
             <Box>
@@ -112,4 +89,4 @@ const ProjectForm = ({
   );
 };
 
-export default ProjectForm;
+export default TeamForm;

@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -13,17 +13,16 @@ generator client {
 // --------------------------------------
 
 model User {
-  id             Int         @id @default(autoincrement())
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
   name           String?
-  email          String      @unique
+  email          String    @unique
   hashedPassword String?
-  role           String      @default("user")
+  role           String    @default("user")
   sessions       Session[]
   comments       Comment[]
-  userTeams      UserTeams[]
-  teams          Team[]      @relation(fields: [teamId], references: [id])
+  Team           Team?     @relation(fields: [teamId], references: [id])
   teamId         Int?
 }
 
@@ -47,7 +46,7 @@ model Project {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   files     File[]
-  team      Team?    @relation(fields: [teamId], references: [id])
+  Team      Team?    @relation(fields: [teamId], references: [id])
   teamId    Int?
 }
 
@@ -76,20 +75,10 @@ model Comment {
 }
 
 model Team {
-  id          Int         @id @default(autoincrement())
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  projects    Project[]
-  name        String
-  description String?
-  userTeams   UserTeams[]
-  users       User[]
-}
-
-model UserTeams {
-  id     Int   @id @default(autoincrement())
-  user   User? @relation(fields: [userId], references: [id])
-  team   Team? @relation(fields: [teamId], references: [id])
-  userId Int?
-  teamId Int?
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  users     User[]
+  projects  Project[]
+  name      String
 }

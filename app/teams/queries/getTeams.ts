@@ -1,30 +1,33 @@
 import { Ctx } from "blitz";
 import db, { Prisma } from "db";
 
-type GetProjectsInput = Pick<
-  Prisma.FindManyProjectArgs,
+type GetTeamsInput = Pick<
+  Prisma.FindManyTeamArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 
-export default async function getProjects(
-  { where, orderBy, skip = 0, take }: GetProjectsInput,
+export default async function getTeams(
+  { where, orderBy, skip = 0, take }: GetTeamsInput,
   ctx: Ctx
 ) {
   ctx.session.authorize();
 
-  const projects = await db.project.findMany({
+  const teams = await db.team.findMany({
     where,
     orderBy,
     take,
     skip,
+    include: {
+      users: true,
+    },
   });
 
-  const count = await db.project.count();
+  const count = await db.team.count();
   const hasMore = typeof take === "number" ? skip + take < count : false;
   const nextPage = hasMore ? { take, skip: skip + take! } : null;
 
   return {
-    projects,
+    teams,
     nextPage,
     hasMore,
     count,

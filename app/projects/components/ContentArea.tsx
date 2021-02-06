@@ -138,7 +138,7 @@ const ContentArea: FC = () => {
     if (!url) {
       return (
         <Text h="100%" fontWeight="bold">
-          Select an image from left
+          Select or upload an image from left
         </Text>
       );
     }
