@@ -1,6 +1,7 @@
-import { Box, Center, Grid } from "@chakra-ui/react";
+import { Box, Grid, Heading } from "@chakra-ui/react";
 import getProjects from "app/projects/queries/getProjects";
 import { Link, usePaginatedQuery, useParam } from "blitz";
+import { Project } from "db";
 import React, { FC } from "react";
 
 const ProjectsList: FC = () => {
@@ -13,6 +14,14 @@ const ProjectsList: FC = () => {
       },
     },
   });
+
+  const nameNode = (project: Project) => {
+    return (
+      <Box p={4}>
+        <Heading size="md">{project.name}</Heading>
+      </Box>
+    );
+  };
 
   return (
     <Grid
@@ -30,9 +39,7 @@ const ProjectsList: FC = () => {
               shadow="sm"
               borderWidth={1}
             >
-              <Center p={4} fontWeight="bold" h={48}>
-                {project.name}
-              </Center>
+              {nameNode(project)}
             </Box>
           </Link>
         );

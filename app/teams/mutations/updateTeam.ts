@@ -1,5 +1,5 @@
 import { Ctx } from "blitz";
-import db, { Prisma } from "db";
+import db, { Prisma, User } from "db";
 
 type UpdateTeamInput = Pick<Prisma.TeamUpdateArgs, "where" | "data">;
 
@@ -9,7 +9,15 @@ export default async function updateTeam(
 ) {
   ctx.session.authorize();
 
-  const team = await db.team.update({ where, data });
+  const { users, ...rest } = data;
+
+  const team = await db.team.update({
+    where,
+    data: {
+      ...rest,
+      users: { connect: { id: (data.users as User).id } },
+    },
+  });
 
   return team;
 }

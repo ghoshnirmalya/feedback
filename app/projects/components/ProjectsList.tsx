@@ -1,10 +1,11 @@
-import { Box, Center, Grid } from "@chakra-ui/react";
+import { Box, Grid, Heading } from "@chakra-ui/react";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getProjects from "app/projects/queries/getProjects";
 import { Link, usePaginatedQuery } from "blitz";
-import React from "react";
+import { Project } from "db";
+import React, { FC } from "react";
 
-const ProjectsList = () => {
+const ProjectsList: FC = () => {
   const currentUser = useCurrentUser();
   const [{ projects }] = usePaginatedQuery(getProjects, {
     orderBy: { updatedAt: "desc" },
@@ -18,6 +19,14 @@ const ProjectsList = () => {
       },
     },
   });
+
+  const nameNode = (project: Project) => {
+    return (
+      <Box p={4}>
+        <Heading size="md">{project.name}</Heading>
+      </Box>
+    );
+  };
 
   return (
     <Grid
@@ -35,9 +44,7 @@ const ProjectsList = () => {
               shadow="sm"
               borderWidth={1}
             >
-              <Center p={4} fontWeight="bold" h={48}>
-                {project.name}
-              </Center>
+              {nameNode(project)}
             </Box>
           </Link>
         );

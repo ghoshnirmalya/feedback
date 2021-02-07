@@ -2,7 +2,7 @@ import TeamForm from "app/teams/components/TeamForm";
 import updateTeam from "app/teams/mutations/updateTeam";
 import getTeam from "app/teams/queries/getTeam";
 import { useMutation, useParam, useQuery, useRouter } from "blitz";
-import { Project, Team, User } from "db";
+import { Project, Team, User, UserCreateManyWithoutTeamsInput } from "db";
 import React, { FC } from "react";
 
 const EditTeamForm: FC = () => {
@@ -25,6 +25,7 @@ const EditTeamForm: FC = () => {
             data: {
               name: event.target[0].value,
               description: event.target[1].value,
+              users: team.users as UserCreateManyWithoutTeamsInput,
             },
           })) as Team & { users: User[]; projects: Project[] };
 

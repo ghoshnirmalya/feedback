@@ -1,4 +1,6 @@
 import { Button, Heading, HStack } from "@chakra-ui/react";
+import ManageUsers from "app/teams/components/ManageUsers";
+import MembersList from "app/teams/components/MembersList";
 import deleteTeam from "app/teams/mutations/deleteTeam";
 import getTeam from "app/teams/queries/getTeam";
 import { Link, useMutation, useParam, useQuery, useRouter } from "blitz";
@@ -14,9 +16,8 @@ const TeamHeading: FC = () => {
     <HStack spacing={8} justifyContent="space-between" w="100%">
       <Heading>{team.name}</Heading>
       <HStack spacing={4}>
-        <Link href={`/teams/${team.id}/edit`} passHref>
-          <Button colorScheme="blue">Edit</Button>
-        </Link>
+        <MembersList />
+        <ManageUsers />
         <Button
           colorScheme="red"
           variant="outline"

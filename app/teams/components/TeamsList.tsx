@@ -1,4 +1,5 @@
 import { Box, Grid, Heading, Text, VStack } from "@chakra-ui/react";
+import { Team } from "@prisma/client";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getTeams from "app/teams/queries/getTeams";
 import { Link, usePaginatedQuery } from "blitz";
@@ -15,6 +16,26 @@ const TeamsList = () => {
       },
     },
   });
+
+  const nameNode = (team: Team) => {
+    return (
+      <Box p={4}>
+        <Heading size="md">{team.name}</Heading>
+      </Box>
+    );
+  };
+
+  const descriptionNode = (team: Team) => {
+    if (!team.description) {
+      return false;
+    }
+
+    return (
+      <Box p={4} borderTopWidth={1}>
+        <Text>{team.description}</Text>
+      </Box>
+    );
+  };
 
   return (
     <Grid
@@ -33,12 +54,8 @@ const TeamsList = () => {
               borderWidth={1}
             >
               <VStack align="left" spacing={0}>
-                <Box p={4}>
-                  <Heading size="md">{team.name}</Heading>
-                </Box>
-                <Box p={4} borderTopWidth={1}>
-                  <Text>{team.description}</Text>
-                </Box>
+                {nameNode(team)}
+                {descriptionNode(team)}
               </VStack>
             </Box>
           </Link>
