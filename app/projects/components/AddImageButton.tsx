@@ -2,12 +2,13 @@ import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
 import createFile from "app/files/mutations/createFile";
 import getFiles from "app/files/queries/getFiles";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
-import { invoke, useMutation, useParam, useRouter } from "blitz";
+import { invoke, useMutation, useParam, useQuery, useRouter } from "blitz";
 import React, { FC, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { MdAdd } from "react-icons/md";
 
 const ITEMS_PER_PAGE = 100;
+const isDevelopmentEnvironment = process.env.NODE_ENV === "development";
 
 const AddImageButton: FC = () => {
   const router = useRouter();
@@ -16,6 +17,9 @@ const AddImageButton: FC = () => {
   const [createFileMutation, { isLoading }] = useMutation(createFile);
   const [isUploadingFile, setUploadingFile] = useState<Boolean>(false);
   const currentUser = useCurrentUser();
+  const [{ files }] = useQuery(getFiles, {
+    where: { id: projectId },
+  });
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setUploadingFile(true);
@@ -50,9 +54,13 @@ const AddImageButton: FC = () => {
     }
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple: false,
+  });
 
-  if (!currentUser) {
+  // Allow only five files to be uploaded in production environment for now.
+  if ((files.length === 5 && !isDevelopmentEnvironment) || !currentUser) {
     return null;
   }
 

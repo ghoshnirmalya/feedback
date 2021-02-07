@@ -53,7 +53,7 @@ const ProjectStateDropdown: FC = () => {
 
   return (
     <Menu isLazy placement="bottom-end">
-      <MenuButton as={Button}>
+      <MenuButton as={Button} size="sm">
         {project.isPublic ? "Public" : "Protected"}
       </MenuButton>
       <MenuList>
