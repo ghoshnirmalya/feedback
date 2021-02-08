@@ -1,5 +1,7 @@
 [Feedback](https://feedback-alpha.vercel.app/) helps you to collect feedback for your designs.
 
+![CI](https://github.com/ghoshnirmalya/feedback/workflows/CI/badge.svg)
+
 ## Table of contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
