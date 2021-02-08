@@ -40,7 +40,7 @@ This application is built using the following technologies:
 ### 1. **Clone the application**
 
 ```sh
-git clone https://github.com/ghoshnirmalya/atob
+git clone https://github.com/ghoshnirmalya/feedback
 ```
 
 ### 2. **Install necessary dependencies for the frontend application**
