@@ -1,4 +1,4 @@
-import { Container, Spinner, VStack } from "@chakra-ui/react";
+import { Center, Container, Spinner, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
 import EditTeamForm from "app/teams/components/EditTeamForm";
 import EditTeamHeading from "app/teams/components/EditTeamHeading";
@@ -8,7 +8,13 @@ import React, { Suspense } from "react";
 const EditTeamPage: BlitzPage = () => {
   return (
     <Container maxW="6xl" p={8}>
-      <Suspense fallback={<Spinner />}>
+      <Suspense
+        fallback={
+          <Center h="100vh">
+            <Spinner />
+          </Center>
+        }
+      >
         <VStack spacing={8} w="100%" align="left">
           <EditTeamHeading />
           <EditTeamForm />

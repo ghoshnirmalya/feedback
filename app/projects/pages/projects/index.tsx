@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   Container,
   Heading,
   HStack,
@@ -37,7 +38,13 @@ const ProjectsPage: BlitzPage = () => {
           );
         }}
       >
-        <Suspense fallback={<Spinner />}>
+        <Suspense
+          fallback={
+            <Center h="100vh">
+              <Spinner />
+            </Center>
+          }
+        >
           <VStack spacing={8} w="100%" align="left">
             {headingNode()}
             <ProjectsList />

@@ -1,4 +1,11 @@
-import { Box, Flex, HStack, IconButton, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  HStack,
+  IconButton,
+  Spinner,
+} from "@chakra-ui/react";
 import ProjectStateDropdown from "app/layouts/ProtectedLayout/TopNavbar/ProjectStateDropdown";
 import UserDetails from "app/layouts/ProtectedLayout/TopNavbar/UserDetails";
 import { Link } from "blitz";
@@ -6,10 +13,6 @@ import React, { FC, Suspense } from "react";
 import { MdBugReport } from "react-icons/md";
 
 const links = [
-  {
-    href: "/",
-    label: "Home",
-  },
   {
     href: "/teams",
     label: "Teams",
@@ -49,7 +52,13 @@ const TopNavbar: FC = () => {
           {linksNode()}
         </HStack>
         <HStack spacing={4} align="center">
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <Center h="100vh">
+                <Spinner />
+              </Center>
+            }
+          >
             <ProjectStateDropdown />
           </Suspense>
           <IconButton
@@ -61,7 +70,13 @@ const TopNavbar: FC = () => {
             href="https://github.com/ghoshnirmalya/feedback/issues/new"
             target="_blank"
           />
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <Center h="100vh">
+                <Spinner />
+              </Center>
+            }
+          >
             <UserDetails />
           </Suspense>
         </HStack>

@@ -1,5 +1,6 @@
 import {
   Button,
+  Center,
   Container,
   Heading,
   HStack,
@@ -25,7 +26,13 @@ const TeamsPage: BlitzPage = () => {
 
   return (
     <Container maxW="6xl" centerContent p={8}>
-      <Suspense fallback={<Spinner />}>
+      <Suspense
+        fallback={
+          <Center h="100vh">
+            <Spinner />
+          </Center>
+        }
+      >
         <VStack spacing={8} w="100%" align="left">
           {headingNode()}
           <TeamsList />

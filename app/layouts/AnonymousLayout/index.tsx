@@ -1,4 +1,5 @@
 import {
+  Center,
   ChakraProvider,
   ColorModeOptions,
   extendTheme,
@@ -31,7 +32,13 @@ const PublicLayout = ({ title, children }: LayoutProps) => {
       </Head>
       <ChakraProvider theme={customTheme}>
         <LightMode>
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <Center h="100vh">
+                <Spinner />
+              </Center>
+            }
+          >
             <Container>{children}</Container>
           </Suspense>
         </LightMode>

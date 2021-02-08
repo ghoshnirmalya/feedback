@@ -1,5 +1,8 @@
 import {
   Box,
+  Alert,
+  AlertIcon,
+  AlertTitle,
   Button,
   Checkbox,
   FormControl,
@@ -21,7 +24,20 @@ type SignUpFormProps = {
 };
 
 export const SignUpForm = (props: SignUpFormProps) => {
-  const [signupMutation] = useMutation(signup);
+  const [signupMutation, { isLoading, isError }] = useMutation(signup);
+
+  const alertNode = () => {
+    if (!isError) {
+      return false;
+    }
+
+    return (
+      <Alert status="error" rounded="md">
+        <AlertIcon />
+        <AlertTitle>Something went wrong! Please try again.</AlertTitle>
+      </Alert>
+    );
+  };
 
   return (
     <Box
@@ -32,63 +48,70 @@ export const SignUpForm = (props: SignUpFormProps) => {
       borderWidth={1}
       w={["100%", "100%", "50%"]}
     >
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
+      <VStack spacing={8} align="left">
+        {alertNode()}
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
 
-          const isCreateDefaultDataSelected = event.target[2].checked;
+            const isCreateDefaultDataSelected = event.target[2].checked;
 
-          try {
-            const user = await signupMutation({
-              email: event.target[0].value,
-              password: event.target[1].value,
-            });
-            props.onSuccess?.(user as User, isCreateDefaultDataSelected);
-          } catch (error) {
-            if (
-              error.code === "P2002" &&
-              error.meta?.target?.includes("email")
-            ) {
-              // This error comes from Prisma
-              return { email: "This email is already being used" };
-            } else {
-              return { error: error.toString() };
+            try {
+              const user = await signupMutation({
+                email: event.target[0].value,
+                password: event.target[1].value,
+              });
+              props.onSuccess?.(user as User, isCreateDefaultDataSelected);
+            } catch (error) {
+              if (
+                error.code === "P2002" &&
+                error.meta?.target?.includes("email")
+              ) {
+                // This error comes from Prisma
+                return { email: "This email is already being used" };
+              } else {
+                return { error: error.toString() };
+              }
             }
-          }
-        }}
-      >
-        <VStack spacing={4} align="left">
-          <Box>
-            <FormControl id="name" isRequired>
-              <FormLabel>Name</FormLabel>
-              <Input placeholder="John Doe" />
-            </FormControl>
-          </Box>
-          <Box>
-            <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
-              <Input placeholder="Password" type="password" />
-            </FormControl>
-          </Box>
-          <Box>
-            <FormControl id="createDefaultData" isRequired>
-              <Checkbox defaultIsChecked>Create default data for me</Checkbox>
-            </FormControl>
-          </Box>
-          <Box>
-            <HStack spacing={4} w="100%" justifyContent="space-between">
-              <Link href="/sign-in">
-                <Button colorScheme="blue" variant="link">
-                  Already have an account?
+          }}
+        >
+          <VStack spacing={4} align="left">
+            <Box>
+              <FormControl id="name" isRequired>
+                <FormLabel>Name</FormLabel>
+                <Input placeholder="John Doe" />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl id="password" isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input placeholder="Password" type="password" />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl id="createDefaultData" isRequired>
+                <Checkbox defaultChecked>Create default data for me</Checkbox>
+              </FormControl>
+            </Box>
+            <Box>
+              <HStack spacing={4} w="100%" justifyContent="space-between">
+                <Link href="/sign-in">
+                  <Button
+                    colorScheme="blue"
+                    variant="link"
+                    isLoading={isLoading}
+                  >
+                    Already have an account?
+                  </Button>
+                </Link>
+                <Button colorScheme="blue" type="submit" isLoading={isLoading}>
+                  Sign Up
                 </Button>
-              </Link>
-              <Button colorScheme="blue" type="submit">
-                Sign Up
-              </Button>
-            </HStack>
-          </Box>
-        </VStack>
-      </form>
+              </HStack>
+            </Box>
+          </VStack>
+        </form>
+      </VStack>
     </Box>
   );
 };

@@ -1,4 +1,4 @@
-import { Container, Spinner, VStack } from "@chakra-ui/react";
+import { Center, Container, Spinner, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
 import CreateProjectForm from "app/projects/components/CreateProjectForm";
 import CreateProjectHeading from "app/projects/components/CreateProjectHeading";
@@ -8,7 +8,13 @@ import React, { Suspense } from "react";
 const NewProjectPage: BlitzPage = () => {
   return (
     <Container maxW="6xl" centerContent p={8}>
-      <Suspense fallback={<Spinner />}>
+      <Suspense
+        fallback={
+          <Center h="100vh">
+            <Spinner />
+          </Center>
+        }
+      >
         <VStack spacing={8} w="100%" align="left">
           <CreateProjectHeading />
           <CreateProjectForm />
