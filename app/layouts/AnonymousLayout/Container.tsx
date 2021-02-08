@@ -23,7 +23,7 @@ const Container = ({ children }: ContainerProps) => {
         <Box p={8} bg="gray.100" rounded="md">
           <Text fontWeight="bold">
             You need to{" "}
-            <Link href="/sign-in" passHref>
+            <Link href="/auth" passHref>
               <ChakraLink>sign in</ChakraLink>
             </Link>{" "}
             to view this content.
