@@ -4,6 +4,7 @@ import {
   extendTheme,
   LightMode,
   Spinner,
+  Center,
 } from "@chakra-ui/react";
 import Container from "app/layouts/ProtectedLayout/Container";
 import { Head } from "blitz";
@@ -31,7 +32,13 @@ const Layout = ({ title, children }: LayoutProps) => {
       </Head>
       <ChakraProvider theme={customTheme}>
         <LightMode>
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <Center h="100vh">
+                <Spinner />
+              </Center>
+            }
+          >
             <Container>{children}</Container>
           </Suspense>
         </LightMode>
