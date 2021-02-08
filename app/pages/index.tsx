@@ -4,13 +4,18 @@ import {
   Container,
   Heading,
   HStack,
-  Link,
+  Link as ChakraLink,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import PublicLayout from "app/layouts/PublicLayout";
-import { BlitzPage, Link as _Link } from "blitz";
+import { BlitzPage, Link } from "blitz";
 import React from "react";
+
+const isProduction = process.env.NODE_ENV === "production";
+const callbackURL = isProduction
+  ? `${process.env.VERCEL_URL}/api/auth/google/callback`
+  : "http://localhost:3000/api/auth/google/callback";
 
 const Home: BlitzPage = () => {
   return (
@@ -32,23 +37,23 @@ const Home: BlitzPage = () => {
             </Heading>
             <Text fontSize="2xl">
               Feedback is an{" "}
-              <Link
-                href="https://github.com/ghoshnirmalya/writy"
+              <ChakraLink
+                href="https://github.com/ghoshnirmalya/feedback"
                 target="_blank"
                 color="blue.500"
                 rel="noopener"
               >
                 Open Source
-              </Link>{" "}
+              </ChakraLink>{" "}
               application powered by Next.js, Blitz.js and Chakra UI.
             </Text>
             <HStack spacing={4}>
-              <_Link href="/sign-up">
+              <Link href={callbackURL} passHref>
                 <Button colorScheme="blue" type="submit" size="lg">
                   Get started
                 </Button>
-              </_Link>
-              <_Link href="/sign-in">
+              </Link>
+              <Link href="/api/auth/google">
                 <Button
                   colorScheme="blue"
                   type="submit"
@@ -57,7 +62,7 @@ const Home: BlitzPage = () => {
                 >
                   Already have an account?
                 </Button>
-              </_Link>
+              </Link>
             </HStack>
           </VStack>
         </VStack>
