@@ -3,7 +3,6 @@ import {
   Center,
   Container,
   Heading,
-  HStack,
   Link as ChakraLink,
   Text,
   VStack,
@@ -47,23 +46,11 @@ const Home: BlitzPage = () => {
               </ChakraLink>{" "}
               application powered by Next.js, Blitz.js and Chakra UI.
             </Text>
-            <HStack spacing={4}>
-              <Link href={callbackURL} passHref>
-                <Button colorScheme="blue" type="submit" size="lg">
-                  Get started
-                </Button>
-              </Link>
-              <Link href="/api/auth/google">
-                <Button
-                  colorScheme="blue"
-                  type="submit"
-                  size="lg"
-                  variant="outline"
-                >
-                  Already have an account?
-                </Button>
-              </Link>
-            </HStack>
+            <Link href={callbackURL} passHref>
+              <Button colorScheme="blue" type="submit" size="lg">
+                Get started using your Google account
+              </Button>
+            </Link>
           </VStack>
         </VStack>
       </Center>

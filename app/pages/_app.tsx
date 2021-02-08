@@ -1,4 +1,4 @@
-import LoginForm from "app/auth/components/SignInForm";
+import AuthenticationForm from "app/auth/components/AuthenticationForm";
 import { wrapper } from "app/store";
 import {
   AppProps,
@@ -32,7 +32,7 @@ function App({ Component, pageProps }: AppProps) {
 
 function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   if (error instanceof AuthenticationError) {
-    return <LoginForm onSuccess={resetErrorBoundary} />;
+    return <AuthenticationForm />;
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent

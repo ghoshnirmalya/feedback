@@ -18,7 +18,7 @@ const UserDetails = () => {
         onClick={async () => {
           await logoutMutation();
 
-          router.push("/sign-in");
+          router.push("/auth");
         }}
       >
         Sign Out
@@ -26,18 +26,11 @@ const UserDetails = () => {
     );
   } else {
     return (
-      <>
-        <Link href="/sign-up">
-          <Button colorScheme="blue" type="submit" size="sm">
-            Sign Up
-          </Button>
-        </Link>
-        <Link href="/sign-in">
-          <Button colorScheme="blue" type="submit" size="sm" variant="outline">
-            Sign In
-          </Button>
-        </Link>
-      </>
+      <Link href="/auth">
+        <Button colorScheme="blue" type="submit" size="sm" variant="outline">
+          Sign In
+        </Button>
+      </Link>
     );
   }
 };
