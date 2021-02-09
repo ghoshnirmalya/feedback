@@ -5,7 +5,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 
 const isProduction = process.env.NODE_ENV === "production";
 const callbackURL = isProduction
-  ? `${process.env.VERCEL_URL}/api/auth/google/callback`
+  ? "https://feedback-alpha.vercel.app/api/auth/google/callback"
   : "http://localhost:3000/api/auth/google/callback";
 
 export default passportAuth({

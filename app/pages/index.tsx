@@ -12,11 +12,6 @@ import PublicLayout from "app/layouts/PublicLayout";
 import { BlitzPage, GetServerSideProps, Link } from "blitz";
 import React from "react";
 
-const isProduction = process.env.NODE_ENV === "production";
-const callbackURL = isProduction
-  ? `${process.env.VERCEL_URL}/api/auth/google/callback`
-  : "http://localhost:3000/api/auth/google/callback";
-
 const Home: BlitzPage = () => {
   return (
     <Container maxW="4xl" py={24} minH="calc(100vh - 80px)">
@@ -47,7 +42,7 @@ const Home: BlitzPage = () => {
               </ChakraLink>{" "}
               application powered by Next.js, Blitz.js and Chakra UI.
             </Text>
-            <Link href={callbackURL} passHref>
+            <Link href="/api/auth/google/callback" passHref>
               <Button colorScheme="blue" type="submit" size="lg">
                 Get started using your Google account
               </Button>
