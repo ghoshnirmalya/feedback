@@ -176,7 +176,7 @@ const ContentArea: FC = () => {
   };
 
   return (
-    <Center h="calc(100vh - 80px)" overflow="hidden" p={8}>
+    <Center h="calc(100vh - 80px)" overflow="hidden" p={8} bg="gray.100">
       <Center>{imageNode()}</Center>
     </Center>
   );

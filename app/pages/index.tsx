@@ -7,8 +7,9 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
+import withAuthentication from "app/auth/hocs/withAuthentication";
 import PublicLayout from "app/layouts/PublicLayout";
-import { BlitzPage, Link } from "blitz";
+import { BlitzPage, GetServerSideProps, Link } from "blitz";
 import React from "react";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -58,6 +59,14 @@ const Home: BlitzPage = () => {
   );
 };
 
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  await withAuthentication.isAuth(ctx);
+
+  return {
+    props: {},
+  };
+};
+
 Home.getLayout = (page) => <PublicLayout title="Home">{page}</PublicLayout>;
 
-export default Home;
+export default withAuthentication(Home);

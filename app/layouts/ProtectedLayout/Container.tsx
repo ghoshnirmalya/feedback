@@ -5,7 +5,6 @@ import { Link } from "blitz";
 import React, { ReactNode } from "react";
 
 type ContainerProps = {
-  title?: string;
   children: ReactNode;
 };
 
@@ -29,7 +28,7 @@ const Container = ({ children }: ContainerProps) => {
   }
 
   return (
-    <Box minH="100vh">
+    <Box minH="100vh" bg="gray.100">
       <TopNavbar />
       <Flex>{children}</Flex>
     </Box>

@@ -19,7 +19,7 @@ const ProjectsPage: BlitzPage = () => {
   const headingNode = () => {
     return (
       <HStack spacing={8} justifyContent="space-between" w="100%">
-        <Heading>Projects</Heading>
+        <Heading fontSize="2xl">Projects</Heading>
         <Link href="/projects/new" passHref>
           <Button colorScheme="blue">Create Project</Button>
         </Link>
