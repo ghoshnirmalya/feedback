@@ -66,13 +66,7 @@ const AddImageButton: FC = () => {
 
   if (isUploadingFile || isLoading) {
     return (
-      <Center
-        boxSize="50px"
-        shadow="sm"
-        rounded="md"
-        borderWidth={1}
-        borderStyle="dashed"
-      >
+      <Center boxSize="50px" rounded="md" borderWidth={1} borderStyle="dashed">
         <Spinner />
       </Center>
     );
@@ -82,7 +76,6 @@ const AddImageButton: FC = () => {
     <Flex
       {...getRootProps()}
       boxSize="50px"
-      shadow="sm"
       rounded="md"
       borderWidth={1}
       justifyContent="center"

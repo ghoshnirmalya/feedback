@@ -36,7 +36,6 @@ const FilesList: FC = () => {
             as="button"
             key={file.id}
             bgColor="white"
-            shadow="sm"
             rounded="md"
             borderWidth={1}
             onClick={() => handleClick(file)}

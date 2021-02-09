@@ -1,5 +1,13 @@
-import { Box, Grid, Heading, Text, VStack } from "@chakra-ui/react";
-import { Team } from "@prisma/client";
+import {
+  AvatarGroup,
+  Avatar,
+  Box,
+  Grid,
+  Heading,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { Team, User } from "@prisma/client";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getTeams from "app/teams/queries/getTeams";
 import { Link, usePaginatedQuery } from "blitz";
@@ -20,7 +28,7 @@ const TeamsList = () => {
   const nameNode = (team: Team) => {
     return (
       <Box p={4}>
-        <Heading size="md">{team.name}</Heading>
+        <Heading size="sm">{team.name}</Heading>
       </Box>
     );
   };
@@ -32,14 +40,44 @@ const TeamsList = () => {
 
     return (
       <Box p={4} borderTopWidth={1}>
-        <Text>{team.description}</Text>
+        <Text fontSize="sm">{team.description}</Text>
+      </Box>
+    );
+  };
+
+  const userAvatarsNode = (
+    team: Team & {
+      users: User[];
+    }
+  ) => {
+    if (!team.users.length) {
+      return false;
+    }
+
+    const avatarsNode = () =>
+      team.users.map((user) => {
+        return (
+          <Avatar key={user.id} name={user.name ? user.name : user.email} />
+        );
+      });
+
+    return (
+      <Box p={4} borderTopWidth={1}>
+        <AvatarGroup size="sm" max={5}>
+          {avatarsNode()}
+        </AvatarGroup>
       </Box>
     );
   };
 
   return (
     <Grid
-      templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(3, 1fr)"]}
+      templateColumns={[
+        "repeat(1, 1fr)",
+        "repeat(1, 1fr)",
+        "repeat(2, 1fr)",
+        "repeat(3, 1fr)",
+      ]}
       gap={8}
       w="100%"
     >
@@ -56,6 +94,7 @@ const TeamsList = () => {
               <VStack align="left" spacing={0}>
                 {nameNode(team)}
                 {descriptionNode(team)}
+                {userAvatarsNode(team)}
               </VStack>
             </Box>
           </Link>

@@ -52,7 +52,9 @@ const ManageUsers: FC = () => {
   return (
     <Popover isLazy placement="bottom-end" closeOnBlur={false}>
       <PopoverTrigger>
-        <Button>Invite</Button>
+        <Button colorScheme="blue" size="sm">
+          Invite
+        </Button>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader fontWeight="semibold">Invite users</PopoverHeader>

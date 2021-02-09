@@ -14,13 +14,13 @@ const TeamHeading: FC = () => {
 
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">
-      <Heading>{team.name}</Heading>
-      <HStack spacing={4}>
+      <Heading fontSize="2xl">{team.name}</Heading>
+      <HStack spacing={2}>
         <MembersList />
         <ManageUsers />
         <Button
+          size="sm"
           colorScheme="red"
-          variant="outline"
           onClick={async () => {
             if (window.confirm("This will be deleted")) {
               await deleteTeamMutation({ where: { id: team.id } });

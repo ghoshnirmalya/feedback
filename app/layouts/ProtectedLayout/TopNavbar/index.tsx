@@ -46,6 +46,7 @@ const TopNavbar: FC = () => {
       top={0}
       bg="white"
       zIndex={1}
+      shadow="sm"
     >
       <Flex justifyContent="space-between" w="100%">
         <HStack spacing={4} align="center">

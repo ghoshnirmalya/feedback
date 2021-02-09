@@ -18,7 +18,9 @@ const TeamsPage: BlitzPage = () => {
       <HStack spacing={8} justifyContent="space-between" w="100%">
         <Heading fontSize="2xl">Teams</Heading>
         <Link href="/teams/new" passHref>
-          <Button colorScheme="blue">Create Team</Button>
+          <Button colorScheme="blue" size="sm">
+            Create Team
+          </Button>
         </Link>
       </HStack>
     );

@@ -17,6 +17,9 @@ export default async function getProjects(
     orderBy,
     take,
     skip,
+    include: {
+      team: true,
+    },
   });
 
   const count = await db.project.count();
