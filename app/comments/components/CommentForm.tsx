@@ -52,17 +52,17 @@ const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
           </FormControl>
         </Box>
         <Box>
-          <HStack spacing={4} w="100%" justifyContent="flex-end">
+          <HStack spacing={4} w="100%">
+            <Button colorScheme="blue" type="submit" size="sm">
+              Submit
+            </Button>
             <Button
               colorScheme="red"
               size="sm"
-              variant="outline"
+              variant="link"
               onClick={handleClose}
             >
               Cancel
-            </Button>
-            <Button colorScheme="blue" type="submit" size="sm">
-              Submit
             </Button>
           </HStack>
         </Box>

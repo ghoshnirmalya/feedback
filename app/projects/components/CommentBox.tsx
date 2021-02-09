@@ -23,7 +23,7 @@ const CommentBox: FC = () => {
 
   if (!coordinateX || !coordinateY) {
     return (
-      <Box h={48} px={8} py={4} borderBottomWidth={1}>
+      <Box h={48} p={4} borderBottomWidth={1}>
         <Center h="100%">
           <Text fontWeight="bold">Click on the image to add a comment</Text>
         </Center>

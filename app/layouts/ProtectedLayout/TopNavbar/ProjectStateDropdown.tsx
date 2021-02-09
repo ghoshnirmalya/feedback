@@ -54,19 +54,18 @@ const ProjectStateDropdown: FC = () => {
   };
 
   return (
-    <Box>
-      <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
+    <Box borderBottomWidth={1}>
+      <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
         <Heading size="sm">Visibility</Heading>
       </Box>
-      <Box px={8} py={4}>
-        <Menu isLazy placement="bottom-end">
-          <MenuButton as={Button} size="sm" w="100%" isLoading={isLoading}>
+      <Box p={4}>
+        <Menu isLazy placement="bottom-start">
+          <MenuButton as={Button} size="lg" w="100%" isLoading={isLoading}>
             {project.isPublic ? "Public" : "Protected"}
           </MenuButton>
-          <MenuList>
+          <MenuList w="100%">
             <MenuOptionGroup
               defaultValue={project.isPublic ? "public" : "protected"}
-              title="Status"
               type="radio"
               onChange={handleChange}
             >

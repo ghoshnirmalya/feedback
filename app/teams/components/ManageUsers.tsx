@@ -75,7 +75,12 @@ const ManageUsers: FC = () => {
                 </FormControl>
               </Box>
               <Box>
-                <Button colorScheme="blue" type="submit" isLoading={isLoading}>
+                <Button
+                  colorScheme="blue"
+                  type="submit"
+                  isLoading={isLoading}
+                  size="sm"
+                >
                   Invite
                 </Button>
               </Box>

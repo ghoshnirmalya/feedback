@@ -7,10 +7,12 @@ import {
   CloseButton,
   FormControl,
   FormLabel,
+  HStack,
   Input,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
+import { Link } from "blitz";
 import React from "react";
 
 type TeamFormProps = {
@@ -41,15 +43,8 @@ const TeamForm = ({
   };
 
   return (
-    <Box
-      p={8}
-      bgColor="white"
-      rounded="md"
-      shadow="sm"
-      borderWidth={1}
-      w={["100%", "100%", "50%"]}
-    >
-      <VStack spacing={8} align="left">
+    <Box bgColor="white" rounded="md" shadow="sm" borderWidth={1}>
+      <VStack spacing={4} align="left">
         {alertNode()}
         <form
           onSubmit={(event) => {
@@ -58,8 +53,8 @@ const TeamForm = ({
             onSubmit(event);
           }}
         >
-          <VStack spacing={8} align="left">
-            <Box>
+          <VStack spacing={0} align="left">
+            <VStack spacing={4} align="left" p={4}>
               <FormControl id="name" isRequired isDisabled={isLoading}>
                 <FormLabel>Name</FormLabel>
                 <Input
@@ -67,8 +62,6 @@ const TeamForm = ({
                   defaultValue={initialValues.name}
                 />
               </FormControl>
-            </Box>
-            <Box>
               <FormControl id="description" isDisabled={isLoading}>
                 <FormLabel>Description</FormLabel>
                 <Textarea
@@ -76,12 +69,17 @@ const TeamForm = ({
                   defaultValue={initialValues.description}
                 />
               </FormControl>
-            </Box>
-            <Box>
+            </VStack>
+            <HStack p={4} borderTopWidth={1} spacing={4}>
               <Button colorScheme="blue" type="submit" isLoading={isLoading}>
-                Submit
+                Create
               </Button>
-            </Box>
+              <Link href="/teams">
+                <Button colorScheme="red" isLoading={isLoading} variant="link">
+                  Cancel
+                </Button>
+              </Link>
+            </HStack>
           </VStack>
         </form>
       </VStack>

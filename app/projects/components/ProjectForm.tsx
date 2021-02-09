@@ -7,14 +7,15 @@ import {
   CloseButton,
   FormControl,
   FormLabel,
+  HStack,
   Input,
   Select,
   VStack,
 } from "@chakra-ui/react";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getTeams from "app/teams/queries/getTeams";
-import { useQuery } from "blitz";
-import React, { ChangeEvent, useState } from "react";
+import { Link, useQuery } from "blitz";
+import React, { useState } from "react";
 
 type ProjectFormProps = {
   initialValues: any;
@@ -56,15 +57,8 @@ const ProjectForm = ({
   };
 
   return (
-    <Box
-      p={8}
-      bgColor="white"
-      rounded="md"
-      shadow="sm"
-      borderWidth={1}
-      w={["100%", "100%", "50%"]}
-    >
-      <VStack spacing={8} align="left">
+    <Box bgColor="white" rounded="md" shadow="sm" borderWidth={1}>
+      <VStack spacing={4} align="left">
         {alertNode()}
         <form
           onSubmit={(event) => {
@@ -73,8 +67,8 @@ const ProjectForm = ({
             onSubmit(event);
           }}
         >
-          <VStack spacing={8} align="left">
-            <Box>
+          <VStack spacing={0} align="left">
+            <VStack spacing={4} align="left" p={4}>
               <FormControl id="name" isRequired isDisabled={isLoading}>
                 <FormLabel>Name</FormLabel>
                 <Input
@@ -82,8 +76,6 @@ const ProjectForm = ({
                   defaultValue={initialValues.name}
                 />
               </FormControl>
-            </Box>
-            <Box>
               <FormControl id="team" isRequired isDisabled={isLoading}>
                 <FormLabel>Team</FormLabel>
                 <Select
@@ -99,12 +91,17 @@ const ProjectForm = ({
                   })}
                 </Select>
               </FormControl>
-            </Box>
-            <Box>
+            </VStack>
+            <HStack p={4} borderTopWidth={1} spacing={4}>
               <Button colorScheme="blue" type="submit" isLoading={isLoading}>
-                Submit
+                {initialValues.id ? "Edit" : "Create"}
               </Button>
-            </Box>
+              <Link href="/projects">
+                <Button colorScheme="red" isLoading={isLoading} variant="link">
+                  Cancel
+                </Button>
+              </Link>
+            </HStack>
           </VStack>
         </form>
       </VStack>

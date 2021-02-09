@@ -27,7 +27,7 @@ const TeamsPage: BlitzPage = () => {
   };
 
   return (
-    <Container maxW="6xl" centerContent p={8}>
+    <Container maxW="2xl" centerContent p={8}>
       <Suspense
         fallback={
           <Center h="100vh">

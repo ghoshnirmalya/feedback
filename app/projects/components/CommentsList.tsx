@@ -36,10 +36,10 @@ const CommentsList: FC = () => {
   if (!file.url) {
     return (
       <>
-        <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
+        <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
           <Heading size="sm">Comments</Heading>
         </Box>
-        <Box h={48} px={8} py={4} borderBottomWidth={1}>
+        <Box h={48} p={4} borderBottomWidth={1}>
           <Center h="100%">
             <Text fontWeight="bold">Select a file to add your comments!</Text>
           </Center>
@@ -51,13 +51,13 @@ const CommentsList: FC = () => {
   if (!comments.length) {
     return (
       <>
-        <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
+        <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
           <Heading size="sm">Comments</Heading>
         </Box>
         <Box id="js-comment-form-container">
           <CommentBox />
         </Box>
-        <Box h={48} px={8} py={4} borderBottomWidth={1}>
+        <Box h={48} p={4} borderBottomWidth={1}>
           <Center h="100%">
             <Text fontWeight="bold">No comments yet!</Text>
           </Center>
@@ -68,19 +68,21 @@ const CommentsList: FC = () => {
 
   return (
     <Box>
-      <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
-        <Heading size="sm">Comments</Heading>
+      <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
+        <Heading size="sm">Add a new comment</Heading>
       </Box>
       <Box id="js-comment-form-container">
         <CommentBox />
+      </Box>
+      <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
+        <Heading size="sm">Comments</Heading>
       </Box>
       {comments.map((comment) => {
         return (
           <Box
             key={comment.id}
             id={`js-comment-${comment.id}`}
-            px={8}
-            py={4}
+            p={4}
             borderBottomWidth={1}
             bgColor={selectedCommentId === comment.id ? "gray.100" : "white"}
           >
