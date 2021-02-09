@@ -57,7 +57,7 @@ const TeamsList = () => {
     const avatarsNode = () =>
       team.users.map((user) => {
         return (
-          <Avatar key={user.id} name={user.name ? user.name : user.email} />
+          <Avatar key={user.id} src={user.avatar} name={user.name as string} />
         );
       });
 

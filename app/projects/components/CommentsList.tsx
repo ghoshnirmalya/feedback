@@ -86,10 +86,14 @@ const CommentsList: FC = () => {
           >
             <VStack spacing={4} align="left">
               <HStack spacing={2}>
-                <Avatar size="sm" name={comment.user.email} />
+                <Avatar
+                  size="sm"
+                  name={comment.user.name}
+                  src={comment.user.avatar}
+                />
                 <VStack spacing={0} align="left">
                   <Text fontSize="sm" fontWeight="bold">
-                    {comment.user.email}
+                    {comment.user.name}
                   </Text>
                   <Text fontSize="xs">
                     {dayjs(comment.createdAt).format("LL")}

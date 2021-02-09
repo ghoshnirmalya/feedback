@@ -1,5 +1,7 @@
 import {
+  Box,
   Button,
+  Heading,
   Menu,
   MenuButton,
   MenuItemOption,
@@ -24,7 +26,7 @@ const ProjectStateDropdown: FC = () => {
   const [project, { setQueryData }] = useQuery(getProject, {
     where: { id: projectId },
   });
-  const [updateProjectMutation] = useMutation(updateProject);
+  const [updateProjectMutation, { isLoading }] = useMutation(updateProject);
   const currentUser = useCurrentUser();
 
   if (!projectId || !currentUser) {
@@ -52,22 +54,29 @@ const ProjectStateDropdown: FC = () => {
   };
 
   return (
-    <Menu isLazy placement="bottom-end">
-      <MenuButton as={Button} size="sm">
-        {project.isPublic ? "Public" : "Protected"}
-      </MenuButton>
-      <MenuList>
-        <MenuOptionGroup
-          defaultValue={project.isPublic ? "public" : "protected"}
-          title="Status"
-          type="radio"
-          onChange={handleChange}
-        >
-          <MenuItemOption value="public">Public</MenuItemOption>
-          <MenuItemOption value="protected">Protected</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>
+    <Box>
+      <Box borderBottomWidth={1} px={8} py={2} bg="gray.100">
+        <Heading size="sm">Visibility</Heading>
+      </Box>
+      <Box px={8} py={4}>
+        <Menu isLazy placement="bottom-end">
+          <MenuButton as={Button} size="sm" w="100%" isLoading={isLoading}>
+            {project.isPublic ? "Public" : "Protected"}
+          </MenuButton>
+          <MenuList>
+            <MenuOptionGroup
+              defaultValue={project.isPublic ? "public" : "protected"}
+              title="Status"
+              type="radio"
+              onChange={handleChange}
+            >
+              <MenuItemOption value="public">Public</MenuItemOption>
+              <MenuItemOption value="protected">Protected</MenuItemOption>
+            </MenuOptionGroup>
+          </MenuList>
+        </Menu>
+      </Box>
+    </Box>
   );
 };
 

@@ -11,7 +11,9 @@ const MembersList: FC = () => {
 
   const avatarsNode = () =>
     team.users.map((user) => {
-      return <Avatar key={user.id} name={user.email} />;
+      return (
+        <Avatar key={user.id} name={user.name as string} src={user.avatar} />
+      );
     });
 
   return (

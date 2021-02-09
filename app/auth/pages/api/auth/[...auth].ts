@@ -37,6 +37,7 @@ export default passportAuth({
             create: {
               email: _json.email,
               name: displayName,
+              avatar: _json.picture,
             },
             update: { email: _json.email },
           });
