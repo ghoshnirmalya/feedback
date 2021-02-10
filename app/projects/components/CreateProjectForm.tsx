@@ -1,7 +1,7 @@
 import ProjectForm from "app/projects/components/ProjectForm";
 import createProject from "app/projects/mutations/createProject";
 import getTeam from "app/teams/queries/getTeam";
-import { invoke, useMutation, useRouter } from "blitz";
+import { useMutation, useParam, useQuery, useRouter } from "blitz";
 import { TeamCreateOneWithoutProjectsInput } from "db";
 import React, { FC } from "react";
 
@@ -10,6 +10,10 @@ const CreateProjectForm: FC = () => {
   const [createProjectMutation, { isLoading, isError }] = useMutation(
     createProject
   );
+  const teamId = useParam("teamId", "string");
+  const [team] = useQuery(getTeam, {
+    where: { id: teamId },
+  });
 
   return (
     <ProjectForm
@@ -17,9 +21,6 @@ const CreateProjectForm: FC = () => {
       isLoading={isLoading}
       isError={isError}
       onSubmit={async (event) => {
-        const teamId = event.target[1].value;
-        const team = await invoke(getTeam, { where: { id: String(teamId) } });
-
         try {
           const project = await createProjectMutation({
             data: {

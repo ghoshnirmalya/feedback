@@ -1,8 +1,10 @@
-import { Text, Box, Grid, Heading, HStack } from "@chakra-ui/react";
+import { Box, Button, Grid, Heading, HStack } from "@chakra-ui/react";
+import EmptyState from "app/components/EmptyState";
 import getProjects from "app/projects/queries/getProjects";
 import { Link, usePaginatedQuery, useParam } from "blitz";
-import { Project, Team } from "db";
+import { Project } from "db";
 import React, { FC } from "react";
+import { MdAdd } from "react-icons/md";
 
 const ProjectsList: FC = () => {
   const teamId = useParam("teamId", "string");
@@ -15,20 +17,26 @@ const ProjectsList: FC = () => {
     },
   });
 
+  if (!projects.length) {
+    return (
+      <EmptyState
+        icon="/illustrations/Empty Inbox _Two Color.svg"
+        heading="Create a Project"
+        text="Get started by creating a new project for your team. You can
+      add files to a project."
+        buttons={[
+          <Link href={`/teams/${teamId}/projects/new`} passHref>
+            <Button as="a" colorScheme="blue" size="lg" leftIcon={<MdAdd />}>
+              Create a new Project
+            </Button>
+          </Link>,
+        ]}
+      />
+    );
+  }
+
   const nameNode = (project: Project) => {
     return <Heading size="sm">{project.name}</Heading>;
-  };
-
-  const teamNode = (
-    project: Project & {
-      team: Team;
-    }
-  ) => {
-    if (!project.team) {
-      return false;
-    }
-
-    return <Text fontSize="sm">{project.team.name}</Text>;
   };
 
   return (
@@ -51,11 +59,6 @@ const ProjectsList: FC = () => {
                 alignItems="center"
               >
                 {nameNode(project)}
-                {teamNode(
-                  project as Project & {
-                    team: Team;
-                  }
-                )}
               </HStack>
             </Box>
           </Link>

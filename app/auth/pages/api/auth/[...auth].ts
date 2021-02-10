@@ -9,8 +9,8 @@ const callbackURL = isProduction
   : "http://localhost:3000/api/auth/google/callback";
 
 export default passportAuth({
-  successRedirectUrl: "/projects",
-  errorRedirectUrl: "/",
+  successRedirectUrl: "/teams",
+  errorRedirectUrl: "/auth",
   strategies: [
     {
       strategy: new GoogleStrategy(

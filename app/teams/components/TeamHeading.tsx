@@ -8,6 +8,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  useDisclosure,
 } from "@chakra-ui/react";
 import ManageUsers from "app/teams/components/ManageUsers";
 import MembersList from "app/teams/components/MembersList";
@@ -22,13 +23,19 @@ const TeamHeading: FC = () => {
   const teamId = useParam("teamId", "string");
   const [team] = useQuery(getTeam, { where: { id: teamId } });
   const [deleteTeamMutation] = useMutation(deleteTeam);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">
       <Heading fontSize="2xl">{team.name}</Heading>
-      <HStack spacing={2}>
+      <HStack spacing={4}>
         <MembersList />
-        <ManageUsers />
+        <Link href={`/teams/${teamId}/projects/new`} passHref>
+          <Button as="a" colorScheme="blue" size="sm">
+            Create Project
+          </Button>
+        </Link>
+        <ManageUsers isOpen={isOpen} onClose={onClose} />
         <Menu isLazy placement="bottom-end">
           <MenuButton as={Button} size="sm">
             <Icon as={MdSettings} />
@@ -51,6 +58,7 @@ const TeamHeading: FC = () => {
             >
               Delete
             </MenuItem>
+            <MenuItem onClick={onOpen}>Invite users</MenuItem>
           </MenuList>
         </Menu>
       </HStack>

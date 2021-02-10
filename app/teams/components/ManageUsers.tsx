@@ -2,15 +2,17 @@ import {
   Box,
   Button,
   FormControl,
+  FormHelperText,
   FormLabel,
+  HStack,
   Input,
-  Popover,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  useDisclosure,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   VStack,
 } from "@chakra-ui/react";
 import updateTeam from "app/teams/mutations/updateTeam";
@@ -20,9 +22,13 @@ import { invoke, useMutation, useParam, useQuery } from "blitz";
 import { Project, Team, User, UserCreateManyWithoutTeamsInput } from "db";
 import React, { FC, FormEvent } from "react";
 
-const ManageUsers: FC = () => {
+type IProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const ManageUsers: FC<IProps> = ({ isOpen, onClose }) => {
   const teamId = useParam("teamId", "string");
-  const { onClose } = useDisclosure();
   const [team, { setQueryData }] = useQuery(getTeam, {
     where: { id: teamId },
   });
@@ -38,7 +44,7 @@ const ManageUsers: FC = () => {
         data: {
           name: team.name,
           description: team.description,
-          users: user as UserCreateManyWithoutTeamsInput,
+          users: { id: user.id } as UserCreateManyWithoutTeamsInput,
         },
       })) as Team & { users: User[]; projects: Project[] };
 
@@ -50,43 +56,48 @@ const ManageUsers: FC = () => {
   };
 
   return (
-    <Popover isLazy placement="bottom-end" closeOnBlur={false}>
-      <PopoverTrigger>
-        <Button size="sm">Invite</Button>
-      </PopoverTrigger>
-      <PopoverContent>
-        <PopoverHeader fontWeight="semibold">Invite users</PopoverHeader>
-        <PopoverCloseButton />
-        <PopoverBody>
+    <Modal onClose={onClose} isOpen={isOpen} isCentered>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader borderBottomWidth={1}>Invite users</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
           <form
+            id="invite-users-form"
             onSubmit={(event) => {
               event.preventDefault();
 
               handleClick(event);
             }}
           >
-            <VStack spacing={4} align="left">
-              <Box>
-                <FormControl id="email" isRequired>
-                  <FormLabel>Enter the email of the user</FormLabel>
-                  <Input placeholder="john@doe.com" type="email" />
-                </FormControl>
-              </Box>
-              <Box>
-                <Button
-                  colorScheme="blue"
-                  type="submit"
-                  isLoading={isLoading}
-                  size="sm"
-                >
-                  Invite
-                </Button>
-              </Box>
-            </VStack>
+            <FormControl id="email" isRequired>
+              <FormLabel>Enter the email of the user</FormLabel>
+              <Input placeholder="john@doe.com" type="email" />
+              <FormHelperText>
+                Enter the email of the user whom you want to invite to your
+                project.
+              </FormHelperText>
+            </FormControl>
           </form>
-        </PopoverBody>
-      </PopoverContent>
-    </Popover>
+        </ModalBody>
+        <ModalFooter borderTopWidth={1}>
+          <HStack spacing={4} w="100%">
+            <Button
+              colorScheme="blue"
+              type="submit"
+              isLoading={isLoading}
+              size="sm"
+              form="invite-users-form"
+            >
+              Invite
+            </Button>
+            <Button onClick={onClose} size="sm">
+              Close
+            </Button>
+          </HStack>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 

@@ -9,13 +9,11 @@ import {
   FormLabel,
   HStack,
   Input,
-  Select,
   VStack,
 } from "@chakra-ui/react";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
-import getTeams from "app/teams/queries/getTeams";
-import { Link, useQuery } from "blitz";
-import React, { useState } from "react";
+import { Link } from "blitz";
+import React from "react";
 
 type ProjectFormProps = {
   initialValues: any;
@@ -30,17 +28,7 @@ const ProjectForm = ({
   isError,
   initialValues,
 }: ProjectFormProps) => {
-  const [name, setName] = useState<string>(initialValues.name);
   const currentUser = useCurrentUser();
-  const [{ teams }] = useQuery(getTeams, {
-    where: {
-      users: {
-        some: {
-          id: currentUser?.id,
-        },
-      },
-    },
-  });
 
   const alertNode = () => {
     if (!isError) {
@@ -75,21 +63,6 @@ const ProjectForm = ({
                   placeholder="Personal portfolio"
                   defaultValue={initialValues.name}
                 />
-              </FormControl>
-              <FormControl id="team" isRequired isDisabled={isLoading}>
-                <FormLabel>Team</FormLabel>
-                <Select
-                  placeholder="Select team"
-                  defaultValue={initialValues.team?.id}
-                >
-                  {teams.map((team) => {
-                    return (
-                      <option key={team.id} value={team.id}>
-                        {team.name}
-                      </option>
-                    );
-                  })}
-                </Select>
               </FormControl>
             </VStack>
             <HStack p={4} borderTopWidth={1} spacing={4}>
