@@ -44,7 +44,7 @@ const Home: BlitzPage = () => {
             </Text>
             <Link href="/api/auth/google/callback" passHref>
               <Button colorScheme="blue" type="submit" size="lg">
-                Get started using your Google account
+                Continue with your Google account
               </Button>
             </Link>
           </VStack>
