@@ -18,7 +18,7 @@ const ContentArea: FC = () => {
   const router = useRouter();
   const page = Number(router.query.page) || 0;
   const [{ comments, hasMore }] = usePaginatedQuery(getComments, {
-    where: { file: { id: file.id } },
+    where: { file: { id: (file.id as unknown) as string } },
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
@@ -93,7 +93,7 @@ const ContentArea: FC = () => {
           borderRadius="50%"
           borderWidth={2}
           borderColor="blue.900"
-          onClick={() => handleSelectComment(comment.id)}
+          onClick={() => handleSelectComment(Number(comment.id))}
           _hover={{
             w: 10,
             h: 10,

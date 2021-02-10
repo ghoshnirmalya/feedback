@@ -16,10 +16,6 @@ const links = [
     href: "/teams",
     label: "Teams",
   },
-  {
-    href: "/projects",
-    label: "Projects",
-  },
 ];
 
 const TopNavbar: FC = () => {

@@ -12,7 +12,7 @@ const isDevelopmentEnvironment = process.env.NODE_ENV === "development";
 
 const AddImageButton: FC = () => {
   const router = useRouter();
-  const projectId = useParam("projectId", "number") as number;
+  const projectId = useParam("projectId", "string") as string;
   const page = Number(router.query.page) || 0;
   const [createFileMutation, { isLoading }] = useMutation(createFile);
   const [isUploadingFile, setUploadingFile] = useState<Boolean>(false);
@@ -38,7 +38,7 @@ const AddImageButton: FC = () => {
     try {
       await createFileMutation({
         data: { name, url },
-        projectId,
+        projectId: projectId,
       });
 
       const files = await invoke(getFiles, {

@@ -21,7 +21,7 @@ import { Project, Team, User, UserCreateManyWithoutTeamsInput } from "db";
 import React, { FC, FormEvent } from "react";
 
 const ManageUsers: FC = () => {
-  const teamId = useParam("teamId", "number");
+  const teamId = useParam("teamId", "string");
   const { onClose } = useDisclosure();
   const [team, { setQueryData }] = useQuery(getTeam, {
     where: { id: teamId },
@@ -52,9 +52,7 @@ const ManageUsers: FC = () => {
   return (
     <Popover isLazy placement="bottom-end" closeOnBlur={false}>
       <PopoverTrigger>
-        <Button colorScheme="blue" size="sm">
-          Invite
-        </Button>
+        <Button size="sm">Invite</Button>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader fontWeight="semibold">Invite users</PopoverHeader>

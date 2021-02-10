@@ -4,7 +4,7 @@ import { useParam, useQuery } from "blitz";
 import React, { FC } from "react";
 
 const MembersList: FC = () => {
-  const teamId = useParam("teamId", "number");
+  const teamId = useParam("teamId", "string");
   const [team] = useQuery(getTeam, {
     where: { id: teamId },
   });

@@ -18,7 +18,7 @@ const CreateProjectForm: FC = () => {
       isError={isError}
       onSubmit={async (event) => {
         const teamId = event.target[1].value;
-        const team = await invoke(getTeam, { where: { id: Number(teamId) } });
+        const team = await invoke(getTeam, { where: { id: String(teamId) } });
 
         try {
           const project = await createProjectMutation({

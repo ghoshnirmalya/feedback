@@ -22,7 +22,7 @@ import {
 import React, { FC } from "react";
 
 const ProjectStateDropdown: FC = () => {
-  const projectId = useParam("projectId", "number");
+  const projectId = useParam("projectId", "string");
   const [project, { setQueryData }] = useQuery(getProject, {
     where: { id: projectId },
   });

@@ -28,9 +28,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-dir-path.outputs.dir }}
           **/node_modules
-        key: ${{ runner.os }}-${{ runner.node_version}}-yarn-v4-${{ hashFiles('yarn.lock') }}
+        key: ${{ runner.os }}-${{ runner.node_version}}-yarn-v1-${{ hashFiles('yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-${{ runner.node_version}}-yarn-v4-${{ hashFiles('yarn.lock') }}
+          ${{ runner.os }}-${{ runner.node_version}}-yarn-v1-${{ hashFiles('yarn.lock') }}
 
     - name: Install dependencies
       if: steps.yarn-cache.outputs.cache-hit != 'true'

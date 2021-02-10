@@ -8,7 +8,7 @@ import React, { FC } from "react";
 
 const EditProjectForm: FC = () => {
   const router = useRouter();
-  const projectId = useParam("projectId", "number");
+  const projectId = useParam("projectId", "string");
   const [project, { setQueryData }] = useQuery(getProject, {
     where: { id: projectId },
   });

@@ -5,7 +5,7 @@ import { Project, Team } from "db";
 import React, { FC } from "react";
 
 const ProjectsList: FC = () => {
-  const teamId = useParam("teamId", "number");
+  const teamId = useParam("teamId", "string");
   const [{ projects }] = usePaginatedQuery(getProjects, {
     orderBy: { updatedAt: "desc" },
     where: {

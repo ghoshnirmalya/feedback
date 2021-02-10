@@ -26,7 +26,7 @@ const CommentsList: FC = () => {
   const router = useRouter();
   const page = Number(router.query.page) || 0;
   const [{ comments, hasMore }] = usePaginatedQuery(getComments, {
-    where: { file: { id: file.id } },
+    where: { file: { id: (file.id as unknown) as string } },
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
@@ -84,7 +84,9 @@ const CommentsList: FC = () => {
             id={`js-comment-${comment.id}`}
             p={4}
             borderBottomWidth={1}
-            bgColor={selectedCommentId === comment.id ? "gray.100" : "white"}
+            bgColor={
+              selectedCommentId === Number(comment.id) ? "gray.100" : "white"
+            }
           >
             <VStack spacing={4} align="left">
               <HStack spacing={2}>

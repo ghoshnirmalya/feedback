@@ -43,9 +43,9 @@ const TeamForm = ({
   };
 
   return (
-    <Box bgColor="white" rounded="md" shadow="sm" borderWidth={1}>
-      <VStack spacing={4} align="left">
-        {alertNode()}
+    <VStack spacing={4} align="left">
+      {alertNode()}
+      <Box bgColor="white" rounded="md" shadow="sm" borderWidth={1}>
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -72,9 +72,13 @@ const TeamForm = ({
             </VStack>
             <HStack p={4} borderTopWidth={1} spacing={4}>
               <Button colorScheme="blue" type="submit" isLoading={isLoading}>
-                Create
+                {initialValues.id ? "Edit" : "Create"}
               </Button>
-              <Link href="/teams">
+              <Link
+                href={
+                  !!initialValues.id ? `/teams/${initialValues.id}` : "/teams/"
+                }
+              >
                 <Button colorScheme="red" isLoading={isLoading} variant="link">
                   Cancel
                 </Button>
@@ -82,8 +86,8 @@ const TeamForm = ({
             </HStack>
           </VStack>
         </form>
-      </VStack>
-    </Box>
+      </Box>
+    </VStack>
   );
 };
 

@@ -4,7 +4,7 @@ import { useParam, useQuery } from "blitz";
 import React, { FC } from "react";
 
 const EditProjectHeading: FC = () => {
-  const projectId = useParam("projectId", "number");
+  const projectId = useParam("projectId", "string");
   const [project] = useQuery(getProject, {
     where: { id: projectId },
   });
