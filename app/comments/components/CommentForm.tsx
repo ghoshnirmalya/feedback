@@ -38,7 +38,7 @@ const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
         setComment("");
       }}
     >
-      <VStack spacing={2} align="left" px={8} py={4} borderBottomWidth={1}>
+      <VStack spacing={2} align="left" p={4} borderBottomWidth={1}>
         <Box>
           <FormControl id="name" isRequired>
             <FormLabel>Write your comment</FormLabel>
@@ -54,12 +54,12 @@ const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
         <Box>
           <HStack spacing={4} w="100%">
             <Button colorScheme="blue" type="submit" size="sm">
-              Submit
+              Save
             </Button>
             <Button
               colorScheme="red"
               size="sm"
-              variant="link"
+              variant="ghost"
               onClick={handleClose}
             >
               Cancel

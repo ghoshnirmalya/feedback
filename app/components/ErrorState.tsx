@@ -15,7 +15,7 @@ type IProps = {
   buttons: ReactNode[];
 };
 
-const EmptyState: FC<IProps> = ({ icon, heading, text, buttons }) => {
+const ErrorState: FC<IProps> = ({ icon, heading, text, buttons }) => {
   return (
     <Center>
       <VStack spacing={4} maxW="md" textAlign="center">
@@ -28,4 +28,4 @@ const EmptyState: FC<IProps> = ({ icon, heading, text, buttons }) => {
   );
 };
 
-export default EmptyState;
+export default ErrorState;

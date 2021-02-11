@@ -1,13 +1,17 @@
+import { Button, Center } from "@chakra-ui/react";
 import AuthenticationForm from "app/auth/components/AuthenticationForm";
+import ErrorState from "app/components/ErrorState";
+import PublicLayout from "app/layouts/PublicLayout";
 import { wrapper } from "app/store";
 import {
   AppProps,
   AuthenticationError,
   AuthorizationError,
-  ErrorComponent,
+  Link,
   useRouter,
 } from "blitz";
 import "focus-visible/dist/focus-visible";
+import React from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import { queryCache } from "react-query";
 
@@ -35,17 +39,43 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
     return <AuthenticationForm />;
   } else if (error instanceof AuthorizationError) {
     return (
-      <ErrorComponent
-        statusCode={(error as any).statusCode}
-        title="Sorry, you are not authorized to access this"
-      />
+      <PublicLayout>
+        <ErrorState
+          heading={error?.message || error?.name}
+          text="Sorry, you are not authorized to access this"
+          icon="/illustrations/Online protection_Monochromatic.svg"
+          buttons={[
+            <Link href="/auth" passHref>
+              <Button colorScheme="blue" type="submit" size="lg">
+                Go to the login page
+              </Button>
+            </Link>,
+          ]}
+        />
+      </PublicLayout>
     );
   } else {
     return (
-      <ErrorComponent
-        statusCode={(error as any)?.statusCode || 400}
-        title={error?.message || error?.name}
-      />
+      <PublicLayout>
+        <Center h="100vh" w="100%">
+          <ErrorState
+            heading={error?.message || error?.name}
+            text={
+              (error as any)?.statusCode
+                ? `An error ${(error as any)?.statusCode} occurred on server`
+                : "An error occurred on client"
+            }
+            icon="/illustrations/Online protection_Monochromatic.svg"
+            buttons={[
+              <Link href="/teams" passHref>
+                <Button colorScheme="blue" type="submit" size="lg">
+                  Go to the teams page
+                </Button>
+              </Link>,
+            ]}
+          />
+        </Center>
+      </PublicLayout>
     );
   }
 }
