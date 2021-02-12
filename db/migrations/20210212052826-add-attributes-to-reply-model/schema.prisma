@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -92,6 +92,7 @@ model Team {
 
 model UserTeams {
   id     String  @id @default(uuid())
+  body   String
   user   User?   @relation(fields: [userId], references: [id])
   team   Team?   @relation(fields: [teamId], references: [id])
   userId String?
@@ -100,7 +101,6 @@ model UserTeams {
 
 model Reply {
   id         String   @id @default(uuid())
-  body       String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   isResolved Boolean  @default(false)

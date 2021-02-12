@@ -19,3 +19,6 @@
 20210206152942-adds-is-public-attribute-to-project-model
 20210209140534-adds-oauth-specific-attributes-to-user-model
 20210209175200-changes-id-to-uuid-for-all-models
+20210211201534-adds-reply-model
+20210212052826-add-attributes-to-reply-model
+20210212053036-updates-attributes-for-reply-model

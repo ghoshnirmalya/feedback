@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
 import CommentBox from "app/projects/components/CommentBox";
+import RepliesList from "app/projects/components/RepliesList";
 import { getSelectedCommentData } from "app/selectors/comment";
 import { getFileData } from "app/selectors/file";
 import { usePaginatedQuery, useRouter } from "blitz";
@@ -82,29 +83,31 @@ const CommentsList: FC = () => {
           <Box
             key={comment.id}
             id={`js-comment-${comment.id}`}
-            p={4}
             borderBottomWidth={1}
             bgColor={
               selectedCommentId === Number(comment.id) ? "gray.100" : "white"
             }
           >
             <VStack spacing={4} align="left">
-              <HStack spacing={2}>
-                <Avatar
-                  size="sm"
-                  name={comment.user.name}
-                  src={comment.user.avatar}
-                />
-                <VStack spacing={0} align="left">
-                  <Text fontSize="sm" fontWeight="bold">
-                    {comment.user.name}
-                  </Text>
-                  <Text fontSize="xs">
-                    {dayjs(comment.createdAt).format("LL")}
-                  </Text>
-                </VStack>
-              </HStack>
-              <Text>{comment.body}</Text>
+              <VStack spacing={4} align="left" p={4}>
+                <HStack spacing={2}>
+                  <Avatar
+                    size="sm"
+                    name={comment.user.name}
+                    src={comment.user.avatar}
+                  />
+                  <VStack spacing={0} align="left">
+                    <Text fontSize="sm" fontWeight="bold">
+                      {comment.user.name}
+                    </Text>
+                    <Text fontSize="xs">
+                      {dayjs(comment.createdAt).format("LL")}
+                    </Text>
+                  </VStack>
+                </HStack>
+                <Text>{comment.body}</Text>
+              </VStack>
+              <RepliesList commentId={comment.id} />
             </VStack>
           </Box>
         );

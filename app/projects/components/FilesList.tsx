@@ -47,7 +47,7 @@ const FilesList: FC = () => {
               boxSize="50px"
               rounded="md"
               fallback={
-                <Center p={4} boxSize="50px">
+                <Center p={2} boxSize="50px">
                   <Spinner />
                 </Center>
               }

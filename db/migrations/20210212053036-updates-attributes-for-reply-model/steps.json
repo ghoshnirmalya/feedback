@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "DeleteField",
+      "model": "UserTeams",
+      "field": "body"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Reply",
+      "field": "body",
+      "type": "String",
+      "arity": "Required"
+    }
+  ]
+}
