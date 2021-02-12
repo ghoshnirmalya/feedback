@@ -107,7 +107,7 @@ const CommentsList: FC = () => {
                 </HStack>
                 <Text>{comment.body}</Text>
               </VStack>
-              <RepliesList commentId={comment.id} />
+              <RepliesList comment={comment} />
             </VStack>
           </Box>
         );

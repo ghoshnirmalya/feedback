@@ -1,9 +1,9 @@
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
-  AccordionPanel,
   AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Avatar,
   Box,
   Heading,
@@ -11,11 +11,18 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import CommentBox from "app/projects/components/CommentBox";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
+import ReplyForm from "app/replies/components/ReplyForm";
+import createReply from "app/replies/mutations/createReply";
 import getReplies from "app/replies/queries/getReplies";
-import { usePaginatedQuery, useRouter } from "blitz";
+import { useMutation, usePaginatedQuery, useRouter } from "blitz";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import {
+  Comment,
+  CommentCreateOneWithoutRepliesInput,
+  UserCreateOneWithoutCommentsInput,
+} from "db";
 import React, { FC } from "react";
 
 dayjs.extend(localizedFormat);
@@ -23,25 +30,27 @@ dayjs.extend(localizedFormat);
 const ITEMS_PER_PAGE = 100;
 
 type IProps = {
-  commentId: string;
+  comment: Comment;
 };
 
-const RepliesList: FC<IProps> = ({ commentId }) => {
+const RepliesList: FC<IProps> = ({ comment }) => {
   const router = useRouter();
   const page = Number(router.query.page) || 0;
   const [{ replies, hasMore }] = usePaginatedQuery(getReplies, {
-    where: { commentId },
-    orderBy: { id: "asc" },
+    where: { commentId: comment.id },
+    orderBy: { updatedAt: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   });
+  const [createReplyMutation, { isLoading }] = useMutation(createReply);
+  const currentUser = useCurrentUser();
 
   if (!replies.length) {
     return null;
   }
 
   return (
-    <Accordion defaultIndex={[0]} allowMultiple>
+    <Accordion allowMultiple>
       <AccordionItem>
         <AccordionButton p={0}>
           <Box px={4} py={2} bg="gray.100" w="100%">
@@ -76,6 +85,23 @@ const RepliesList: FC<IProps> = ({ commentId }) => {
               </Box>
             );
           })}
+          <ReplyForm
+            initialValues={{}}
+            isLoading={isLoading}
+            onSubmit={async (event) => {
+              try {
+                await createReplyMutation({
+                  data: {
+                    body: event.target[0].value,
+                    comment: comment as CommentCreateOneWithoutRepliesInput,
+                    user: (currentUser as unknown) as UserCreateOneWithoutCommentsInput,
+                  },
+                });
+              } catch (error) {
+                console.log(error);
+              }
+            }}
+          />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
