@@ -1,31 +1,22 @@
 import {
   Accordion,
   AccordionButton,
-  AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Avatar,
-  Box,
-  Heading,
-  HStack,
-  Text,
-  VStack,
 } from "@chakra-ui/react";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
+import RepliesHeading from "app/projects/components/RepliesList/Heading";
+import ReplyCard from "app/projects/components/RepliesList/ReplyCard";
 import ReplyForm from "app/replies/components/ReplyForm";
 import createReply from "app/replies/mutations/createReply";
 import getReplies from "app/replies/queries/getReplies";
 import { useMutation, usePaginatedQuery, useRouter } from "blitz";
-import dayjs from "dayjs";
-import localizedFormat from "dayjs/plugin/localizedFormat";
 import {
   Comment,
   CommentCreateOneWithoutRepliesInput,
   UserCreateOneWithoutCommentsInput,
 } from "db";
 import React, { FC } from "react";
-
-dayjs.extend(localizedFormat);
 
 const ITEMS_PER_PAGE = 100;
 
@@ -53,37 +44,11 @@ const RepliesList: FC<IProps> = ({ comment }) => {
     <Accordion allowMultiple>
       <AccordionItem>
         <AccordionButton p={0}>
-          <Box px={4} py={2} bg="gray.100" w="100%">
-            <HStack spacing={4} justifyContent="space-between">
-              <Heading size="sm">View {replies.length} replies</Heading>
-              <AccordionIcon />
-            </HStack>
-          </Box>
+          <RepliesHeading replies={replies} />
         </AccordionButton>
         <AccordionPanel p={0}>
           {replies.map((reply) => {
-            return (
-              <Box key={reply.id} py={4} px={12} borderTopWidth={1}>
-                <VStack spacing={4} align="left">
-                  <HStack spacing={2}>
-                    <Avatar
-                      size="sm"
-                      name={reply.user.name}
-                      src={reply.user.avatar}
-                    />
-                    <VStack spacing={0} align="left">
-                      <Text fontSize="sm" fontWeight="bold">
-                        {reply.user.name}
-                      </Text>
-                      <Text fontSize="xs">
-                        {dayjs(reply.createdAt).format("LL")}
-                      </Text>
-                    </VStack>
-                  </HStack>
-                  <Text>{reply.body}</Text>
-                </VStack>
-              </Box>
-            );
+            return <ReplyCard reply={reply} key={reply.id} />;
           })}
           <ReplyForm
             initialValues={{}}

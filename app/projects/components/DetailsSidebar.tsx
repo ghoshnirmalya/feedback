@@ -9,7 +9,7 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import ProjectStateDropdown from "app/layouts/ProtectedLayout/TopNavbar/ProjectStateDropdown";
-import CommentsList from "app/projects/components/CommentsList";
+import CommentsList from "app/projects/components/CommentList";
 import { Link, useParam } from "blitz";
 import React, { FC } from "react";
 

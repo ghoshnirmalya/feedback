@@ -63,7 +63,7 @@ const ContentArea: FC = () => {
     dispatch(setCoordinates({ coordinateX: x, coordinateY: y }));
   };
 
-  const handleSelectComment = (commentId: number) => {
+  const handleSelectComment = (commentId: string) => {
     const el = document.getElementById(`js-comment-${commentId}`);
 
     el?.scrollIntoView({
@@ -93,7 +93,7 @@ const ContentArea: FC = () => {
           borderRadius="50%"
           borderWidth={2}
           borderColor="blue.900"
-          onClick={() => handleSelectComment(Number(comment.id))}
+          onClick={() => handleSelectComment(comment.id)}
           _hover={{
             w: 10,
             h: 10,
