@@ -1,3 +1,33 @@
+# [0.8.0](https://github.com/ghoshnirmalya/feedback/compare/0.7.1...0.8.0) (2021-02-14)
+
+### Bug Fixes
+
+- fixes issue with getCurrentUser ([abd8381](https://github.com/ghoshnirmalya/feedback/commit/abd8381a520b695856019c467dfff1da90267928))
+
+### Features
+
+- adds enhancements to OAuth ([a59927b](https://github.com/ghoshnirmalya/feedback/commit/a59927b79255cd811001a9610dde3967c2cd812c))
+- adds GoogleOAuth strategy ([7b2aa31](https://github.com/ghoshnirmalya/feedback/commit/7b2aa31ed6881e7bfd390606de3b17bde9a2e9fa))
+- adds option to add replies to a comment ([c975c57](https://github.com/ghoshnirmalya/feedback/commit/c975c57f607b3b73e2cb7fe83fff317f00ed62a0))
+- adds option to create dummy data while signing up ([26c8967](https://github.com/ghoshnirmalya/feedback/commit/26c89676cc38d8a53b85a96a517b254b368097ec))
+- adds option to view public projects ([c0c9bf3](https://github.com/ghoshnirmalya/feedback/commit/c0c9bf36a00090fdb703bc2f9e46309f48ddd0a2))
+- adds option to view replies ([2089544](https://github.com/ghoshnirmalya/feedback/commit/2089544482077d1c237aefe5ece747b209163e15))
+- allows only five files to be uploaded on production mode ([762a4ae](https://github.com/ghoshnirmalya/feedback/commit/762a4aee461d957c514eae0e19ab73f7d5232868))
+- converts id to uuid ([a02cd01](https://github.com/ghoshnirmalya/feedback/commit/a02cd019d7928916c69958a1b0385dda6cef8b8e))
+- integrates Google Analytics ([f29818a](https://github.com/ghoshnirmalya/feedback/commit/f29818a4fc002320b3dc63dbd506dce7381be4f0))
+- moves Imagkit to integrations ([01d5777](https://github.com/ghoshnirmalya/feedback/commit/01d577717cf1a6343eaa04ba68be545f957e85d2))
+- refetch currentUser details after 30 minutes ([ec9d773](https://github.com/ghoshnirmalya/feedback/commit/ec9d7738789fdd6b7d8aec55e39d85c8234e4b8b))
+- removes web service from Render config ([9dfee23](https://github.com/ghoshnirmalya/feedback/commit/9dfee2393729b95cb3e533389dd0cbeb00ac4512))
+- update design of all pages ([4b6e1bd](https://github.com/ghoshnirmalya/feedback/commit/4b6e1bd2b98254cd624108b91f027db0c815070d))
+- update design of authentication page ([3347f33](https://github.com/ghoshnirmalya/feedback/commit/3347f33699a2e72b09ebf83c0c1176743bcdeb4d))
+- updates authentication redirection logic ([6183988](https://github.com/ghoshnirmalya/feedback/commit/6183988bc4d719386dff4383060cf689acdbec8a))
+- updates design for cards ([7f4913b](https://github.com/ghoshnirmalya/feedback/commit/7f4913b87effc83ce65ed0c0b530697abdbfdc2f))
+- updates design for error pages ([855f0e2](https://github.com/ghoshnirmalya/feedback/commit/855f0e2ad288551ad97017ce49d57192a3d60168))
+- updates design for listing pages ([1ad3acb](https://github.com/ghoshnirmalya/feedback/commit/1ad3acb77c169fa359737f78110887f149ce3bec))
+- updates design of all components ([fcfe7ec](https://github.com/ghoshnirmalya/feedback/commit/fcfe7ec5b6ef3a863bd9b11b2b2d7e9546fcd05e))
+- updates fallback UI ([67d981d](https://github.com/ghoshnirmalya/feedback/commit/67d981dfe25d5ff2e30af482059b2363e569ea16))
+- uses Google OAuth login ([b608f3a](https://github.com/ghoshnirmalya/feedback/commit/b608f3a7dc57a946506b29c9e43174f0f42237da))
+
 ## [0.7.1](https://github.com/ghoshnirmalya/feedback/compare/0.7.0...0.7.1) (2021-02-06)
 
 ### Bug Fixes
