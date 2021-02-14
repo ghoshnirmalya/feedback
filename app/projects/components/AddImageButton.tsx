@@ -66,7 +66,13 @@ const AddImageButton: FC = () => {
 
   if (isUploadingFile || isLoading) {
     return (
-      <Center boxSize="50px" rounded="md" borderWidth={1} borderStyle="dashed">
+      <Center
+        boxSize="50px"
+        rounded="md"
+        borderWidth={1}
+        borderStyle="dashed"
+        bgColor="white"
+      >
         <Spinner />
       </Center>
     );
@@ -82,6 +88,7 @@ const AddImageButton: FC = () => {
       alignItems="center"
       fontWeight="bold"
       borderStyle="dashed"
+      bgColor="white"
       _hover={{
         cursor: "pointer",
       }}

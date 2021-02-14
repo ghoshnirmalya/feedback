@@ -1,5 +1,7 @@
 import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
+import EmptyState from "app/components/EmptyState";
+import AddImageButton from "app/projects/components/AddImageButton";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { setComment } from "app/slices/comment";
 import { setCoordinates } from "app/slices/file";
@@ -138,7 +140,11 @@ const ContentArea: FC = () => {
     if (!url) {
       return (
         <Text h="100%" fontWeight="bold">
-          Select or upload an image from left
+          <EmptyState
+            heading="No image selected"
+            text="Select an image from the left sidebar or upload a new image"
+            buttons={[<AddImageButton />]}
+          />
         </Text>
       );
     }

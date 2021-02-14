@@ -9,10 +9,10 @@ import {
 import React, { FC, ReactNode } from "react";
 
 type IProps = {
-  icon: string;
+  icon?: string;
   heading: string;
   text: string;
-  buttons: ReactNode[];
+  buttons?: ReactNode[];
 };
 
 const EmptyState: FC<IProps> = ({ icon, heading, text, buttons }) => {
@@ -26,6 +26,10 @@ const EmptyState: FC<IProps> = ({ icon, heading, text, buttons }) => {
       </VStack>
     </Center>
   );
+};
+
+EmptyState.defaultProps = {
+  icon: "/illustrations/Empty Inbox _Two Color.svg",
 };
 
 export default EmptyState;
