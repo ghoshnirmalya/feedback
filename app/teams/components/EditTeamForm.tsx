@@ -7,7 +7,7 @@ import React, { FC } from "react";
 
 const EditTeamForm: FC = () => {
   const router = useRouter();
-  const teamId = useParam("teamId", "number");
+  const teamId = useParam("teamId", "string");
   const [team, { setQueryData }] = useQuery(getTeam, {
     where: { id: teamId },
   });
@@ -25,7 +25,9 @@ const EditTeamForm: FC = () => {
             data: {
               name: event.target[0].value,
               description: event.target[1].value,
-              users: team.users as UserCreateManyWithoutTeamsInput,
+              users: team.users.map(({ id }) => ({
+                id,
+              })) as UserCreateManyWithoutTeamsInput,
             },
           })) as Team & { users: User[]; projects: Project[] };
 

@@ -18,7 +18,7 @@ const ContentArea: FC = () => {
   const router = useRouter();
   const page = Number(router.query.page) || 0;
   const [{ comments, hasMore }] = usePaginatedQuery(getComments, {
-    where: { file: { id: file.id } },
+    where: { file: { id: (file.id as unknown) as string } },
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
@@ -63,7 +63,7 @@ const ContentArea: FC = () => {
     dispatch(setCoordinates({ coordinateX: x, coordinateY: y }));
   };
 
-  const handleSelectComment = (commentId: number) => {
+  const handleSelectComment = (commentId: string) => {
     const el = document.getElementById(`js-comment-${commentId}`);
 
     el?.scrollIntoView({

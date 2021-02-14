@@ -1,16 +1,10 @@
-import { Button, Heading, HStack } from "@chakra-ui/react";
-import { Link } from "blitz";
+import { Heading, HStack } from "@chakra-ui/react";
 import React, { FC } from "react";
 
 const CreateProjectHeading: FC = () => {
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">
-      <Heading>Create project</Heading>
-      <Link href="/projects" passHref>
-        <Button colorScheme="blue" variant="outline">
-          All projects
-        </Button>
-      </Link>
+      <Heading fontSize="2xl">Create a new project</Heading>
     </HStack>
   );
 };

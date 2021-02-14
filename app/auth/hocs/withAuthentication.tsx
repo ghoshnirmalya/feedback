@@ -20,16 +20,16 @@ withAuthentication.isAuth = async (
     res,
   });
 
-  // If user is already logged in redirect them to the "/projects" page.
+  // If user is already logged in redirect them to the "/teams" page.
   if (currentUser) {
     if (res) {
       res.writeHead(302, {
-        Location: "/projects",
+        Location: "/teams",
       });
 
       res.end();
     } else {
-      Router.push("/projects");
+      Router.push("/teams");
     }
   }
 };

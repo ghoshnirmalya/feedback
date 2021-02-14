@@ -1,19 +1,13 @@
 import { BlitzApiRequest, BlitzApiResponse } from "blitz";
-import ImageKit from "imagekit";
 import { IncomingForm } from "formidable";
 import fs from "fs";
+import uploadFile from "integrations/imagekit";
 
 export const config = {
   api: {
     bodyParser: false,
   },
 };
-
-const imagekit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY as string,
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY as string,
-  urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT as string,
-});
 
 const UploadAPI = async (req: BlitzApiRequest, res: BlitzApiResponse) => {
   if (req.method === "POST") {
@@ -31,10 +25,7 @@ const UploadAPI = async (req: BlitzApiRequest, res: BlitzApiResponse) => {
     ) as unknown) as Buffer;
     const name = data.files.file.name;
 
-    const response = await imagekit.upload({
-      file,
-      fileName: name,
-    });
+    const response = await uploadFile(file, name);
 
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");

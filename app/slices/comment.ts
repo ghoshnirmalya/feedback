@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import hydrate from "lib/hydrate";
 
 interface IInitialState {
-  selectedCommentId: null | number;
+  selectedCommentId: null | string;
 }
 
 const initialState: IInitialState = {

@@ -10,7 +10,7 @@ const ITEMS_PER_PAGE = 100;
 
 const FilesList: FC = () => {
   const router = useRouter();
-  const projectId = useParam("projectId", "number") as number;
+  const projectId = useParam("projectId", "string") as string;
   const page = Number(router.query.page) || 0;
   const [{ files, hasMore }] = usePaginatedQuery(getFiles, {
     where: { project: { id: projectId } },
@@ -47,7 +47,7 @@ const FilesList: FC = () => {
               boxSize="50px"
               rounded="md"
               fallback={
-                <Center p={4} boxSize="50px">
+                <Center p={2} boxSize="50px">
                   <Spinner />
                 </Center>
               }

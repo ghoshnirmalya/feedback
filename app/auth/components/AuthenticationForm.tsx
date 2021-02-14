@@ -4,7 +4,7 @@ import React, { FC } from "react";
 
 const AuthenticationForm: FC = () => {
   return (
-    <Container maxW="4xl" py={24} minH="100vh">
+    <Container maxW="2xl" py={24} minH="100vh">
       <Center h="100%">
         <Link href="/api/auth/google/callback" passHref>
           <Button colorScheme="blue" type="submit" size="lg">

@@ -15,7 +15,9 @@ export default async function updateTeam(
     where,
     data: {
       ...rest,
-      users: { connect: { id: (data.users as User).id } },
+      users: {
+        connect: users,
+      },
     },
   });
 

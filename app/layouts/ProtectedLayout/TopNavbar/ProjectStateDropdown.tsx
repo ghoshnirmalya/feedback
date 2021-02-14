@@ -1,5 +1,7 @@
 import {
+  Box,
   Button,
+  Heading,
   Menu,
   MenuButton,
   MenuItemOption,
@@ -20,11 +22,11 @@ import {
 import React, { FC } from "react";
 
 const ProjectStateDropdown: FC = () => {
-  const projectId = useParam("projectId", "number");
+  const projectId = useParam("projectId", "string");
   const [project, { setQueryData }] = useQuery(getProject, {
     where: { id: projectId },
   });
-  const [updateProjectMutation] = useMutation(updateProject);
+  const [updateProjectMutation, { isLoading }] = useMutation(updateProject);
   const currentUser = useCurrentUser();
 
   if (!projectId || !currentUser) {
@@ -52,22 +54,28 @@ const ProjectStateDropdown: FC = () => {
   };
 
   return (
-    <Menu isLazy placement="bottom-end">
-      <MenuButton as={Button} size="sm">
-        {project.isPublic ? "Public" : "Protected"}
-      </MenuButton>
-      <MenuList>
-        <MenuOptionGroup
-          defaultValue={project.isPublic ? "public" : "protected"}
-          title="Status"
-          type="radio"
-          onChange={handleChange}
-        >
-          <MenuItemOption value="public">Public</MenuItemOption>
-          <MenuItemOption value="protected">Protected</MenuItemOption>
-        </MenuOptionGroup>
-      </MenuList>
-    </Menu>
+    <Box borderBottomWidth={1}>
+      <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
+        <Heading size="sm">Visibility</Heading>
+      </Box>
+      <Box p={4}>
+        <Menu isLazy placement="bottom-start">
+          <MenuButton as={Button} size="lg" w="100%" isLoading={isLoading}>
+            {project.isPublic ? "Public" : "Protected"}
+          </MenuButton>
+          <MenuList w="100%">
+            <MenuOptionGroup
+              defaultValue={project.isPublic ? "public" : "protected"}
+              type="radio"
+              onChange={handleChange}
+            >
+              <MenuItemOption value="public">Public</MenuItemOption>
+              <MenuItemOption value="protected">Protected</MenuItemOption>
+            </MenuOptionGroup>
+          </MenuList>
+        </Menu>
+      </Box>
+    </Box>
   );
 };
 

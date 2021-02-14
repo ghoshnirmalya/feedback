@@ -14,7 +14,7 @@ import React from "react";
 
 const Home: BlitzPage = () => {
   return (
-    <Container maxW="4xl" py={24} minH="calc(100vh - 80px)">
+    <Container maxW="2xl" py={24} minH="calc(100vh - 80px)">
       <Center h="100%">
         <VStack spacing={16}>
           <VStack spacing={8} alignItems="flex-start">
@@ -44,7 +44,7 @@ const Home: BlitzPage = () => {
             </Text>
             <Link href="/api/auth/google/callback" passHref>
               <Button colorScheme="blue" type="submit" size="lg">
-                Get started using your Google account
+                Continue with your Google account
               </Button>
             </Link>
           </VStack>

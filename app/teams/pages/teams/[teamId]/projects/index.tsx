@@ -30,7 +30,7 @@ const ProjectsPage: BlitzPage = () => {
   };
 
   return (
-    <Container maxW="6xl" centerContent p={8}>
+    <Container maxW="2xl" centerContent p={8}>
       <ErrorBoundary
         fallbackRender={({ error }) => {
           return (

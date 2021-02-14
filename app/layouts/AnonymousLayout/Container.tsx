@@ -11,7 +11,7 @@ type ContainerProps = {
 };
 
 const Container = ({ children }: ContainerProps) => {
-  const projectId = useParam("projectId", "number");
+  const projectId = useParam("projectId", "string");
   const [project] = useQuery(getProject, {
     where: { id: projectId },
   });

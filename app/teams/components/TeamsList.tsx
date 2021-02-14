@@ -1,17 +1,23 @@
 import {
-  AvatarGroup,
   Avatar,
+  AvatarGroup,
   Box,
+  Button,
+  Center,
   Grid,
   Heading,
+  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { Team, User } from "@prisma/client";
+import EmptyState from "app/components/EmptyState";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getTeams from "app/teams/queries/getTeams";
 import { Link, usePaginatedQuery } from "blitz";
 import React from "react";
+import { MdAdd } from "react-icons/md";
+
 const TeamsList = () => {
   const currentUser = useCurrentUser();
   const [{ teams }] = usePaginatedQuery(getTeams, {
@@ -24,6 +30,24 @@ const TeamsList = () => {
       },
     },
   });
+
+  if (!teams.length) {
+    return (
+      <EmptyState
+        icon="/illustrations/Empty Inbox _Two Color.svg"
+        heading="Create a Team"
+        text="Get started by creating a new team for your organization. You can
+      add projects to a team."
+        buttons={[
+          <Link href="/teams/new" passHref>
+            <Button as="a" colorScheme="blue" size="lg" leftIcon={<MdAdd />}>
+              Create a new Team
+            </Button>
+          </Link>,
+        ]}
+      />
+    );
+  }
 
   const nameNode = (team: Team) => {
     return (
@@ -57,7 +81,7 @@ const TeamsList = () => {
     const avatarsNode = () =>
       team.users.map((user) => {
         return (
-          <Avatar key={user.id} name={user.name ? user.name : user.email} />
+          <Avatar key={user.id} src={user.avatar} name={user.name as string} />
         );
       });
 
@@ -72,12 +96,7 @@ const TeamsList = () => {
 
   return (
     <Grid
-      templateColumns={[
-        "repeat(1, 1fr)",
-        "repeat(1, 1fr)",
-        "repeat(2, 1fr)",
-        "repeat(3, 1fr)",
-      ]}
+      templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)"]}
       gap={8}
       w="100%"
     >

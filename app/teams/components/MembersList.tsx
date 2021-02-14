@@ -4,14 +4,16 @@ import { useParam, useQuery } from "blitz";
 import React, { FC } from "react";
 
 const MembersList: FC = () => {
-  const teamId = useParam("teamId", "number");
+  const teamId = useParam("teamId", "string");
   const [team] = useQuery(getTeam, {
     where: { id: teamId },
   });
 
   const avatarsNode = () =>
     team.users.map((user) => {
-      return <Avatar key={user.id} name={user.email} />;
+      return (
+        <Avatar key={user.id} name={user.name as string} src={user.avatar} />
+      );
     });
 
   return (

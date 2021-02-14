@@ -7,7 +7,7 @@ import React, { Suspense } from "react";
 
 const EditProjectPage: BlitzPage = () => {
   return (
-    <Container maxW="6xl" p={8}>
+    <Container maxW="2xl" p={8}>
       <Suspense
         fallback={
           <Center h="100vh">
