@@ -11,13 +11,27 @@ import {
   useRouter,
 } from "blitz";
 import "focus-visible/dist/focus-visible";
-import React from "react";
+import React, { useEffect } from "react";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import { queryCache } from "react-query";
+import isProduction from "utils/isProduction";
 
 function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page);
   const router = useRouter();
+
+  useEffect(() => {
+    if (isProduction) {
+      const gtag = require("integrations/googleAnalytics");
+      const handleRouteChange = (url: URL) => {
+        gtag.pageview(url);
+      };
+      router.events.on("routeChangeComplete", handleRouteChange);
+      return () => {
+        router.events.off("routeChangeComplete", handleRouteChange);
+      };
+    }
+  }, [router.events]);
 
   return (
     <ErrorBoundary

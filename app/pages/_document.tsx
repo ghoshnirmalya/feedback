@@ -1,17 +1,11 @@
-import { BlitzScript /*DocumentContext*/, Document, DocumentHead, Head, Html, Main } from "blitz"
+import { BlitzScript, DocumentHead, Main, Html, Document } from "blitz";
+import { Head } from "next/document";
+import isProduction from "utils/isProduction";
 
 class MyDocument extends Document {
-  // Only uncomment if you need to customize this behaviour
-  // static async getInitialProps(ctx: DocumentContext) {
-  //   const initialProps = await Document.getInitialProps(ctx)
-  //   return {...initialProps}
-  // }
-
   googleAnalyticsScriptNode = () => {
-    const isProduction = process.env.NODE_ENV === "production"
-
     if (!isProduction) {
-      return false
+      return false;
     }
 
     return (
@@ -33,15 +27,18 @@ class MyDocument extends Document {
           }}
         />
       </>
-    )
-  }
+    );
+  };
 
   render() {
     return (
       <Html lang="en">
         <Head>
+          <meta
+            name="Description"
+            content="Collect feedback for your designs."
+          />
           {this.googleAnalyticsScriptNode()}
-          <meta name="Description" content="Website builder" />
         </Head>
         <DocumentHead />
         <body>
@@ -49,8 +46,8 @@ class MyDocument extends Document {
           <BlitzScript />
         </body>
       </Html>
-    )
+    );
   }
 }
 
-export default MyDocument
+export default MyDocument;
