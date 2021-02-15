@@ -10,8 +10,6 @@ export default async function getReplies(
   { where, orderBy, skip = 0, take }: GetRepliesInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
-
   const replies = await db.reply.findMany({
     where,
     orderBy,

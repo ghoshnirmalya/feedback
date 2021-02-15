@@ -6,6 +6,7 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import React from "react";
 
 type ReplyFormProps = {
@@ -15,6 +16,12 @@ type ReplyFormProps = {
 };
 
 const ReplyForm = ({ initialValues, onSubmit, isLoading }: ReplyFormProps) => {
+  const currentUser = useCurrentUser();
+
+  if (!currentUser) {
+    return null;
+  }
+
   return (
     <form
       onSubmit={(event) => {
