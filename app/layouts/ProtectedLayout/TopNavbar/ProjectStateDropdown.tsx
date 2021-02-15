@@ -43,7 +43,7 @@ const ProjectStateDropdown: FC = () => {
 
   const handleChange = async (value: string) => {
     const teamId = project.teamId;
-    const team = await invoke(getTeam, { where: { id: Number(teamId) } });
+    const team = await invoke(getTeam, { where: { id: teamId } });
 
     try {
       const updated = (await updateProjectMutation({
