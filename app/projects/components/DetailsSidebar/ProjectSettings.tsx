@@ -1,7 +1,7 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
 import ErrorState from "app/components/ErrorState";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
-import ProjectStateDropdown from "app/layouts/ProtectedLayout/TopNavbar/ProjectStateDropdown";
+import ProjectStateRadio from "app/projects/components/DetailsSidebar/ProjectStateRadio";
 import { Link, useParam } from "blitz";
 import React, { FC } from "react";
 import { MdLock } from "react-icons/md";
@@ -47,7 +47,7 @@ const ProjectSettings: FC = () => {
 
   return (
     <>
-      <ProjectStateDropdown />
+      <ProjectStateRadio />
       {projectEditButtonNode()}
     </>
   );

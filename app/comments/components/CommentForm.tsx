@@ -52,7 +52,7 @@ const CommentForm = ({ initialValues, onSubmit }: CommentFormProps) => {
           </FormControl>
         </Box>
         <Box>
-          <HStack spacing={4} w="100%">
+          <HStack spacing={2} w="100%">
             <Button colorScheme="blue" type="submit" size="sm">
               Save
             </Button>

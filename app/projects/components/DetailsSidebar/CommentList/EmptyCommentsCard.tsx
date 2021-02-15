@@ -1,4 +1,5 @@
-import { Box, Center, Heading, Text } from "@chakra-ui/react";
+import { Box, Center, Heading } from "@chakra-ui/react";
+import EmptyState from "app/components/EmptyState";
 import CommentBox from "app/projects/components/CommentBox";
 import React, { FC } from "react";
 
@@ -11,9 +12,12 @@ const EmptyCommentsCard: FC = () => {
       <Box id="js-comment-form-container">
         <CommentBox />
       </Box>
-      <Box h={48} p={4} borderBottomWidth={1}>
+      <Box p={4} borderBottomWidth={1}>
         <Center h="100%">
-          <Text fontWeight="bold">No comments yet!</Text>
+          <EmptyState
+            heading="No comments yet."
+            text="Click on the image to add a comment"
+          />
         </Center>
       </Box>
     </>
