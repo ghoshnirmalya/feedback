@@ -1,3 +1,19 @@
+# [0.9.0](https://github.com/ghoshnirmalya/feedback/compare/0.8.0...0.9.0) (2021-02-15)
+
+### Bug Fixes
+
+- fixes authentication issues with reply form ([46ffe8d](https://github.com/ghoshnirmalya/feedback/commit/46ffe8d97ae080b7c10073dd8bd22992fb43da70))
+- fixes overflow issues with ContentArea ([4ded0f4](https://github.com/ghoshnirmalya/feedback/commit/4ded0f48f90d14f650858d7418b651a745338a8d))
+- fixes switching of project state ([2ab7960](https://github.com/ghoshnirmalya/feedback/commit/2ab7960efc5d4b78343cdbeea66b732eeb7b2b1e))
+- hides project details for unauthenticated users ([4c50d3b](https://github.com/ghoshnirmalya/feedback/commit/4c50d3b92a32088f172d9ac947b54563e96f1645))
+
+### Features
+
+- adds the option to mark a comment as resolved/unresolved ([976e8e9](https://github.com/ghoshnirmalya/feedback/commit/976e8e9569aec165f050e376ba38aaee99ef6706))
+- fetches all data only once ([3e14717](https://github.com/ghoshnirmalya/feedback/commit/3e14717ef6d68bae0e07c4fa483c75b3c4597921))
+- removes node_modules cache for Github actions ([8cf957a](https://github.com/ghoshnirmalya/feedback/commit/8cf957a920b5d0e8e0a613f9050a67e140f95dfe))
+- updates design of empty states ([b82608f](https://github.com/ghoshnirmalya/feedback/commit/b82608f194c4abe7d9a005e488ae6ca2538e4b13))
+
 # [0.8.0](https://github.com/ghoshnirmalya/feedback/compare/0.7.1...0.8.0) (2021-02-14)
 
 ### Bug Fixes
