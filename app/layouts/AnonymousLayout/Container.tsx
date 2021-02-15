@@ -1,9 +1,11 @@
-import { Box, Center, Flex, Link as ChakraLink, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex } from "@chakra-ui/react";
+import ErrorState from "app/components/ErrorState";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
 import getProject from "app/projects/queries/getProject";
 import { Link, useParam, useQuery } from "blitz";
 import React, { ReactNode } from "react";
+import { MdLock } from "react-icons/md";
 
 type ContainerProps = {
   title?: string;
@@ -28,15 +30,17 @@ const Container = ({ children }: ContainerProps) => {
   if (!project.isPublic && !currentUser) {
     return (
       <Center h="100vh">
-        <Box p={8} bg="gray.100" rounded="md">
-          <Text fontWeight="bold">
-            You need to{" "}
+        <ErrorState
+          heading="Unauthorized"
+          text="You need to sign in to view this content."
+          buttons={[
             <Link href="/auth" passHref>
-              <ChakraLink>sign in</ChakraLink>
-            </Link>{" "}
-            to view this content.
-          </Text>
-        </Box>
+              <Button colorScheme="blue" size="lg" leftIcon={<MdLock />}>
+                Sign in
+              </Button>
+            </Link>,
+          ]}
+        />
       </Center>
     );
   }

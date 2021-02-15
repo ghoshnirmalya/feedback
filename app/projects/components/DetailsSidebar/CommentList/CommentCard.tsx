@@ -1,6 +1,6 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import { Comment, User } from "@prisma/client";
-import CommentCardHeading from "app/projects/components/CommentList/CommentCardHeading";
+import CommentCardHeading from "app/projects/components/DetailsSidebar/CommentList/CommentCardHeading";
 import RepliesList from "app/projects/components/RepliesList";
 import { getSelectedCommentData } from "app/selectors/comment";
 import React, { FC } from "react";

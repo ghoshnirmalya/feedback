@@ -1,7 +1,7 @@
 import { Box, Center, Spinner } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
 import EmptyState from "app/components/EmptyState";
-import CommentCard from "app/projects/components/CommentList/CommentCard";
+import CommentCard from "app/projects/components/DetailsSidebar/CommentList/CommentCard";
 import { getFileData } from "app/selectors/file";
 import { usePaginatedQuery, useRouter } from "blitz";
 import React, { FC } from "react";

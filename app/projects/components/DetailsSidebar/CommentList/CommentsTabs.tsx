@@ -9,8 +9,8 @@ import {
   Tabs,
   Text,
 } from "@chakra-ui/react";
-import ResolvedCommentsTab from "app/projects/components/CommentList/ResolvedCommentsTab";
-import UnresolvedCommentsTab from "app/projects/components/CommentList/UnresolvedCommentsTab";
+import ResolvedCommentsTab from "app/projects/components/DetailsSidebar/CommentList/ResolvedCommentsTab";
+import UnresolvedCommentsTab from "app/projects/components/DetailsSidebar/CommentList/UnresolvedCommentsTab";
 import React, { FC, Suspense } from "react";
 
 const CommentsTabs: FC = () => {

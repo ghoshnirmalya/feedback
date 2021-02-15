@@ -40,7 +40,7 @@ const LazyFilesSidebar = dynamic(
 const LazyDetailsSidebar = dynamic(
   () =>
     import(
-      /* webpackChunkName: 'lazyDetailsSidebar' */ "app/projects/components/DetailsSidebar"
+      /* webpackChunkName: 'lazyDetailsSidebar' */ "app/projects/components/DetailsSidebar/DetailsSidebar"
     ),
   {
     ssr: false,

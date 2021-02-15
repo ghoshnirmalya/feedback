@@ -1,9 +1,9 @@
 import { Box, Heading } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
 import CommentBox from "app/projects/components/CommentBox";
-import CommentsTabs from "app/projects/components/CommentList/CommentsTabs";
-import NoCommentsCard from "app/projects/components/CommentList/EmptyCommentsCard";
-import EmptyFilesCard from "app/projects/components/CommentList/EmptyFilesCard";
+import CommentsTabs from "app/projects/components/DetailsSidebar/CommentList/CommentsTabs";
+import NoCommentsCard from "app/projects/components/DetailsSidebar/CommentList/EmptyCommentsCard";
+import EmptyFilesCard from "app/projects/components/DetailsSidebar/CommentList/EmptyFilesCard";
 import { getFileData } from "app/selectors/file";
 import { usePaginatedQuery, useRouter } from "blitz";
 import React, { FC } from "react";

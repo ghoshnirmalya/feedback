@@ -9,10 +9,10 @@ import {
 import React, { FC, ReactNode } from "react";
 
 type IProps = {
-  icon: string;
+  icon?: string;
   heading: string;
   text: string;
-  buttons: ReactNode[];
+  buttons?: ReactNode[];
 };
 
 const ErrorState: FC<IProps> = ({ icon, heading, text, buttons }) => {
@@ -26,6 +26,10 @@ const ErrorState: FC<IProps> = ({ icon, heading, text, buttons }) => {
       </VStack>
     </Center>
   );
+};
+
+ErrorState.defaultProps = {
+  icon: "/illustrations/Online protection_Monochromatic.svg",
 };
 
 export default ErrorState;

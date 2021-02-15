@@ -1,12 +1,5 @@
-import {
-  Box,
-  Button,
-  Center,
-  Flex,
-  Link as ChakraLink,
-  VStack,
-} from "@chakra-ui/react";
-import EmptyState from "app/components/EmptyState";
+import { Box, Button, Center, Flex } from "@chakra-ui/react";
+import ErrorState from "app/components/ErrorState";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
 import { Link } from "blitz";
@@ -23,8 +16,7 @@ const Container = ({ children }: ContainerProps) => {
   if (!currentUser) {
     return (
       <Center h="100vh">
-        <EmptyState
-          icon="/illustrations/Online protection_Monochromatic.svg"
+        <ErrorState
           heading="Unauthorized"
           text="You need to sign in to view this content."
           buttons={[

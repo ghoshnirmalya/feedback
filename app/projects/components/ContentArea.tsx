@@ -1,6 +1,7 @@
 import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
 import EmptyState from "app/components/EmptyState";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import AddImageButton from "app/projects/components/AddImageButton";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { setComment } from "app/slices/comment";
@@ -33,6 +34,7 @@ const ContentArea: FC = () => {
       refetchOnMount: false,
     }
   );
+  const currentUser = useCurrentUser();
 
   const handleSetPointer = (e: any) => {
     if (e.target.classList.contains("js-annotation")) {
@@ -151,11 +153,17 @@ const ContentArea: FC = () => {
   const imageNode = () => {
     if (!url) {
       return (
-        <EmptyState
-          heading="No image selected"
-          text="Select an image from the left sidebar or upload a new image"
-          buttons={[<AddImageButton key="addImageButton" />]}
-        />
+        <Center h="100%">
+          <EmptyState
+            heading="No image selected"
+            text={
+              currentUser
+                ? "Select an image from the left sidebar or upload a new image"
+                : "Select an image from the left sidebar"
+            }
+            buttons={[<AddImageButton key="addImageButton" />]}
+          />
+        </Center>
       );
     }
 
