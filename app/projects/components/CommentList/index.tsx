@@ -15,12 +15,20 @@ const CommentsList: FC = () => {
   const file = useSelector(getFileData());
   const router = useRouter();
   const page = Number(router.query.page) || 0;
-  const [{ comments, hasMore }] = usePaginatedQuery(getComments, {
-    where: { file: { id: (file.id as unknown) as string } },
-    orderBy: { id: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  });
+  const [{ comments, hasMore }] = usePaginatedQuery(
+    getComments,
+    {
+      where: { file: { id: (file.id as unknown) as string } },
+      orderBy: { id: "asc" },
+      skip: ITEMS_PER_PAGE * page,
+      take: ITEMS_PER_PAGE,
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   if (!file.url) {
     return <EmptyFilesCard />;

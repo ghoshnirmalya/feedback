@@ -8,14 +8,22 @@ import { MdAdd } from "react-icons/md";
 
 const ProjectsList: FC = () => {
   const teamId = useParam("teamId", "string");
-  const [{ projects }] = usePaginatedQuery(getProjects, {
-    orderBy: { updatedAt: "desc" },
-    where: {
-      team: {
-        id: teamId,
+  const [{ projects }] = usePaginatedQuery(
+    getProjects,
+    {
+      orderBy: { updatedAt: "desc" },
+      where: {
+        team: {
+          id: teamId,
+        },
       },
     },
-  });
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   if (!projects.length) {
     return (

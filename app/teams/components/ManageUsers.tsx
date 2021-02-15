@@ -29,9 +29,17 @@ type IProps = {
 
 const ManageUsers: FC<IProps> = ({ isOpen, onClose }) => {
   const teamId = useParam("teamId", "string");
-  const [team, { setQueryData }] = useQuery(getTeam, {
-    where: { id: teamId },
-  });
+  const [team, { setQueryData }] = useQuery(
+    getTeam,
+    {
+      where: { id: teamId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const [updateTeamMutation, { isLoading, isError }] = useMutation(updateTeam);
 
   const handleClick = async (event: FormEvent<HTMLFormElement>) => {

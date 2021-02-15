@@ -20,16 +20,24 @@ import { MdAdd } from "react-icons/md";
 
 const TeamsList = () => {
   const currentUser = useCurrentUser();
-  const [{ teams }] = usePaginatedQuery(getTeams, {
-    orderBy: { updatedAt: "desc" },
-    where: {
-      users: {
-        some: {
-          id: currentUser?.id,
+  const [{ teams }] = usePaginatedQuery(
+    getTeams,
+    {
+      orderBy: { updatedAt: "desc" },
+      where: {
+        users: {
+          some: {
+            id: currentUser?.id,
+          },
         },
       },
     },
-  });
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   if (!teams.length) {
     return (

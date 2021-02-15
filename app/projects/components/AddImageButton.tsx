@@ -17,9 +17,17 @@ const AddImageButton: FC = () => {
   const [createFileMutation, { isLoading }] = useMutation(createFile);
   const [isUploadingFile, setUploadingFile] = useState<Boolean>(false);
   const currentUser = useCurrentUser();
-  const [{ files }] = useQuery(getFiles, {
-    where: { id: projectId },
-  });
+  const [{ files }] = useQuery(
+    getFiles,
+    {
+      where: { id: projectId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setUploadingFile(true);

@@ -12,12 +12,20 @@ const FilesList: FC = () => {
   const router = useRouter();
   const projectId = useParam("projectId", "string") as string;
   const page = Number(router.query.page) || 0;
-  const [{ files, hasMore }] = usePaginatedQuery(getFiles, {
-    where: { project: { id: projectId } },
-    orderBy: { updatedAt: "desc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  });
+  const [{ files, hasMore }] = usePaginatedQuery(
+    getFiles,
+    {
+      where: { project: { id: projectId } },
+      orderBy: { updatedAt: "desc" },
+      skip: ITEMS_PER_PAGE * page,
+      take: ITEMS_PER_PAGE,
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const dispatch = useDispatch();
 
   if (!files.length) {

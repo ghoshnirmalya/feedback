@@ -5,9 +5,17 @@ import React, { FC } from "react";
 
 const MembersList: FC = () => {
   const teamId = useParam("teamId", "string");
-  const [team] = useQuery(getTeam, {
-    where: { id: teamId },
-  });
+  const [team] = useQuery(
+    getTeam,
+    {
+      where: { id: teamId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   const avatarsNode = () =>
     team.users.map((user) => {

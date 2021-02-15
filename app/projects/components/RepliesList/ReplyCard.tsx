@@ -14,7 +14,7 @@ type IProps = {
 
 const ReplyCard: FC<IProps> = ({ reply }) => {
   return (
-    <Box py={4} px={12} borderTopWidth={1}>
+    <Box p={4} borderTopWidth={1}>
       <VStack spacing={4} align="left">
         <HStack spacing={2}>
           <Avatar size="sm" name={reply.user.name} src={reply.user.avatar} />

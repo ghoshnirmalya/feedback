@@ -27,12 +27,20 @@ type IProps = {
 const RepliesList: FC<IProps> = ({ comment }) => {
   const router = useRouter();
   const page = Number(router.query.page) || 0;
-  const [{ replies, hasMore }] = usePaginatedQuery(getReplies, {
-    where: { commentId: comment.id },
-    orderBy: { updatedAt: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  });
+  const [{ replies, hasMore }] = usePaginatedQuery(
+    getReplies,
+    {
+      where: { commentId: comment.id },
+      orderBy: { updatedAt: "asc" },
+      skip: ITEMS_PER_PAGE * page,
+      take: ITEMS_PER_PAGE,
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const [createReplyMutation, { isLoading }] = useMutation(createReply);
   const currentUser = useCurrentUser();
 

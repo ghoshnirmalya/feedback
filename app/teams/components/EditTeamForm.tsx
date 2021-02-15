@@ -8,9 +8,17 @@ import React, { FC } from "react";
 const EditTeamForm: FC = () => {
   const router = useRouter();
   const teamId = useParam("teamId", "string");
-  const [team, { setQueryData }] = useQuery(getTeam, {
-    where: { id: teamId },
-  });
+  const [team, { setQueryData }] = useQuery(
+    getTeam,
+    {
+      where: { id: teamId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const [updateTeamMutation, { isLoading, isError }] = useMutation(updateTeam);
 
   return (

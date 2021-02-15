@@ -11,9 +11,17 @@ const CreateProjectForm: FC = () => {
     createProject
   );
   const teamId = useParam("teamId", "string");
-  const [team] = useQuery(getTeam, {
-    where: { id: teamId },
-  });
+  const [team] = useQuery(
+    getTeam,
+    {
+      where: { id: teamId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   return (
     <ProjectForm

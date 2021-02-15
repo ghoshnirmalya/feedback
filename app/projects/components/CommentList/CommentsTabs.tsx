@@ -1,6 +1,8 @@
 import {
   Badge,
+  Center,
   HStack,
+  Spinner,
   Tab,
   TabList,
   TabPanel,
@@ -9,8 +11,9 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Comment, User } from "@prisma/client";
-import CommentCard from "app/projects/components/CommentList/CommentCard";
-import React, { FC } from "react";
+import AllCommentsTab from "app/projects/components/CommentList/AllCommentsTab";
+import UnresolvedCommentsTab from "app/projects/components/CommentList/UnresolvedCommentsTab";
+import React, { FC, Suspense } from "react";
 
 type IProps = {
   comments: (Comment & {
@@ -37,11 +40,27 @@ const CommentsTabs: FC<IProps> = ({ comments }) => {
       </TabList>
       <TabPanels>
         <TabPanel p={0}>
-          {comments.map((comment) => {
-            return <CommentCard comment={comment} key={comment.id} />;
-          })}
+          <Suspense
+            fallback={
+              <Center minH={24}>
+                <Spinner />
+              </Center>
+            }
+          >
+            <UnresolvedCommentsTab />
+          </Suspense>
         </TabPanel>
-        <TabPanel p={0}>All comments</TabPanel>
+        <TabPanel p={0}>
+          <Suspense
+            fallback={
+              <Center minH={24}>
+                <Spinner />
+              </Center>
+            }
+          >
+            <AllCommentsTab />
+          </Suspense>
+        </TabPanel>
       </TabPanels>
     </Tabs>
   );

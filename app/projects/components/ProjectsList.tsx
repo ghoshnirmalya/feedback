@@ -6,12 +6,20 @@ import React, { FC } from "react";
 
 const ProjectsList: FC = () => {
   const teamId = useParam("teamId", "string");
-  const [{ projects }] = usePaginatedQuery(getProjects, {
-    orderBy: { updatedAt: "desc" },
-    where: {
-      teamId,
+  const [{ projects }] = usePaginatedQuery(
+    getProjects,
+    {
+      orderBy: { updatedAt: "desc" },
+      where: {
+        teamId,
+      },
     },
-  });
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   const nameNode = (project: Project) => {
     return <Heading size="sm">{project.name}</Heading>;

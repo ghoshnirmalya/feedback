@@ -12,9 +12,17 @@ type ContainerProps = {
 
 const Container = ({ children }: ContainerProps) => {
   const projectId = useParam("projectId", "string");
-  const [project] = useQuery(getProject, {
-    where: { id: projectId },
-  });
+  const [project] = useQuery(
+    getProject,
+    {
+      where: { id: projectId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const currentUser = useCurrentUser();
 
   if (!project.isPublic && !currentUser) {

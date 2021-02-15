@@ -19,12 +19,20 @@ const ContentArea: FC = () => {
   const file = useSelector(getFileData());
   const router = useRouter();
   const page = Number(router.query.page) || 0;
-  const [{ comments, hasMore }] = usePaginatedQuery(getComments, {
-    where: { file: { id: (file.id as unknown) as string } },
-    orderBy: { id: "asc" },
-    skip: ITEMS_PER_PAGE * page,
-    take: ITEMS_PER_PAGE,
-  });
+  const [{ comments, hasMore }] = usePaginatedQuery(
+    getComments,
+    {
+      where: { file: { id: (file.id as unknown) as string } },
+      orderBy: { id: "asc" },
+      skip: ITEMS_PER_PAGE * page,
+      take: ITEMS_PER_PAGE,
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   const handleSetPointer = (e: any) => {
     if (e.target.classList.contains("js-annotation")) {
@@ -139,13 +147,11 @@ const ContentArea: FC = () => {
   const imageNode = () => {
     if (!url) {
       return (
-        <Text h="100%" fontWeight="bold">
-          <EmptyState
-            heading="No image selected"
-            text="Select an image from the left sidebar or upload a new image"
-            buttons={[<AddImageButton />]}
-          />
-        </Text>
+        <EmptyState
+          heading="No image selected"
+          text="Select an image from the left sidebar or upload a new image"
+          buttons={[<AddImageButton key="addImageButton" />]}
+        />
       );
     }
 

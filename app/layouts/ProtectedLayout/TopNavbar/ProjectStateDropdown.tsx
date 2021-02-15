@@ -23,9 +23,17 @@ import React, { FC } from "react";
 
 const ProjectStateDropdown: FC = () => {
   const projectId = useParam("projectId", "string");
-  const [project, { setQueryData }] = useQuery(getProject, {
-    where: { id: projectId },
-  });
+  const [project, { setQueryData }] = useQuery(
+    getProject,
+    {
+      where: { id: projectId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const [updateProjectMutation, { isLoading }] = useMutation(updateProject);
   const currentUser = useCurrentUser();
 
@@ -63,7 +71,7 @@ const ProjectStateDropdown: FC = () => {
           <MenuButton as={Button} size="lg" w="100%" isLoading={isLoading}>
             {project.isPublic ? "Public" : "Protected"}
           </MenuButton>
-          <MenuList w="100%">
+          <MenuList w="100%" fontSize="sm">
             <MenuOptionGroup
               defaultValue={project.isPublic ? "public" : "protected"}
               type="radio"

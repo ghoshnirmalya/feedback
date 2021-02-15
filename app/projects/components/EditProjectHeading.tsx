@@ -5,9 +5,17 @@ import React, { FC } from "react";
 
 const EditProjectHeading: FC = () => {
   const projectId = useParam("projectId", "string");
-  const [project] = useQuery(getProject, {
-    where: { id: projectId },
-  });
+  const [project] = useQuery(
+    getProject,
+    {
+      where: { id: projectId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
 
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">

@@ -21,7 +21,15 @@ import { MdSettings } from "react-icons/md";
 const TeamHeading: FC = () => {
   const router = useRouter();
   const teamId = useParam("teamId", "string");
-  const [team] = useQuery(getTeam, { where: { id: teamId } });
+  const [team] = useQuery(
+    getTeam,
+    { where: { id: teamId } },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const [deleteTeamMutation] = useMutation(deleteTeam);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -40,7 +48,7 @@ const TeamHeading: FC = () => {
           <MenuButton as={Button} size="sm">
             <Icon as={MdSettings} />
           </MenuButton>
-          <MenuList>
+          <MenuList fontSize="sm">
             <MenuItem>
               <Link href={`/teams/${teamId}/edit`} passHref>
                 <Box as="a" w="100%">

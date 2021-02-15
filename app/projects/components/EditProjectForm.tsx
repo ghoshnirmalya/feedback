@@ -9,9 +9,17 @@ import React, { FC } from "react";
 const EditProjectForm: FC = () => {
   const router = useRouter();
   const projectId = useParam("projectId", "string");
-  const [project, { setQueryData }] = useQuery(getProject, {
-    where: { id: projectId },
-  });
+  const [project, { setQueryData }] = useQuery(
+    getProject,
+    {
+      where: { id: projectId },
+    },
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+      refetchOnMount: false,
+    }
+  );
   const [updateProjectMutation, { isLoading, isError }] = useMutation(
     updateProject
   );
