@@ -49,7 +49,7 @@ const FilesList: FC = () => {
             onClick={() => handleClick(file)}
           >
             <Image
-              src={file.url}
+              src={file.thumbnailUrl}
               alt={file.name}
               objectFit="cover"
               boxSize="50px"

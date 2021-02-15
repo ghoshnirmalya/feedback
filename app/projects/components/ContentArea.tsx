@@ -13,7 +13,7 @@ const ITEMS_PER_PAGE = 100;
 
 const ContentArea: FC = () => {
   const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
-  const { url, name } = useSelector(getFileData());
+  const { url, name, height, width } = useSelector(getFileData());
   const dispatch = useDispatch();
   const { coordinateX, coordinateY } = useSelector(getCommentCoordinates());
   const file = useSelector(getFileData());
@@ -170,7 +170,9 @@ const ContentArea: FC = () => {
           <Image
             src={url}
             alt={name}
-            width="100%"
+            width={width}
+            height={height}
+            maxW="fit-content"
             fallback={
               <Center p={4} w="100%">
                 <Spinner />
@@ -193,7 +195,9 @@ const ContentArea: FC = () => {
 
   return (
     <Center h="calc(100vh - 80px)" overflow="hidden" p={8} bg="gray.100">
-      <Center>{imageNode()}</Center>
+      <Center h="100%" w="100%" overflow="scroll" alignItems="flex-start">
+        {imageNode()}
+      </Center>
     </Center>
   );
 };

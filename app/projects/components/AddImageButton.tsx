@@ -41,11 +41,11 @@ const AddImageButton: FC = () => {
       body: formData,
     });
 
-    const { name, url } = await response.json();
+    const { name, url, height, width, thumbnailUrl } = await response.json();
 
     try {
       await createFileMutation({
-        data: { name, url },
+        data: { name, url, height, width, thumbnailUrl },
         projectId: projectId,
       });
 
