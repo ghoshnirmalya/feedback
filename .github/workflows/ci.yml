@@ -10,37 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Use Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: "14"
-    
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
 
-    - name: Cache node_modules
-      id: yarn-cache
-      uses: actions/cache@v2
-      with:
-        path: |
-          ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          **/node_modules
-        key: ${{ runner.os }}-${{ runner.node_version}}-yarn-v1-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ runner.node_version}}-yarn-v1-${{ hashFiles('yarn.lock') }}
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
-    - name: Install dependencies
-      if: steps.yarn-cache.outputs.cache-hit != 'true'
-      run: yarn install --frozen-lockfile --silent
+      - name: Cache node_modules
+        id: yarn-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            **/node_modules
+          key: ${{ runner.os }}-${{ runner.node_version}}-yarn-v2-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.node_version}}-yarn-v2-${{ hashFiles('yarn.lock') }}
 
-    - name: Run tests
-      run: yarn test
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --silent
 
-    - name: Run lint
-      run: yarn lint
+      - name: Run tests
+        run: yarn test
 
-    - name: Run TypeScript compiler
-      run: yarn tsc
+      - name: Run lint
+        run: yarn lint
+
+      - name: Run TypeScript compiler
+        run: yarn tsc
