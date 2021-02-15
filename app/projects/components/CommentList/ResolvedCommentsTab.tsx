@@ -9,14 +9,14 @@ import { useSelector } from "react-redux";
 
 const ITEMS_PER_PAGE = 100;
 
-const AllCommentsTab: FC = () => {
+const ResolvedCommentsTab: FC = () => {
   const file = useSelector(getFileData());
   const router = useRouter();
   const page = Number(router.query.page) || 0;
   const [{ comments, hasMore }, { isFetching }] = usePaginatedQuery(
     getComments,
     {
-      where: { file: { id: (file.id as unknown) as string } },
+      where: { file: { id: (file.id as unknown) as string }, isResolved: true },
       orderBy: { id: "asc" },
       skip: ITEMS_PER_PAGE * page,
       take: ITEMS_PER_PAGE,
@@ -54,4 +54,4 @@ const AllCommentsTab: FC = () => {
   );
 };
 
-export default AllCommentsTab;
+export default ResolvedCommentsTab;

@@ -10,11 +10,27 @@ import {
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
-import { Comment, User } from "@prisma/client";
+import {
+  Comment,
+  FileCreateOneWithoutCommentsInput,
+  User,
+  UserCreateOneWithoutCommentsInput,
+} from "@prisma/client";
+import updateComment from "app/comments/mutations/updateComment";
+import getComments from "app/comments/queries/getComments";
+import getFile from "app/files/queries/getFile";
+import { invalidateQuery, invoke, useMutation } from "blitz";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import React, { FC } from "react";
-import { MdDelete, MdDone, MdEdit, MdReport, MdSettings } from "react-icons/md";
+import {
+  MdDelete,
+  MdDone,
+  MdEdit,
+  MdNotInterested,
+  MdReport,
+  MdSettings,
+} from "react-icons/md";
 
 dayjs.extend(localizedFormat);
 
@@ -25,6 +41,80 @@ type IProps = {
 };
 
 const CommentCardHeading: FC<IProps> = ({ comment }) => {
+  const [updateCommentMutation, { isLoading, isError }] = useMutation(
+    updateComment
+  );
+
+  const handleResolveAction = async (isResolved: boolean) => {
+    try {
+      const file = await invoke(getFile, {
+        where: { id: comment.fileId },
+      });
+
+      await updateCommentMutation({
+        where: { id: comment.id },
+        data: {
+          body: comment.body,
+          coordinateX: comment.coordinateX,
+          coordinateY: comment.coordinateY,
+          isResolved,
+          file: (file as unknown) as FileCreateOneWithoutCommentsInput,
+          user: (comment.user as unknown) as UserCreateOneWithoutCommentsInput,
+        },
+      });
+
+      invalidateQuery(getComments);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const resolveButtonNode = () => {
+    if (comment.isResolved) {
+      return false;
+    }
+
+    return (
+      <Tooltip
+        label="Mark as resolved"
+        aria-label="Mark as resolved"
+        placement="top"
+      >
+        <IconButton
+          aria-label="Mark as resolved"
+          icon={<MdDone />}
+          variant="ghost"
+          size="sm"
+          isLoading={isLoading}
+          onClick={() => handleResolveAction(true)}
+        />
+      </Tooltip>
+    );
+  };
+
+  const unresolveButtonNode = () => {
+    if (!comment.isResolved) {
+      return false;
+    }
+
+    return (
+      <Tooltip
+        label="Mark as unresolved"
+        aria-label="Mark as unresolved"
+        placement="top"
+      >
+        <IconButton
+          aria-label="Mark as unresolved"
+          icon={<MdNotInterested />}
+          variant="ghost"
+          size="sm"
+          isLoading={isLoading}
+          onClick={() => handleResolveAction(false)}
+        />
+      </Tooltip>
+    );
+  };
+
   return (
     <HStack spacing={2} justifyContent="space-between">
       <HStack spacing={2}>
@@ -36,19 +126,9 @@ const CommentCardHeading: FC<IProps> = ({ comment }) => {
           <Text fontSize="xs">{dayjs(comment.createdAt).format("LL")}</Text>
         </VStack>
       </HStack>
-      <HStack spacing={2}>
-        <Tooltip
-          label="Mark as resolved"
-          aria-label="Mark as resolved"
-          placement="top"
-        >
-          <IconButton
-            aria-label="Mark as resolved"
-            icon={<MdDone />}
-            variant="ghost"
-            size="sm"
-          />
-        </Tooltip>
+      <HStack spacing={0}>
+        {resolveButtonNode()}
+        {unresolveButtonNode()}
         <Menu isLazy>
           <Tooltip label="Settings" aria-label="Settings" placement="top">
             <MenuButton

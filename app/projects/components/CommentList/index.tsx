@@ -49,7 +49,7 @@ const CommentsList: FC = () => {
       <Box borderBottomWidth={1} px={4} py={2} bg="gray.100">
         <Heading size="sm">Comments</Heading>
       </Box>
-      <CommentsTabs comments={comments} />
+      <CommentsTabs />
     </Box>
   );
 };

@@ -91,6 +91,10 @@ const ContentArea: FC = () => {
     }
 
     return comments.map((comment, index) => {
+      if (comment.isResolved) {
+        return false;
+      }
+
       return (
         <Box
           key={comment.id}
