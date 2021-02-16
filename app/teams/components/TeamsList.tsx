@@ -3,23 +3,22 @@ import {
   AvatarGroup,
   Box,
   Button,
-  Center,
   Grid,
   Heading,
-  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { Team, User } from "@prisma/client";
 import EmptyState from "app/components/EmptyState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import getTeams from "app/teams/queries/getTeams";
 import { Link, usePaginatedQuery } from "blitz";
 import React from "react";
 import { MdAdd } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const TeamsList = () => {
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
   const [{ teams }] = usePaginatedQuery(
     getTeams,
     {
@@ -48,7 +47,7 @@ const TeamsList = () => {
       add projects to a team."
         buttons={[
           <Link href="/teams/new" passHref>
-            <Button as="a" colorScheme="blue" size="lg" leftIcon={<MdAdd />}>
+            <Button as="a" colorScheme="yellow" size="lg" leftIcon={<MdAdd />}>
               Create a new Team
             </Button>
           </Link>,

@@ -1,6 +1,9 @@
 import { Center, Flex, Grid, Spinner } from "@chakra-ui/react";
 import AnonymousLayout from "app/layouts/AnonymousLayout";
-import { BlitzPage, dynamic } from "blitz";
+import { setCurrentUser } from "app/slices/currentUser";
+import { wrapper } from "app/store";
+import getCurrentUser from "app/users/queries/getCurrentUser";
+import { BlitzPage, dynamic, invokeWithMiddleware } from "blitz";
 import React, { Suspense, useEffect } from "react";
 
 const LazyContentArea = dynamic(
@@ -82,6 +85,21 @@ const ShowProjectPage: BlitzPage = () => {
     </Flex>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async ({ req, res }) => {
+    const currentUser = await invokeWithMiddleware(getCurrentUser, null, {
+      req,
+      res,
+    });
+
+    store.dispatch(setCurrentUser(currentUser));
+
+    return {
+      props: {},
+    };
+  }
+);
 
 ShowProjectPage.getLayout = (page) => (
   <AnonymousLayout title={"Project"}>{page}</AnonymousLayout>

@@ -1,16 +1,17 @@
 import { Box, Button, Heading, HStack } from "@chakra-ui/react";
 import ErrorState from "app/components/ErrorState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
 import ProjectStateRadio from "app/projects/components/DetailsSidebar/ProjectStateRadio";
 import deleteProject from "app/projects/mutations/deleteProject";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import { Link, useMutation, useParam, useRouter } from "blitz";
 import React, { FC } from "react";
 import { MdLock } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const ProjectSettings: FC = () => {
   const router = useRouter();
   const projectId = useParam("projectId", "string");
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
   const [deleteProjectMutation, { isLoading, isError }] = useMutation(
     deleteProject
   );
@@ -23,7 +24,7 @@ const ProjectSettings: FC = () => {
           text="You need to sign in to view this content."
           buttons={[
             <Link href="/auth" passHref>
-              <Button colorScheme="blue" leftIcon={<MdLock />}>
+              <Button colorScheme="yellow" leftIcon={<MdLock />}>
                 Sign in
               </Button>
             </Link>,
@@ -44,7 +45,7 @@ const ProjectSettings: FC = () => {
             <Link href={`/projects/${projectId}/edit`} passHref>
               <Button
                 as="a"
-                colorScheme="blue"
+                colorScheme="yellow"
                 size="lg"
                 w="100%"
                 isLoading={isLoading}

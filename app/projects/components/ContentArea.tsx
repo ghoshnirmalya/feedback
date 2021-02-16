@@ -1,8 +1,8 @@
-import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
+import { Box, Center, Image, Spinner } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
 import EmptyState from "app/components/EmptyState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
 import AddImageButton from "app/projects/components/AddImageButton";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { setComment } from "app/slices/comment";
 import { setCoordinates } from "app/slices/file";
@@ -34,7 +34,7 @@ const ContentArea: FC = () => {
       refetchOnMount: false,
     }
   );
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
 
   const handleSetPointer = (e: any) => {
     if (e.target.classList.contains("js-annotation")) {
@@ -105,10 +105,10 @@ const ContentArea: FC = () => {
           left={`${comment.coordinateX - 1.5}%`}
           w={8}
           h={8}
-          bgColor="blue.100"
+          bgColor="yellow.100"
           borderRadius="50%"
           borderWidth={2}
-          borderColor="blue.900"
+          borderColor="yellow.900"
           onClick={() => handleSelectComment(comment.id)}
           _hover={{
             w: 10,
@@ -120,7 +120,7 @@ const ContentArea: FC = () => {
           <Center
             h="100%"
             fontWeight="bold"
-            color="blue.900"
+            color="yellow.900"
             className="js-annotation"
           >
             {index + 1}
@@ -142,10 +142,10 @@ const ContentArea: FC = () => {
         left={`${annotation.x - 1.5}%`}
         w={4}
         h={4}
-        bgColor="blue.100"
+        bgColor="yellow.100"
         borderRadius="50%"
         borderWidth={2}
-        borderColor="blue.900"
+        borderColor="yellow.900"
       />
     );
   };
@@ -168,9 +168,12 @@ const ContentArea: FC = () => {
     }
 
     return (
-      <Box overflowY="auto" mx="auto" w="100%">
+      <Center overflowY="auto" mx="auto" w="100%" h="100%">
         <Center
           pos="relative"
+          m="0 auto"
+          width={width}
+          height={height}
           _hover={{
             cursor: "pointer",
           }}
@@ -178,8 +181,6 @@ const ContentArea: FC = () => {
           <Image
             src={url}
             alt={name}
-            width={width}
-            height={height}
             maxW="fit-content"
             fallback={
               <Center p={4} w="100%">
@@ -197,7 +198,7 @@ const ContentArea: FC = () => {
             {annotatorPointerNode()}
           </Box>
         </Center>
-      </Box>
+      </Center>
     );
   };
 

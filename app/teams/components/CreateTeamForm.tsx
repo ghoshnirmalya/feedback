@@ -1,14 +1,15 @@
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import TeamForm from "app/teams/components/TeamForm";
 import createTeam from "app/teams/mutations/createTeam";
 import { useMutation, useRouter } from "blitz";
 import { UserCreateManyWithoutTeamsInput } from "db";
 import { FC } from "react";
+import { useSelector } from "react-redux";
 
 const CreateTeamForm: FC = () => {
   const router = useRouter();
   const [createTeamMutation, { isLoading, isError }] = useMutation(createTeam);
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
 
   return (
     <TeamForm

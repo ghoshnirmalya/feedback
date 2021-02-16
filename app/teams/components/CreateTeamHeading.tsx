@@ -4,7 +4,9 @@ import React, { FC } from "react";
 const CreateTeamHeading: FC = () => {
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">
-      <Heading fontSize="2xl">Create a new team</Heading>
+      <Heading fontSize="2xl" isTruncated>
+        Create a new team
+      </Heading>
     </HStack>
   );
 };

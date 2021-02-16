@@ -60,7 +60,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
           icon="/illustrations/Online protection_Monochromatic.svg"
           buttons={[
             <Link href="/auth" passHref>
-              <Button colorScheme="blue" type="submit" size="lg">
+              <Button colorScheme="yellow" type="submit" size="lg">
                 Go to the login page
               </Button>
             </Link>,
@@ -82,7 +82,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
             icon="/illustrations/Online protection_Monochromatic.svg"
             buttons={[
               <Link href="/teams" passHref>
-                <Button colorScheme="blue" type="submit" size="lg">
+                <Button colorScheme="yellow" type="submit" size="lg">
                   Go to the teams page
                 </Button>
               </Link>,

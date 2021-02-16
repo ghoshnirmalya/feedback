@@ -34,7 +34,7 @@ const ProjectsList: FC = () => {
       add files to a project."
         buttons={[
           <Link href={`/teams/${teamId}/projects/new`} passHref>
-            <Button as="a" colorScheme="blue" size="lg" leftIcon={<MdAdd />}>
+            <Button as="a" colorScheme="yellow" size="lg" leftIcon={<MdAdd />}>
               Create a new Project
             </Button>
           </Link>,

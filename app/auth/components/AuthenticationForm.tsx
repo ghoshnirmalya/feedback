@@ -7,7 +7,7 @@ const AuthenticationForm: FC = () => {
     <Container maxW="2xl" py={24} minH="100vh">
       <Center h="100%">
         <Link href="/api/auth/google/callback" passHref>
-          <Button colorScheme="blue" type="submit" size="lg">
+          <Button colorScheme="yellow" type="submit" size="lg">
             Authenticate using your Google account
           </Button>
         </Link>

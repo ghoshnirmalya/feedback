@@ -71,7 +71,7 @@ const TeamForm = ({
               </FormControl>
             </VStack>
             <HStack p={4} borderTopWidth={1} spacing={4}>
-              <Button colorScheme="blue" type="submit" isLoading={isLoading}>
+              <Button colorScheme="yellow" type="submit" isLoading={isLoading}>
                 {initialValues.id ? "Edit" : "Create"}
               </Button>
               <Link

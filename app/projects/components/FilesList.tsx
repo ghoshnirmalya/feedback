@@ -53,6 +53,7 @@ const FilesList: FC = () => {
               alt={file.name}
               objectFit="cover"
               boxSize="50px"
+              maxW="unset"
               rounded="md"
               fallback={
                 <Center p={2} boxSize="50px">

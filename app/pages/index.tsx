@@ -35,7 +35,7 @@ const Home: BlitzPage = () => {
               <ChakraLink
                 href="https://github.com/ghoshnirmalya/feedback"
                 target="_blank"
-                color="blue.500"
+                color="yellow.500"
                 rel="noopener"
               >
                 Open Source
@@ -43,7 +43,7 @@ const Home: BlitzPage = () => {
               application powered by Next.js, Blitz.js and Chakra UI.
             </Text>
             <Link href="/api/auth/google/callback" passHref>
-              <Button colorScheme="blue" type="submit" size="lg">
+              <Button colorScheme="yellow" type="submit" size="lg">
                 Continue with your Google account
               </Button>
             </Link>
