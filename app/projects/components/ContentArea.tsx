@@ -168,9 +168,12 @@ const ContentArea: FC = () => {
     }
 
     return (
-      <Box overflowY="auto" mx="auto" w="100%">
+      <Center overflowY="auto" mx="auto" w="100%" h="100%">
         <Center
           pos="relative"
+          m="0 auto"
+          width={width}
+          height={height}
           _hover={{
             cursor: "pointer",
           }}
@@ -178,8 +181,6 @@ const ContentArea: FC = () => {
           <Image
             src={url}
             alt={name}
-            width={width}
-            height={height}
             maxW="fit-content"
             fallback={
               <Center p={4} w="100%">
@@ -197,7 +198,7 @@ const ContentArea: FC = () => {
             {annotatorPointerNode()}
           </Box>
         </Center>
-      </Box>
+      </Center>
     );
   };
 
