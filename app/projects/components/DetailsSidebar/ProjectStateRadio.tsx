@@ -1,17 +1,17 @@
 import {
   Box,
-  Text,
   Center,
   Grid,
   Heading,
   Spinner,
+  Text,
   useRadioGroup,
   VStack,
 } from "@chakra-ui/react";
 import RadioCards from "app/components/RadioCards";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
 import updateProject from "app/projects/mutations/updateProject";
 import getProject from "app/projects/queries/getProject";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import getTeam from "app/teams/queries/getTeam";
 import { invoke, useMutation, useParam, useQuery } from "blitz";
 import {
@@ -22,6 +22,7 @@ import {
 } from "db";
 import React, { FC } from "react";
 import { MdLock, MdPublic } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 const ProjectStateRadio: FC = () => {
   const projectId = useParam("projectId", "string");
@@ -37,7 +38,8 @@ const ProjectStateRadio: FC = () => {
     }
   );
   const [updateProjectMutation, { isLoading }] = useMutation(updateProject);
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
+
   const options = [
     {
       icon: <MdPublic />,

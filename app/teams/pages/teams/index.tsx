@@ -8,8 +8,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
+import { setCurrentUser } from "app/slices/currentUser";
+import { wrapper } from "app/store";
 import TeamsList from "app/teams/components/TeamsList";
-import { BlitzPage, Link } from "blitz";
+import getCurrentUser from "app/users/queries/getCurrentUser";
+import { BlitzPage, invokeWithMiddleware, Link } from "blitz";
 import React, { Suspense } from "react";
 
 const TeamsPage: BlitzPage = () => {
@@ -18,7 +21,7 @@ const TeamsPage: BlitzPage = () => {
       <HStack spacing={8} justifyContent="space-between" w="100%">
         <Heading fontSize="2xl">Teams</Heading>
         <Link href="/teams/new" passHref>
-          <Button as="a" colorScheme="blue" size="sm">
+          <Button as="a" colorScheme="yellow" size="sm">
             Create Team
           </Button>
         </Link>
@@ -43,6 +46,21 @@ const TeamsPage: BlitzPage = () => {
     </Container>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async ({ req, res }) => {
+    const currentUser = await invokeWithMiddleware(getCurrentUser, null, {
+      req,
+      res,
+    });
+
+    store.dispatch(setCurrentUser(currentUser));
+
+    return {
+      props: {},
+    };
+  }
+);
 
 TeamsPage.getLayout = (page) => (
   <ProtectedLayout title={"Teams"}>{page}</ProtectedLayout>

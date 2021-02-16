@@ -1,11 +1,13 @@
 import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
 import createFile from "app/files/mutations/createFile";
 import getFiles from "app/files/queries/getFiles";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import { invoke, useMutation, useParam, useQuery, useRouter } from "blitz";
 import React, { FC, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { MdAdd } from "react-icons/md";
+import { useSelector } from "react-redux";
+import isProduction from "utils/isProduction";
 
 const ITEMS_PER_PAGE = 100;
 const isDevelopmentEnvironment = process.env.NODE_ENV === "development";
@@ -16,7 +18,7 @@ const AddImageButton: FC = () => {
   const page = Number(router.query.page) || 0;
   const [createFileMutation, { isLoading }] = useMutation(createFile);
   const [isUploadingFile, setUploadingFile] = useState<Boolean>(false);
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
   const [{ files }] = useQuery(
     getFiles,
     {
@@ -68,7 +70,7 @@ const AddImageButton: FC = () => {
   });
 
   // Allow only five files to be uploaded in production environment for now.
-  if ((files.length === 5 && !isDevelopmentEnvironment) || !currentUser) {
+  if ((files.length === 5 && isProduction) || !currentUser) {
     return null;
   }
 

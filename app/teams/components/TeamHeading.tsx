@@ -39,7 +39,7 @@ const TeamHeading: FC = () => {
       <HStack spacing={4}>
         <MembersList />
         <Link href={`/teams/${teamId}/projects/new`} passHref>
-          <Button as="a" colorScheme="blue" size="sm">
+          <Button as="a" colorScheme="yellow" size="sm">
             Create Project
           </Button>
         </Link>

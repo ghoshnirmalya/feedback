@@ -5,7 +5,7 @@ import {
 } from "@prisma/client";
 import CommentForm from "app/comments/components/CommentForm";
 import createComment from "app/comments/mutations/createComment";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { useMutation } from "blitz";
 import React, { FC } from "react";
@@ -15,7 +15,7 @@ const CommentBox: FC = () => {
   const { coordinateX, coordinateY } = useSelector(getCommentCoordinates());
   const file = useSelector(getFileData());
   const [createCommentMutation] = useMutation(createComment);
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
 
   if (!currentUser) {
     return null;

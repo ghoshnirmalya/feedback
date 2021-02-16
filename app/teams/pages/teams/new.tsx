@@ -1,8 +1,11 @@
 import { Center, Container, Spinner, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
+import { setCurrentUser } from "app/slices/currentUser";
+import { wrapper } from "app/store";
 import CreateTeamForm from "app/teams/components/CreateTeamForm";
 import CreateTeamHeading from "app/teams/components/CreateTeamHeading";
-import { BlitzPage } from "blitz";
+import getCurrentUser from "app/users/queries/getCurrentUser";
+import { BlitzPage, invokeWithMiddleware } from "blitz";
 import React, { Suspense } from "react";
 
 const NewTeamPage: BlitzPage = () => {
@@ -23,6 +26,21 @@ const NewTeamPage: BlitzPage = () => {
     </Container>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async ({ req, res }) => {
+    const currentUser = await invokeWithMiddleware(getCurrentUser, null, {
+      req,
+      res,
+    });
+
+    store.dispatch(setCurrentUser(currentUser));
+
+    return {
+      props: {},
+    };
+  }
+);
 
 NewTeamPage.getLayout = (page) => (
   <ProtectedLayout title={"Create New Team"}>{page}</ProtectedLayout>

@@ -1,11 +1,12 @@
 import { Box, Button, Center, Flex } from "@chakra-ui/react";
 import ErrorState from "app/components/ErrorState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
 import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
 import getProject from "app/projects/queries/getProject";
+import { getCurrentUserData } from "app/selectors/currentUser";
 import { Link, useParam, useQuery } from "blitz";
 import React, { ReactNode } from "react";
 import { MdLock } from "react-icons/md";
+import { useSelector } from "react-redux";
 
 type ContainerProps = {
   title?: string;
@@ -25,7 +26,7 @@ const Container = ({ children }: ContainerProps) => {
       refetchOnMount: false,
     }
   );
-  const currentUser = useCurrentUser();
+  const currentUser = useSelector(getCurrentUserData());
 
   if (!project.isPublic && !currentUser) {
     return (
@@ -35,7 +36,7 @@ const Container = ({ children }: ContainerProps) => {
           text="You need to sign in to view this content."
           buttons={[
             <Link href="/auth" passHref>
-              <Button colorScheme="blue" size="lg" leftIcon={<MdLock />}>
+              <Button colorScheme="yellow" size="lg" leftIcon={<MdLock />}>
                 Sign in
               </Button>
             </Link>,

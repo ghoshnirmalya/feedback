@@ -91,7 +91,7 @@ const ManageUsers: FC<IProps> = ({ isOpen, onClose }) => {
         <ModalFooter borderTopWidth={1}>
           <HStack spacing={4} w="100%">
             <Button
-              colorScheme="blue"
+              colorScheme="yellow"
               type="submit"
               isLoading={isLoading}
               size="sm"

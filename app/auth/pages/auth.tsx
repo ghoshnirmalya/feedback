@@ -13,7 +13,7 @@ const AuthPage: BlitzPage = () => {
         text="Please sign in to use this website."
         buttons={[
           <Link href="/api/auth/google/callback" passHref>
-            <Button colorScheme="blue" type="submit" size="lg">
+            <Button colorScheme="yellow" type="submit" size="lg">
               Continue with your Google account
             </Button>
           </Link>,
