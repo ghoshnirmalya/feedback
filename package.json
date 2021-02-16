@@ -9,7 +9,8 @@
     "migrate:prod": "blitz prisma migrate deploy --preview-feature",
     "release": "release-it",
     "seed": "blitz db seed",
-    "start": "docker-compose up -d && blitz start",
+    "start:dev": "docker-compose up -d && blitz start",
+    "start:prod": "blitz start --production",
     "studio": "blitz prisma studio",
     "test": "jest",
     "test:watch": "jest --watch"
