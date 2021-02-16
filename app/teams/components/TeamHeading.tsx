@@ -35,7 +35,9 @@ const TeamHeading: FC = () => {
 
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">
-      <Heading fontSize="2xl">{team.name}</Heading>
+      <Heading fontSize="2xl" isTruncated>
+        {team.name}
+      </Heading>
       <HStack spacing={4}>
         <MembersList />
         <Link href={`/teams/${teamId}/projects/new`} passHref>

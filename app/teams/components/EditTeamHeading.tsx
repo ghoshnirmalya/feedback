@@ -19,7 +19,9 @@ const EditTeamHeading: FC = () => {
 
   return (
     <HStack spacing={8} justifyContent="space-between" w="100%">
-      <Heading fontSize="2xl">Edit {team.name}</Heading>
+      <Heading fontSize="2xl" isTruncated>
+        Edit {team.name}
+      </Heading>
     </HStack>
   );
 };

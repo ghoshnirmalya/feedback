@@ -19,7 +19,9 @@ const TeamsPage: BlitzPage = () => {
   const headingNode = () => {
     return (
       <HStack spacing={8} justifyContent="space-between" w="100%">
-        <Heading fontSize="2xl">Teams</Heading>
+        <Heading fontSize="2xl" isTruncated>
+          Teams
+        </Heading>
         <Link href="/teams/new" passHref>
           <Button as="a" colorScheme="yellow" size="sm">
             Create Team

@@ -20,7 +20,9 @@ const EmptyState: FC<IProps> = ({ icon, heading, text, buttons }) => {
     <Center>
       <VStack spacing={4} maxW="md" textAlign="center">
         <Image src={icon} boxSize={48} fallback={<Spinner />} />
-        <Heading fontSize="2xl">{heading}</Heading>
+        <Heading fontSize="2xl" isTruncated>
+          {heading}
+        </Heading>
         <Text>{text}</Text>
         {buttons}
       </VStack>
