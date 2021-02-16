@@ -168,8 +168,8 @@ const ContentArea: FC = () => {
     }
 
     return (
-      <Box shadow="xl" overflowY="auto" mx="auto" rounded="md" w="100%">
-        <Box
+      <Box overflowY="auto" mx="auto" w="100%">
+        <Center
           pos="relative"
           _hover={{
             cursor: "pointer",
@@ -196,14 +196,14 @@ const ContentArea: FC = () => {
             {annotationsNode()}
             {annotatorPointerNode()}
           </Box>
-        </Box>
+        </Center>
       </Box>
     );
   };
 
   return (
-    <Center h="calc(100vh - 80px)" overflow="hidden" p={8} bg="gray.100">
-      <Center h="100%" w="100%" overflow="scroll" alignItems="flex-start">
+    <Center h="calc(100vh - 80px)" overflow="hidden" bg="gray.100">
+      <Center h="100%" w="100%" overflow="scroll" alignItems="flex-start" p={8}>
         {imageNode()}
       </Center>
     </Center>
