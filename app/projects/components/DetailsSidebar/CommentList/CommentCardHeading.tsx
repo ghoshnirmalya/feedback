@@ -36,7 +36,7 @@ dayjs.extend(localizedFormat);
 
 type IProps = {
   comment: Comment & {
-    user: User;
+    user: User | null;
   };
 };
 
@@ -118,10 +118,14 @@ const CommentCardHeading: FC<IProps> = ({ comment }) => {
   return (
     <HStack spacing={2} justifyContent="space-between">
       <HStack spacing={2}>
-        <Avatar size="sm" name={comment.user.name} src={comment.user.avatar} />
+        <Avatar
+          size="sm"
+          name={comment.user?.name}
+          src={comment.user?.avatar}
+        />
         <VStack spacing={0} align="left">
           <Text fontSize="sm" fontWeight="bold">
-            {comment.user.name}
+            {comment.user?.name}
           </Text>
           <Text fontSize="xs">{dayjs(comment.createdAt).format("LL")}</Text>
         </VStack>

@@ -2,10 +2,12 @@ import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
 import createFile from "app/files/mutations/createFile";
 import getFiles from "app/files/queries/getFiles";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { setFile } from "app/slices/file";
 import { invoke, useMutation, useParam, useQuery, useRouter } from "blitz";
 import React, { FC, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { MdAdd } from "react-icons/md";
+import { useDispatch } from "react-redux";
 
 const ITEMS_PER_PAGE = 100;
 const isDevelopmentEnvironment = process.env.NODE_ENV === "development";
@@ -28,6 +30,7 @@ const AddImageButton: FC = () => {
       refetchOnMount: false,
     }
   );
+  const dispatch = useDispatch();
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setUploadingFile(true);
@@ -49,12 +52,14 @@ const AddImageButton: FC = () => {
         projectId: projectId,
       });
 
-      const files = await invoke(getFiles, {
+      const { files } = await invoke(getFiles, {
         where: { project: { id: projectId } },
         orderBy: { updatedAt: "desc" },
         skip: ITEMS_PER_PAGE * page,
         take: ITEMS_PER_PAGE,
       });
+
+      dispatch(setFile(files[0]));
     } catch (error) {
       console.log(error);
     } finally {

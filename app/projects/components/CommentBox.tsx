@@ -5,9 +5,10 @@ import {
 } from "@prisma/client";
 import CommentForm from "app/comments/components/CommentForm";
 import createComment from "app/comments/mutations/createComment";
+import getComments from "app/comments/queries/getComments";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
-import { useMutation } from "blitz";
+import { invalidateQuery, useMutation } from "blitz";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
@@ -45,6 +46,8 @@ const CommentBox: FC = () => {
               user: (currentUser as unknown) as UserCreateOneWithoutCommentsInput,
             },
           });
+
+          invalidateQuery(getComments);
         } catch (error) {
           console.log(error);
         }

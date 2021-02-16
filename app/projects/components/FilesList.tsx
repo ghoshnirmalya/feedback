@@ -3,7 +3,7 @@ import getFiles from "app/files/queries/getFiles";
 import { setFile } from "app/slices/file";
 import File from "app/types/file";
 import { usePaginatedQuery, useParam, useRouter } from "blitz";
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const ITEMS_PER_PAGE = 100;
@@ -27,6 +27,14 @@ const FilesList: FC = () => {
     }
   );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setFile(files[0]));
+
+    return () => {
+      dispatch(setFile({}));
+    };
+  }, []);
 
   if (!files.length) {
     return null;

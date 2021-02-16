@@ -35,10 +35,10 @@ const ReplyForm = ({ initialValues, onSubmit, isLoading }: ReplyFormProps) => {
         <InputGroup>
           <Input
             placeholder="Write your reply"
-            variant="filled"
             rounded="none"
             pr={16}
             isDisabled={isLoading}
+            borderWidth={0}
           />
           <InputRightElement width={16}>
             <Button

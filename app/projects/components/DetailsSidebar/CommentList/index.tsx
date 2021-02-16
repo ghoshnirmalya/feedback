@@ -20,7 +20,7 @@ const CommentsList: FC = () => {
     getComments,
     {
       where: { file: { id: (file.id as unknown) as string } },
-      orderBy: { id: "asc" },
+      orderBy: { updatedAt: "desc" },
       skip: ITEMS_PER_PAGE * page,
       take: ITEMS_PER_PAGE,
     },
