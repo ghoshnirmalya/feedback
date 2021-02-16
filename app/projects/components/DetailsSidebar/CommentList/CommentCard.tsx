@@ -6,14 +6,12 @@ import RepliesList from "app/projects/components/RepliesList";
 import ReplyForm from "app/replies/components/ReplyForm";
 import createReply from "app/replies/mutations/createReply";
 import getReplies from "app/replies/queries/getReplies";
-import { getSelectedCommentData } from "app/selectors/comment";
 import { invalidateQuery, useMutation } from "blitz";
 import {
   CommentCreateOneWithoutRepliesInput,
   UserCreateOneWithoutCommentsInput,
 } from "db";
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
 type IProps = {
   comment: Comment & {
@@ -22,16 +20,11 @@ type IProps = {
 };
 
 const CommentCard: FC<IProps> = ({ comment }) => {
-  const selectedCommentId = useSelector(getSelectedCommentData());
   const [createReplyMutation, { isLoading }] = useMutation(createReply);
   const currentUser = useCurrentUser();
 
   return (
-    <Box
-      id={`js-comment-${comment.id}`}
-      borderBottomWidth={1}
-      bgColor={selectedCommentId === comment.id ? "gray.100" : "white"}
-    >
+    <Box id={`js-comment-${comment.id}`} borderBottomWidth={1} bgColor="white">
       <VStack spacing={0} align="left">
         <VStack spacing={4} align="left" p={4}>
           <CommentCardHeading comment={comment} />

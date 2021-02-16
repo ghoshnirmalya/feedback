@@ -20,7 +20,6 @@ const RadioCards: FC<IProps> = ({ value, radio, children }) => {
         borderWidth={1}
         borderRadius="md"
         _checked={{
-          bg: "gray.100",
           color: "yellow.500",
           borderColor: "yellow.500",
         }}

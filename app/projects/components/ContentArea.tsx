@@ -167,7 +167,7 @@ const ContentArea: FC = () => {
     }
 
     return (
-      <Center overflowY="auto" mx="auto" w="100%" h="100%">
+      <Box overflowY="auto" mx="auto" w="100%" h="100%">
         <Center
           pos="relative"
           m="0 auto"
@@ -197,7 +197,7 @@ const ContentArea: FC = () => {
             {annotatorPointerNode()}
           </Box>
         </Center>
-      </Center>
+      </Box>
     );
   };
 
