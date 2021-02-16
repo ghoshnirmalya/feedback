@@ -1,11 +1,8 @@
 import { Center, Container, Spinner, VStack } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
-import { setCurrentUser } from "app/slices/currentUser";
-import { wrapper } from "app/store";
 import EditTeamForm from "app/teams/components/EditTeamForm";
 import EditTeamHeading from "app/teams/components/EditTeamHeading";
-import getCurrentUser from "app/users/queries/getCurrentUser";
-import { BlitzPage, invokeWithMiddleware } from "blitz";
+import { BlitzPage } from "blitz";
 import React, { Suspense } from "react";
 
 const EditTeamPage: BlitzPage = () => {
@@ -26,21 +23,6 @@ const EditTeamPage: BlitzPage = () => {
     </Container>
   );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async ({ req, res }) => {
-    const currentUser = await invokeWithMiddleware(getCurrentUser, null, {
-      req,
-      res,
-    });
-
-    store.dispatch(setCurrentUser(currentUser));
-
-    return {
-      props: {},
-    };
-  }
-);
 
 EditTeamPage.getLayout = (page) => (
   <ProtectedLayout title={"Edit Team"}>{page}</ProtectedLayout>

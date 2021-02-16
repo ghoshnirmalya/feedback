@@ -11,10 +11,7 @@ import {
 } from "@chakra-ui/react";
 import ProtectedLayout from "app/layouts/ProtectedLayout";
 import ProjectsList from "app/projects/components/ProjectsList";
-import { setCurrentUser } from "app/slices/currentUser";
-import { wrapper } from "app/store";
-import getCurrentUser from "app/users/queries/getCurrentUser";
-import { BlitzPage, invokeWithMiddleware, Link } from "blitz";
+import { BlitzPage, Link } from "blitz";
 import React, { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -61,21 +58,6 @@ const ProjectsPage: BlitzPage = () => {
     </Container>
   );
 };
-
-export const getServerSideProps = wrapper.getServerSideProps(
-  (store) => async ({ req, res }) => {
-    const currentUser = await invokeWithMiddleware(getCurrentUser, null, {
-      req,
-      res,
-    });
-
-    store.dispatch(setCurrentUser(currentUser));
-
-    return {
-      props: {},
-    };
-  }
-);
 
 ProjectsPage.getLayout = (page) => (
   <ProtectedLayout title={"Projects"}>{page}</ProtectedLayout>

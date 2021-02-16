@@ -1,17 +1,16 @@
 import { Box, Button, Heading, HStack } from "@chakra-ui/react";
 import ErrorState from "app/components/ErrorState";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import ProjectStateRadio from "app/projects/components/DetailsSidebar/ProjectStateRadio";
 import deleteProject from "app/projects/mutations/deleteProject";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import { Link, useMutation, useParam, useRouter } from "blitz";
 import React, { FC } from "react";
 import { MdLock } from "react-icons/md";
-import { useSelector } from "react-redux";
 
 const ProjectSettings: FC = () => {
   const router = useRouter();
   const projectId = useParam("projectId", "string");
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
   const [deleteProjectMutation, { isLoading, isError }] = useMutation(
     deleteProject
   );

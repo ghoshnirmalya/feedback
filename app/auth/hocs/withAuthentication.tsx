@@ -21,7 +21,7 @@ withAuthentication.isAuth = async (
   });
 
   // If user is already logged in redirect them to the "/teams" page.
-  if (currentUser && req.url === "/") {
+  if (currentUser) {
     if (res) {
       res.writeHead(302, {
         Location: "/teams",
@@ -32,8 +32,6 @@ withAuthentication.isAuth = async (
       Router.push("/teams");
     }
   }
-
-  return currentUser;
 };
 
 export default withAuthentication;

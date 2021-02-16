@@ -3,22 +3,23 @@ import {
   AvatarGroup,
   Box,
   Button,
+  Center,
   Grid,
   Heading,
+  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { Team, User } from "@prisma/client";
 import EmptyState from "app/components/EmptyState";
-import { getCurrentUserData } from "app/selectors/currentUser";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import getTeams from "app/teams/queries/getTeams";
 import { Link, usePaginatedQuery } from "blitz";
 import React from "react";
 import { MdAdd } from "react-icons/md";
-import { useSelector } from "react-redux";
 
 const TeamsList = () => {
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
   const [{ teams }] = usePaginatedQuery(
     getTeams,
     {

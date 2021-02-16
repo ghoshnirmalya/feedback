@@ -1,18 +1,17 @@
 import { Box, Button, Center, Flex } from "@chakra-ui/react";
 import ErrorState from "app/components/ErrorState";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import { Link } from "blitz";
 import React, { ReactNode } from "react";
 import { MdLock } from "react-icons/md";
-import { useSelector } from "react-redux";
 
 type ContainerProps = {
   children: ReactNode;
 };
 
 const Container = ({ children }: ContainerProps) => {
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
 
   if (!currentUser) {
     return (

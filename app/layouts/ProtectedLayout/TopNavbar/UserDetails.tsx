@@ -1,12 +1,11 @@
 import { Button } from "@chakra-ui/react";
 import logout from "app/auth/mutations/logout";
-import { getCurrentUserData } from "app/selectors/currentUser";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import { Link, useMutation, useRouter } from "blitz";
 import React from "react";
-import { useSelector } from "react-redux";
 
 const UserDetails = () => {
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
   const [logoutMutation] = useMutation(logout);
   const router = useRouter();
 

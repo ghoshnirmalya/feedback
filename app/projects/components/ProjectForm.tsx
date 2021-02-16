@@ -11,6 +11,7 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import { Link } from "blitz";
 import React from "react";
 
@@ -27,6 +28,8 @@ const ProjectForm = ({
   isError,
   initialValues,
 }: ProjectFormProps) => {
+  const currentUser = useCurrentUser();
+
   const alertNode = () => {
     if (!isError) {
       return false;
@@ -62,12 +65,12 @@ const ProjectForm = ({
                 />
               </FormControl>
             </VStack>
-            <HStack p={4} borderTopWidth={1} spacing={2}>
+            <HStack p={4} borderTopWidth={1} spacing={4}>
               <Button colorScheme="yellow" type="submit" isLoading={isLoading}>
                 {initialValues.id ? "Edit" : "Create"}
               </Button>
-              <Link href="/teams">
-                <Button colorScheme="red" isLoading={isLoading} variant="ghost">
+              <Link href="/projects">
+                <Button colorScheme="red" isLoading={isLoading} variant="link">
                   Cancel
                 </Button>
               </Link>

@@ -1,12 +1,11 @@
 import { Box, Button, Center, Flex } from "@chakra-ui/react";
 import ErrorState from "app/components/ErrorState";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
 import getProject from "app/projects/queries/getProject";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import { Link, useParam, useQuery } from "blitz";
 import React, { ReactNode } from "react";
 import { MdLock } from "react-icons/md";
-import { useSelector } from "react-redux";
 
 type ContainerProps = {
   title?: string;
@@ -26,7 +25,7 @@ const Container = ({ children }: ContainerProps) => {
       refetchOnMount: false,
     }
   );
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
 
   if (!project.isPublic && !currentUser) {
     return (

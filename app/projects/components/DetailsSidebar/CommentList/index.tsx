@@ -1,10 +1,10 @@
 import { Box, Heading } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import CommentBox from "app/projects/components/CommentBox";
 import CommentsTabs from "app/projects/components/DetailsSidebar/CommentList/CommentsTabs";
 import NoCommentsCard from "app/projects/components/DetailsSidebar/CommentList/EmptyCommentsCard";
 import EmptyFilesCard from "app/projects/components/DetailsSidebar/CommentList/EmptyFilesCard";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import { getFileData } from "app/selectors/file";
 import { usePaginatedQuery, useRouter } from "blitz";
 import React, { FC } from "react";
@@ -30,7 +30,7 @@ const CommentsList: FC = () => {
       refetchOnMount: false,
     }
   );
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
 
   if (!file.url) {
     return <EmptyFilesCard />;

@@ -7,9 +7,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import { useCurrentUser } from "app/hooks/useCurrentUser";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import React from "react";
-import { useSelector } from "react-redux";
 
 type ReplyFormProps = {
   initialValues: any;
@@ -18,7 +16,7 @@ type ReplyFormProps = {
 };
 
 const ReplyForm = ({ initialValues, onSubmit, isLoading }: ReplyFormProps) => {
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
 
   if (!currentUser) {
     return null;

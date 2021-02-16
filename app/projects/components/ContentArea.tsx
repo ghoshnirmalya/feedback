@@ -1,8 +1,8 @@
-import { Box, Center, Image, Spinner } from "@chakra-ui/react";
+import { Box, Center, Image, Spinner, Text } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
 import EmptyState from "app/components/EmptyState";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import AddImageButton from "app/projects/components/AddImageButton";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { setComment } from "app/slices/comment";
 import { setCoordinates } from "app/slices/file";
@@ -34,7 +34,7 @@ const ContentArea: FC = () => {
       refetchOnMount: false,
     }
   );
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
 
   const handleSetPointer = (e: any) => {
     if (e.target.classList.contains("js-annotation")) {

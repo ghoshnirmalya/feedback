@@ -4,12 +4,12 @@ import {
   AccordionItem,
   AccordionPanel,
 } from "@chakra-ui/react";
+import { useCurrentUser } from "app/hooks/useCurrentUser";
 import RepliesHeading from "app/projects/components/RepliesList/Heading";
 import ReplyCard from "app/projects/components/RepliesList/ReplyCard";
 import ReplyForm from "app/replies/components/ReplyForm";
 import createReply from "app/replies/mutations/createReply";
 import getReplies from "app/replies/queries/getReplies";
-import { getCurrentUserData } from "app/selectors/currentUser";
 import { useMutation, usePaginatedQuery, useRouter } from "blitz";
 import {
   Comment,
@@ -17,7 +17,6 @@ import {
   UserCreateOneWithoutCommentsInput,
 } from "db";
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -43,7 +42,7 @@ const RepliesList: FC<IProps> = ({ comment }) => {
     }
   );
   const [createReplyMutation, { isLoading }] = useMutation(createReply);
-  const currentUser = useSelector(getCurrentUserData());
+  const currentUser = useCurrentUser();
 
   if (!replies.length) {
     return null;
