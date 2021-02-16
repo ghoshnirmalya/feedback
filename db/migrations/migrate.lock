@@ -23,3 +23,4 @@
 20210212052826-add-attributes-to-reply-model
 20210212053036-updates-attributes-for-reply-model
 20210215144049-adds-attributes-to-file-model
+20210216054257-adds-foreign-key-null-conditions
