@@ -4,7 +4,7 @@ import React, { FC } from "react";
 
 type IProps = {
   replies: (Reply & {
-    user: User;
+    user: User | null;
   })[];
 };
 
