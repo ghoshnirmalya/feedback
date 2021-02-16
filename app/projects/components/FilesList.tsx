@@ -1,10 +1,11 @@
 import { Box, Center, Image, Spinner, VStack } from "@chakra-ui/react";
 import getFiles from "app/files/queries/getFiles";
+import { getFileData } from "app/selectors/file";
 import { setFile } from "app/slices/file";
 import File from "app/types/file";
 import { usePaginatedQuery, useParam, useRouter } from "blitz";
 import React, { FC, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ITEMS_PER_PAGE = 100;
 
@@ -27,6 +28,7 @@ const FilesList: FC = () => {
     }
   );
   const dispatch = useDispatch();
+  const selectedFile = useSelector(getFileData());
 
   useEffect(() => {
     dispatch(setFile(files[0]));
@@ -53,7 +55,11 @@ const FilesList: FC = () => {
             key={file.id}
             bgColor="white"
             rounded="md"
-            borderWidth={1}
+            borderWidth={3}
+            borderColor={
+              file.id === selectedFile.id ? "yellow.500" : "gray.100"
+            }
+            boxSize="56px"
             onClick={() => handleClick(file)}
           >
             <Image

@@ -14,16 +14,15 @@ const ITEMS_PER_PAGE = 100;
 
 const ContentArea: FC = () => {
   const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
-  const { url, name, height, width } = useSelector(getFileData());
+  const { id, url, name, height, width } = useSelector(getFileData());
   const dispatch = useDispatch();
   const { coordinateX, coordinateY } = useSelector(getCommentCoordinates());
-  const file = useSelector(getFileData());
   const router = useRouter();
   const page = Number(router.query.page) || 0;
   const [{ comments, hasMore }] = usePaginatedQuery(
     getComments,
     {
-      where: { file: { id: (file.id as unknown) as string } },
+      where: { file: { id: (id as unknown) as string } },
       orderBy: { updatedAt: "asc" },
       skip: ITEMS_PER_PAGE * page,
       take: ITEMS_PER_PAGE,
