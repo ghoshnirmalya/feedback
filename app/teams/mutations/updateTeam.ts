@@ -16,7 +16,7 @@ export default async function updateTeam(
     data: {
       ...rest,
       users: {
-        connect: users,
+        connect: users as User[],
       },
     },
   });

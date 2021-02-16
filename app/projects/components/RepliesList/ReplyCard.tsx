@@ -8,7 +8,7 @@ dayjs.extend(localizedFormat);
 
 type IProps = {
   reply: Reply & {
-    user: User;
+    user: User | null;
   };
 };
 
@@ -17,10 +17,10 @@ const ReplyCard: FC<IProps> = ({ reply }) => {
     <Box p={4} borderTopWidth={1}>
       <VStack spacing={4} align="left">
         <HStack spacing={2}>
-          <Avatar size="sm" name={reply.user.name} src={reply.user.avatar} />
+          <Avatar size="sm" name={reply.user?.name} src={reply.user?.avatar} />
           <VStack spacing={0} align="left">
             <Text fontSize="sm" fontWeight="bold">
-              {reply.user.name}
+              {reply.user?.name}
             </Text>
             <Text fontSize="xs">{dayjs(reply.createdAt).format("LL")}</Text>
           </VStack>
