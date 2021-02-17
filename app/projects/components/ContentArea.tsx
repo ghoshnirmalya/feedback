@@ -170,9 +170,6 @@ const ContentArea: FC = () => {
       <Box overflowY="auto" mx="auto" w="100%" h="100%">
         <Center
           pos="relative"
-          m="0 auto"
-          width={width}
-          height={height}
           _hover={{
             cursor: "pointer",
           }}
@@ -181,6 +178,7 @@ const ContentArea: FC = () => {
             src={url}
             alt={name}
             maxW="fit-content"
+            maxH="calc(100vh - 80px - 4rem)"
             fallback={
               <Center p={4} w="100%">
                 <Spinner />
@@ -203,7 +201,13 @@ const ContentArea: FC = () => {
 
   return (
     <Center h="calc(100vh - 80px)" overflow="hidden" bg="gray.100">
-      <Center h="100%" w="100%" overflow="scroll" alignItems="flex-start" p={8}>
+      <Center
+        maxH="100%"
+        w="100%"
+        overflow="scroll"
+        alignItems="flex-start"
+        p={8}
+      >
         {imageNode()}
       </Center>
     </Center>
