@@ -1,3 +1,21 @@
+# [0.10.0](https://github.com/ghoshnirmalya/feedback/compare/0.9.0...0.10.0) (2021-02-17)
+
+### Bug Fixes
+
+- fixes centering issues for ContentArea ([725ec3e](https://github.com/ghoshnirmalya/feedback/commit/725ec3e926d232756bf4d52fbd9ae269c1b74717))
+- fixes height issue of image for ContentArea ([1743282](https://github.com/ghoshnirmalya/feedback/commit/174328205f4e2ffe20416e94ae0f7e790a11912e))
+
+### Features
+
+- adds basic seed data ([04b4863](https://github.com/ghoshnirmalya/feedback/commit/04b4863a3a26b0b520d4e2fa57b367abe51326c4))
+- adds border to the selected file ([8377f0c](https://github.com/ghoshnirmalya/feedback/commit/8377f0c10819aa409340a736c7ebe8cc4b08a1b4))
+- adds option to delete records ([eaaecca](https://github.com/ghoshnirmalya/feedback/commit/eaaecca45277b1d0af6acde8f60321a92926ae24))
+- adds option to send email on signing up ([88ed19b](https://github.com/ghoshnirmalya/feedback/commit/88ed19b1d31a4d243b3f11caa1888fca5db8dc88))
+- shows yellow background for selected comment ([6c63d93](https://github.com/ghoshnirmalya/feedback/commit/6c63d93357572505c24c218f4c01c42cf7d2481e))
+- updates design for default selection of files ([b36aaa1](https://github.com/ghoshnirmalya/feedback/commit/b36aaa11e042727abc991f4858e8003f95f39fbb))
+- updates design for selection ([541b049](https://github.com/ghoshnirmalya/feedback/commit/541b049f3370ea8a9710a0f7d9044c391a86c3da))
+- updates design of ProjectStateRadio component ([1ad4a51](https://github.com/ghoshnirmalya/feedback/commit/1ad4a51cb915e810036055db31c7cd8750e1e7b7))
+
 # [0.9.0](https://github.com/ghoshnirmalya/feedback/compare/0.8.0...0.9.0) (2021-02-15)
 
 ### Bug Fixes
