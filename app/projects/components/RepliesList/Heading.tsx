@@ -10,7 +10,7 @@ type IProps = {
 
 const RepliesHeading: FC<IProps> = ({ replies }) => {
   return (
-    <Box px={4} py={2} bg="gray.100" w="100%">
+    <Box px={4} py={2} w="100%">
       <HStack spacing={4} justifyContent="space-between">
         <Heading size="sm">View {replies.length} replies</Heading>
         <AccordionIcon />
