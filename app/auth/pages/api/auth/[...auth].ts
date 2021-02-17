@@ -4,9 +4,9 @@ import db from "db";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import isProduction from "utils/isProduction";
 
-const callbackURL = isProduction
-  ? "https://feedback-alpha.vercel.app/api/auth/google/callback"
-  : "http://localhost:3000/api/auth/google/callback";
+const domainURL = isProduction
+  ? "https://feedback-alpha.vercel.app"
+  : "http://localhost:3000";
 
 export default passportAuth({
   successRedirectUrl: "/teams",
@@ -17,7 +17,7 @@ export default passportAuth({
         {
           clientID: process.env.GOOGLE_CLIENT_ID as string,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-          callbackURL,
+          callbackURL: `${domainURL}/api/auth/google/callback`,
           scope: ["profile", "email"],
         },
         async function (
@@ -32,6 +32,10 @@ export default passportAuth({
             return done(new Error("Google OAuth response doesn't have email."));
           }
 
+          const isSignUp = !(await db.user.findFirst({
+            where: { email: _json.email },
+          }));
+
           const user = await db.user.upsert({
             where: { email: _json.email },
             create: {
@@ -41,6 +45,17 @@ export default passportAuth({
             },
             update: { email: _json.email },
           });
+
+          if (isSignUp) {
+            // Send a welcome email on signing up
+            await fetch(`${domainURL}/api/inviteEmail`, {
+              method: "POST",
+              body: JSON.stringify({
+                email: _json.email,
+                name: displayName,
+              }),
+            });
+          }
 
           const publicData = {
             userId: user.id,

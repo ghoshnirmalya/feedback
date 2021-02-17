@@ -1,7 +1,7 @@
 import { BlitzApiRequest, BlitzApiResponse } from "blitz";
 import { IncomingForm } from "formidable";
 import fs from "fs";
-import uploadFile from "integrations/imagekit";
+import uploadFile from "integrations/imageKit";
 
 export const config = {
   api: {
