@@ -8,10 +8,7 @@ import createReply from "app/replies/mutations/createReply";
 import getReplies from "app/replies/queries/getReplies";
 import { getSelectedCommentData } from "app/selectors/comment";
 import { invalidateQuery, useMutation } from "blitz";
-import {
-  CommentCreateOneWithoutRepliesInput,
-  UserCreateOneWithoutCommentsInput,
-} from "db";
+import { Prisma } from "db";
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 
@@ -46,8 +43,8 @@ const CommentCard: FC<IProps> = ({ comment }) => {
               await createReplyMutation({
                 data: {
                   body: event.target[0].value,
-                  comment: comment as CommentCreateOneWithoutRepliesInput,
-                  user: (currentUser as unknown) as UserCreateOneWithoutCommentsInput,
+                  comment: comment as Prisma.CommentCreateNestedOneWithoutRepliesInput,
+                  user: currentUser as Prisma.UserCreateNestedOneWithoutReplyInput,
                 },
               });
 

@@ -1,12 +1,15 @@
-import { Ctx } from "blitz"
-import db, { Prisma } from "db"
+import { Ctx } from "blitz";
+import db, { Prisma } from "db";
 
-type DeleteProjectInput = Pick<Prisma.ProjectDeleteArgs, "where">
+type DeleteProjectInput = Pick<Prisma.ProjectDeleteArgs, "where">;
 
-export default async function deleteProject({ where }: DeleteProjectInput, ctx: Ctx) {
-  ctx.session.authorize()
+export default async function deleteProject(
+  { where }: DeleteProjectInput,
+  ctx: Ctx
+) {
+  ctx.session.$authorize();
 
-  const project = await db.project.delete({ where })
+  const project = await db.project.delete({ where });
 
-  return project
+  return project;
 }

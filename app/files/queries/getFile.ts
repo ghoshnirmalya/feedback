@@ -1,14 +1,14 @@
-import { Ctx, NotFoundError } from "blitz"
-import db, { Prisma } from "db"
+import { Ctx, NotFoundError } from "blitz";
+import db, { Prisma } from "db";
 
-type GetFileInput = Pick<Prisma.FindFirstFileArgs, "where">
+type GetFileInput = Pick<Prisma.FileFindFirstArgs, "where">;
 
 export default async function getFile({ where }: GetFileInput, ctx: Ctx) {
-  ctx.session.authorize()
+  ctx.session.$authorize();
 
-  const file = await db.file.findFirst({ where })
+  const file = await db.file.findFirst({ where });
 
-  if (!file) throw new NotFoundError()
+  if (!file) throw new NotFoundError();
 
-  return file
+  return file;
 }

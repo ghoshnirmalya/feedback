@@ -1,10 +1,10 @@
 import {
   Box,
-  Text,
   Center,
   Grid,
   Heading,
   Spinner,
+  Text,
   useRadioGroup,
   VStack,
 } from "@chakra-ui/react";
@@ -14,12 +14,7 @@ import updateProject from "app/projects/mutations/updateProject";
 import getProject from "app/projects/queries/getProject";
 import getTeam from "app/teams/queries/getTeam";
 import { invoke, useMutation, useParam, useQuery } from "blitz";
-import {
-  Project,
-  ProjectUpdateInput,
-  Team,
-  TeamCreateOneWithoutProjectsInput,
-} from "db";
+import { Prisma, Project, Team } from "db";
 import React, { FC } from "react";
 import { MdLock, MdPublic } from "react-icons/md";
 
@@ -76,9 +71,9 @@ const ProjectStateRadio: FC = () => {
         where: { id: project.id },
         data: {
           name: project.name,
-          team: team as TeamCreateOneWithoutProjectsInput,
+          team: team as Prisma.TeamUpdateOneWithoutProjectsInput,
           isPublic: value === "public",
-        } as ProjectUpdateInput,
+        },
       })) as Project & { team: Team | null };
 
       await setQueryData(updated);

@@ -3,7 +3,7 @@ import updateProject from "app/projects/mutations/updateProject";
 import getProject from "app/projects/queries/getProject";
 import getTeam from "app/teams/queries/getTeam";
 import { invoke, useMutation, useParam, useQuery, useRouter } from "blitz";
-import { Project, Team, TeamCreateOneWithoutProjectsInput } from "db";
+import { Prisma, Project, Team } from "db";
 import React, { FC } from "react";
 
 const EditProjectForm: FC = () => {
@@ -38,7 +38,7 @@ const EditProjectForm: FC = () => {
             where: { id: project.id },
             data: {
               name: event.target[0].value,
-              team: team as TeamCreateOneWithoutProjectsInput,
+              team: team as Prisma.TeamUpdateOneWithoutProjectsInput,
             },
           })) as Project & { team: Team | null };
 

@@ -1,12 +1,12 @@
-import { Ctx } from "blitz"
-import db, { Prisma } from "db"
+import { Ctx } from "blitz";
+import db, { Prisma } from "db";
 
-type DeleteFileInput = Pick<Prisma.FileDeleteArgs, "where">
+type DeleteFileInput = Pick<Prisma.FileDeleteArgs, "where">;
 
 export default async function deleteFile({ where }: DeleteFileInput, ctx: Ctx) {
-  ctx.session.authorize()
+  ctx.session.$authorize();
 
-  const file = await db.file.delete({ where })
+  const file = await db.file.delete({ where });
 
-  return file
+  return file;
 }

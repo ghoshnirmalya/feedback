@@ -2,7 +2,7 @@ import { Ctx } from "blitz";
 import db, { Prisma } from "db";
 
 type GetRepliesInput = Pick<
-  Prisma.FindManyReplyArgs,
+  Prisma.ReplyFindManyArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 

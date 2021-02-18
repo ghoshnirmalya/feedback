@@ -2,7 +2,7 @@ import { Ctx } from "blitz";
 import db, { Prisma } from "db";
 
 type GetFilesInput = Pick<
-  Prisma.FindManyFileArgs,
+  Prisma.FileFindManyArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 

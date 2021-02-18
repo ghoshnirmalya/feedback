@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   FormControl,
   FormHelperText,
@@ -13,13 +12,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  VStack,
 } from "@chakra-ui/react";
 import updateTeam from "app/teams/mutations/updateTeam";
 import getTeam from "app/teams/queries/getTeam";
 import getUser from "app/users/queries/getUser";
 import { invoke, useMutation, useParam, useQuery } from "blitz";
-import { Project, Team, User, UserCreateManyWithoutTeamsInput } from "db";
+import { Prisma, Project, Team, User } from "db";
 import React, { FC, FormEvent } from "react";
 
 type IProps = {
@@ -52,7 +50,7 @@ const ManageUsers: FC<IProps> = ({ isOpen, onClose }) => {
         data: {
           name: team.name,
           description: team.description,
-          users: { id: user.id } as UserCreateManyWithoutTeamsInput,
+          users: { id: user.id } as Prisma.UserUpdateManyWithoutTeamsInput,
         },
       })) as Team & { users: User[]; projects: Project[] };
 

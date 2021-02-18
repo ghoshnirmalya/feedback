@@ -2,6 +2,7 @@ import GoogleOauth from "app/types/googleOauth";
 import { passportAuth, VerifyCallbackResult } from "blitz";
 import db from "db";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
+import { Role } from "types";
 import isProduction from "utils/isProduction";
 
 const domainURL = isProduction
@@ -59,7 +60,7 @@ export default passportAuth({
 
           const publicData = {
             userId: user.id,
-            roles: [user.role],
+            roles: [user.role as Role],
             source: provider,
           };
 

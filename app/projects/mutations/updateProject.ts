@@ -7,7 +7,7 @@ export default async function updateProject(
   { where, data }: UpdateProjectInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const { team, ...rest } = data;
 
@@ -15,7 +15,9 @@ export default async function updateProject(
     where,
     data: {
       ...rest,
-      team: { connect: { id: (data.team as Team).id } },
+      team: ({
+        connect: { id: (data.team as Team).id },
+      } as unknown) as undefined,
     },
   });
 

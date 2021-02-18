@@ -7,7 +7,7 @@ export default async function updateReply(
   { where, data }: UpdateReplyInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const reply = await db.reply.update({ where, data });
 

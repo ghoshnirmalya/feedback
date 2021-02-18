@@ -6,13 +6,17 @@ export default async function createReply(
   { data }: CreateReplyInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const reply = await db.reply.create({
     data: {
       ...data,
-      comment: { connect: { id: (data.comment as Comment).id } },
-      user: { connect: { id: (data.user as User).id } },
+      comment: ({
+        connect: { id: (data.comment as Comment).id },
+      } as unknown) as undefined,
+      user: ({
+        connect: { id: (data.user as User).id },
+      } as unknown) as undefined,
     },
   });
 

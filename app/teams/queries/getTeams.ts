@@ -2,7 +2,7 @@ import { Ctx } from "blitz";
 import db, { Prisma } from "db";
 
 type GetTeamsInput = Pick<
-  Prisma.FindManyTeamArgs,
+  Prisma.TeamFindManyArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 
@@ -10,7 +10,7 @@ export default async function getTeams(
   { where, orderBy, skip = 0, take }: GetTeamsInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const teams = await db.team.findMany({
     where,

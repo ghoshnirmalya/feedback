@@ -2,7 +2,7 @@ import ProjectForm from "app/projects/components/ProjectForm";
 import createProject from "app/projects/mutations/createProject";
 import getTeam from "app/teams/queries/getTeam";
 import { useMutation, useParam, useQuery, useRouter } from "blitz";
-import { TeamCreateOneWithoutProjectsInput } from "db";
+import { Prisma } from "db";
 import React, { FC } from "react";
 
 const CreateProjectForm: FC = () => {
@@ -33,7 +33,7 @@ const CreateProjectForm: FC = () => {
           const project = await createProjectMutation({
             data: {
               name: event.target[0].value,
-              team: team as TeamCreateOneWithoutProjectsInput,
+              team: team as Prisma.TeamCreateNestedOneWithoutProjectsInput,
             },
           });
 

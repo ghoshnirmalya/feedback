@@ -7,7 +7,7 @@ export default async function deleteReply(
   { where }: DeleteReplyInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const reply = await db.reply.delete({ where });
 
