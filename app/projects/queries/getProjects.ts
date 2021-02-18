@@ -2,7 +2,7 @@ import { Ctx } from "blitz";
 import db, { Prisma } from "db";
 
 type GetProjectsInput = Pick<
-  Prisma.FindManyProjectArgs,
+  Prisma.ProjectFindManyArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 
@@ -10,7 +10,7 @@ export default async function getProjects(
   { where, orderBy, skip = 0, take }: GetProjectsInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const projects = await db.project.findMany({
     where,

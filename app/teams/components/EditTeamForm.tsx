@@ -2,7 +2,7 @@ import TeamForm from "app/teams/components/TeamForm";
 import updateTeam from "app/teams/mutations/updateTeam";
 import getTeam from "app/teams/queries/getTeam";
 import { useMutation, useParam, useQuery, useRouter } from "blitz";
-import { Project, Team, User, UserCreateManyWithoutTeamsInput } from "db";
+import { Prisma, Project, Team, User } from "db";
 import React, { FC } from "react";
 
 const EditTeamForm: FC = () => {
@@ -35,7 +35,7 @@ const EditTeamForm: FC = () => {
               description: event.target[1].value,
               users: team.users.map(({ id }) => ({
                 id,
-              })) as UserCreateManyWithoutTeamsInput,
+              })) as Prisma.UserUpdateManyWithoutTeamsInput,
             },
           })) as Team & { users: User[]; projects: Project[] };
 

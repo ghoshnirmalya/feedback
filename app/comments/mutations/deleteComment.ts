@@ -7,7 +7,7 @@ export default async function deleteComment(
   { where }: DeleteCommentInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const comment = await db.comment.delete({ where });
 

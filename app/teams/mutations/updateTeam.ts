@@ -7,7 +7,7 @@ export default async function updateTeam(
   { where, data }: UpdateTeamInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const { users, ...rest } = data;
 

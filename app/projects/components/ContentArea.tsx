@@ -14,7 +14,7 @@ const ITEMS_PER_PAGE = 100;
 
 const ContentArea: FC = () => {
   const [annotation, setAnnotation] = useState({ x: 0, y: 0 });
-  const { id, url, name, height, width } = useSelector(getFileData());
+  const file = useSelector(getFileData());
   const dispatch = useDispatch();
   const { coordinateX, coordinateY } = useSelector(getCommentCoordinates());
   const router = useRouter();
@@ -22,7 +22,7 @@ const ContentArea: FC = () => {
   const [{ comments, hasMore }] = usePaginatedQuery(
     getComments,
     {
-      where: { file: { id: (id as unknown) as string } },
+      where: { file: { id: (file?.id as unknown) as string } },
       orderBy: { updatedAt: "asc" },
       skip: ITEMS_PER_PAGE * page,
       take: ITEMS_PER_PAGE,
@@ -150,7 +150,7 @@ const ContentArea: FC = () => {
   };
 
   const imageNode = () => {
-    if (!url) {
+    if (!file?.url) {
       return (
         <Center h="100%">
           <EmptyState
@@ -175,8 +175,8 @@ const ContentArea: FC = () => {
           }}
         >
           <Image
-            src={url}
-            alt={name}
+            src={file?.url}
+            alt={file?.name}
             maxW="fit-content"
             maxH="calc(100vh - 80px - 4rem)"
             fallback={

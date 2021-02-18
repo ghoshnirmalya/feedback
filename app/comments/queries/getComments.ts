@@ -2,7 +2,7 @@ import { Ctx } from "blitz";
 import db, { Prisma } from "db";
 
 type GetCommentsInput = Pick<
-  Prisma.FindManyCommentArgs,
+  Prisma.CommentFindManyArgs,
   "where" | "orderBy" | "skip" | "take"
 >;
 

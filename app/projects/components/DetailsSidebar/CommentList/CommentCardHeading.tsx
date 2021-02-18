@@ -10,12 +10,7 @@ import {
   Tooltip,
   VStack,
 } from "@chakra-ui/react";
-import {
-  Comment,
-  FileCreateOneWithoutCommentsInput,
-  User,
-  UserCreateOneWithoutCommentsInput,
-} from "@prisma/client";
+import { Comment, Prisma, User } from "@prisma/client";
 import updateComment from "app/comments/mutations/updateComment";
 import getComments from "app/comments/queries/getComments";
 import getFile from "app/files/queries/getFile";
@@ -58,8 +53,8 @@ const CommentCardHeading: FC<IProps> = ({ comment }) => {
           coordinateX: comment.coordinateX,
           coordinateY: comment.coordinateY,
           isResolved,
-          file: (file as unknown) as FileCreateOneWithoutCommentsInput,
-          user: (comment.user as unknown) as UserCreateOneWithoutCommentsInput,
+          file: (file as unknown) as Prisma.FileUpdateOneWithoutCommentsInput,
+          user: (comment.user as unknown) as Prisma.UserUpdateOneWithoutCommentsInput,
         },
       });
 

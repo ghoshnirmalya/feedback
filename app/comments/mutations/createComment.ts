@@ -6,13 +6,17 @@ export default async function createComment(
   { data }: CreateCommentInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const comment = await db.comment.create({
     data: {
       ...data,
-      file: { connect: { id: (data.file as File).id } },
-      user: { connect: { id: (data.user as User).id } },
+      file: ({
+        connect: { id: (data.file as File).id },
+      } as unknown) as undefined,
+      user: ({
+        connect: { id: (data.user as User).id },
+      } as unknown) as undefined,
     },
   });
 

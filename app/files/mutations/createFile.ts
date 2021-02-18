@@ -9,10 +9,13 @@ export default async function createFile(
   { data, projectId }: CreateFileInput,
   ctx: Ctx
 ) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const file = await db.file.create({
-    data: { ...data, project: { connect: { id: projectId } } },
+    data: {
+      ...data,
+      project: ({ connect: { id: projectId } } as unknown) as undefined,
+    },
   });
 
   return file;

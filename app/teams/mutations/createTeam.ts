@@ -3,7 +3,7 @@ import db, { Prisma, User } from "db";
 
 type CreateTeamInput = Pick<Prisma.TeamCreateArgs, "data">;
 export default async function createTeam({ data }: CreateTeamInput, ctx: Ctx) {
-  ctx.session.authorize();
+  ctx.session.$authorize();
 
   const { users, ...rest } = data;
 
