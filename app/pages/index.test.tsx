@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "test/utils";
 import Home from "./index";
 
-jest.mock("app/hooks/useCurrentUser");
+jest.mock("app/core/hooks/useCurrentUser");
 const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<
   typeof useCurrentUser
 >;
