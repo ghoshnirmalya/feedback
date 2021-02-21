@@ -1,4 +1,4 @@
-import { Box, Heading, Text, useRadio, VStack } from "@chakra-ui/react";
+import { Box, useRadio } from "@chakra-ui/react";
 import React, { FC } from "react";
 
 type IProps = {

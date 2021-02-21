@@ -1,6 +1,9 @@
 {
   "files.exclude": {
     "**/.blitz": true,
-    "**/.blitz-*": true,
+    "**/.blitz-*": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
   }
 }

@@ -19,7 +19,7 @@ const CommentsList: FC = () => {
   const [{ comments, hasMore }] = usePaginatedQuery(
     getComments,
     {
-      where: { file: { id: (file.id as unknown) as string } },
+      where: { file: { id: (file?.id as unknown) as string } },
       orderBy: { updatedAt: "desc" },
       skip: ITEMS_PER_PAGE * page,
       take: ITEMS_PER_PAGE,
@@ -32,7 +32,7 @@ const CommentsList: FC = () => {
   );
   const currentUser = useCurrentUser();
 
-  if (!file.url) {
+  if (!file?.url) {
     return <EmptyFilesCard />;
   }
 

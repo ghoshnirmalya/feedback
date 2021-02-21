@@ -54,13 +54,6 @@ const ContentImage: FC = () => {
     );
   }
 
-  const calculateImageHeight = () => {
-    return {
-      w: document.getElementById("js-image")?.clientWidth,
-      h: document.getElementById("js-image")?.clientHeight,
-    };
-  };
-
   const handleSetPointer = (e: any) => {
     if (e.target.classList.contains("js-annotation")) {
       dispatch(
