@@ -1,5 +1,5 @@
 import { Center, Flex, Grid, Spinner } from "@chakra-ui/react";
-import AnonymousLayout from "app/layouts/AnonymousLayout";
+import AnonymousLayout from "app/core/layouts/AnonymousLayout";
 import { BlitzPage, dynamic } from "blitz";
 import React, { Suspense, useEffect } from "react";
 

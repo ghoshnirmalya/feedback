@@ -1,7 +1,7 @@
 import { Box, Center, Image, Spinner } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
-import EmptyState from "app/components/EmptyState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import EmptyState from "app/core/components/EmptyState";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import calculateImageHost from "app/lib/calculateImageHost";
 import AddImageButton from "app/projects/components/AddImageButton";
 import AnnotationPointer from "app/projects/components/ContentArea/AnnotationPointer";

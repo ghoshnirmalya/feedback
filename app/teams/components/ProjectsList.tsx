@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Heading, HStack } from "@chakra-ui/react";
-import EmptyState from "app/components/EmptyState";
+import EmptyState from "app/core/components/EmptyState";
 import getProjects from "app/projects/queries/getProjects";
 import { Link, usePaginatedQuery, useParam } from "blitz";
 import { Project } from "db";

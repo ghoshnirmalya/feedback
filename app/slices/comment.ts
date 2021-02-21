@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import hydrate from "lib/hydrate";
+import hydrate from "app/lib/hydrate";
 
 interface IInitialState {
   selectedCommentId: null | string;

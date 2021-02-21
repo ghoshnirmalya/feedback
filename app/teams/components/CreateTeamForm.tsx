@@ -1,8 +1,8 @@
-import { Prisma } from "db";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import TeamForm from "app/teams/components/TeamForm";
 import createTeam from "app/teams/mutations/createTeam";
 import { useMutation, useRouter } from "blitz";
+import { Prisma } from "db";
 import { FC } from "react";
 
 const CreateTeamForm: FC = () => {

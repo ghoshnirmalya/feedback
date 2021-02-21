@@ -7,7 +7,7 @@ import {
   Spinner,
   VStack,
 } from "@chakra-ui/react";
-import ProtectedLayout from "app/layouts/ProtectedLayout";
+import ProtectedLayout from "app/core/layouts/ProtectedLayout";
 import TeamsList from "app/teams/components/TeamsList";
 import { BlitzPage, Link } from "blitz";
 import React, { Suspense } from "react";

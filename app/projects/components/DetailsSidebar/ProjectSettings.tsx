@@ -1,6 +1,6 @@
 import { Box, Button, Heading, HStack } from "@chakra-ui/react";
-import ErrorState from "app/components/ErrorState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import ErrorState from "app/core/components/ErrorState";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import ProjectStateRadio from "app/projects/components/DetailsSidebar/ProjectStateRadio";
 import deleteProject from "app/projects/mutations/deleteProject";
 import { Link, useMutation, useParam, useRouter } from "blitz";

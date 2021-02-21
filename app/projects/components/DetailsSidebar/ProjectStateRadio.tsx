@@ -8,8 +8,8 @@ import {
   useRadioGroup,
   VStack,
 } from "@chakra-ui/react";
-import RadioCards from "app/components/RadioCards";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import RadioCards from "app/core/components/RadioCards";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import updateProject from "app/projects/mutations/updateProject";
 import getProject from "app/projects/queries/getProject";
 import getTeam from "app/teams/queries/getTeam";

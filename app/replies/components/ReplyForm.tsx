@@ -1,12 +1,11 @@
 import {
   Button,
   FormControl,
-  HStack,
   Input,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import React from "react";
 
 type ReplyFormProps = {

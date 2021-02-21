@@ -6,7 +6,7 @@ import {
   LightMode,
   Spinner,
 } from "@chakra-ui/react";
-import Container from "app/layouts/AnonymousLayout/Container";
+import Container from "app/core/layouts/PublicLayout/Container";
 import { Head } from "blitz";
 import React, { ReactNode, Suspense } from "react";
 

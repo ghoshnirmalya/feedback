@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import logout from "app/auth/mutations/logout";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import { Link, useMutation, useRouter } from "blitz";
 import React from "react";
 

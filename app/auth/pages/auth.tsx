@@ -1,6 +1,6 @@
 import { Button, Center } from "@chakra-ui/react";
-import EmptyState from "app/components/EmptyState";
-import PublicLayout from "app/layouts/PublicLayout";
+import EmptyState from "app/core/components/EmptyState";
+import PublicLayout from "app/core/layouts/PublicLayout";
 import { BlitzPage, Link } from "blitz";
 import React from "react";
 

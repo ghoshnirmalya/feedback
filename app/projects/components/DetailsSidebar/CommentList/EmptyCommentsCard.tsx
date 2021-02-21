@@ -1,5 +1,5 @@
 import { Box, Center, Heading } from "@chakra-ui/react";
-import EmptyState from "app/components/EmptyState";
+import EmptyState from "app/core/components/EmptyState";
 import CommentBox from "app/projects/components/CommentBox";
 import React, { FC } from "react";
 

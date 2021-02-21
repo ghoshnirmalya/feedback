@@ -1,12 +1,12 @@
 import {
+  Center,
   ChakraProvider,
   ColorModeOptions,
   extendTheme,
   LightMode,
   Spinner,
-  Center,
 } from "@chakra-ui/react";
-import Container from "app/layouts/PublicLayout/Container";
+import Container from "app/core/layouts/AnonymousLayout/Container";
 import { Head } from "blitz";
 import React, { ReactNode, Suspense } from "react";
 

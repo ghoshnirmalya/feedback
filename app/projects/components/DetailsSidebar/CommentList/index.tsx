@@ -1,6 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
 import getComments from "app/comments/queries/getComments";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import CommentBox from "app/projects/components/CommentBox";
 import CommentsTabs from "app/projects/components/DetailsSidebar/CommentList/CommentsTabs";
 import NoCommentsCard from "app/projects/components/DetailsSidebar/CommentList/EmptyCommentsCard";

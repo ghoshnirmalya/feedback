@@ -1,33 +1,19 @@
 import { Box, Button, Center, Flex } from "@chakra-ui/react";
-import ErrorState from "app/components/ErrorState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
-import TopNavbar from "app/layouts/ProtectedLayout/TopNavbar";
-import getProject from "app/projects/queries/getProject";
-import { Link, useParam, useQuery } from "blitz";
+import ErrorState from "app/core/components/ErrorState";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
+import TopNavbar from "app/core/layouts/ProtectedLayout/TopNavbar";
+import { Link } from "blitz";
 import React, { ReactNode } from "react";
 import { MdLock } from "react-icons/md";
 
 type ContainerProps = {
-  title?: string;
   children: ReactNode;
 };
 
 const Container = ({ children }: ContainerProps) => {
-  const projectId = useParam("projectId", "string");
-  const [project] = useQuery(
-    getProject,
-    {
-      where: { id: projectId },
-    },
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-      refetchOnMount: false,
-    }
-  );
   const currentUser = useCurrentUser();
 
-  if (!project.isPublic && !currentUser) {
+  if (!currentUser) {
     return (
       <Center h="100vh">
         <ErrorState
@@ -46,7 +32,7 @@ const Container = ({ children }: ContainerProps) => {
   }
 
   return (
-    <Box minH="100vh">
+    <Box minH="100vh" bg="gray.100">
       <TopNavbar />
       <Flex>{children}</Flex>
     </Box>

@@ -1,5 +1,5 @@
 import { Center, Container, Spinner, VStack } from "@chakra-ui/react";
-import ProtectedLayout from "app/layouts/ProtectedLayout";
+import ProtectedLayout from "app/core/layouts/ProtectedLayout";
 import CreateProjectForm from "app/projects/components/CreateProjectForm";
 import CreateProjectHeading from "app/projects/components/CreateProjectHeading";
 import { BlitzPage } from "blitz";

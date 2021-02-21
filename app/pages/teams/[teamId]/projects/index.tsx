@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import ProtectedLayout from "app/layouts/ProtectedLayout";
+import ProtectedLayout from "app/core/layouts/ProtectedLayout";
 import ProjectsList from "app/projects/components/ProjectsList";
 import { BlitzPage, Link } from "blitz";
 import React, { Suspense } from "react";

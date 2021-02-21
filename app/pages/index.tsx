@@ -8,7 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import withAuthentication from "app/auth/hocs/withAuthentication";
-import PublicLayout from "app/layouts/PublicLayout";
+import PublicLayout from "app/core/layouts/PublicLayout";
 import { BlitzPage, GetServerSideProps, Link } from "blitz";
 import React from "react";
 

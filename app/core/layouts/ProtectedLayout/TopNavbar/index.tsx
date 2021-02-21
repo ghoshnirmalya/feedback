@@ -6,7 +6,7 @@ import {
   IconButton,
   Spinner,
 } from "@chakra-ui/react";
-import UserDetails from "app/layouts/ProtectedLayout/TopNavbar/UserDetails";
+import UserDetails from "app/core/layouts/ProtectedLayout/TopNavbar/UserDetails";
 import { Link } from "blitz";
 import React, { FC, Suspense } from "react";
 import { MdBugReport } from "react-icons/md";

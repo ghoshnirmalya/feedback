@@ -1,6 +1,6 @@
 import { File } from "@prisma/client";
 import { createSlice } from "@reduxjs/toolkit";
-import hydrate from "lib/hydrate";
+import hydrate from "app/lib/hydrate";
 
 interface IInitialState {
   file: File;

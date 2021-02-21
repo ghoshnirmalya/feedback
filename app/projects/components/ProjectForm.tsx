@@ -11,7 +11,7 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import { Link } from "blitz";
 import React from "react";
 

@@ -3,16 +3,14 @@ import {
   AvatarGroup,
   Box,
   Button,
-  Center,
   Grid,
   Heading,
-  Image,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { Team, User } from "@prisma/client";
-import EmptyState from "app/components/EmptyState";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import EmptyState from "app/core/components/EmptyState";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import getTeams from "app/teams/queries/getTeams";
 import { Link, usePaginatedQuery } from "blitz";
 import React from "react";

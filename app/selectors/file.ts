@@ -1,6 +1,6 @@
 import { createDraftSafeSelector } from "@reduxjs/toolkit";
+import { fileSlice } from "app/slices/file";
 import { AppState } from "app/store";
-import { fileSlice } from "slices/file";
 
 export const getFileData = () => {
   return createDraftSafeSelector(

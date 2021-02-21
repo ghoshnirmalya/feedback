@@ -1,6 +1,6 @@
 import { createDraftSafeSelector } from "@reduxjs/toolkit";
+import { commentSlice } from "app/slices/comment";
 import { AppState } from "app/store";
-import { commentSlice } from "slices/comment";
 
 export const getSelectedCommentData = () => {
   return createDraftSafeSelector(

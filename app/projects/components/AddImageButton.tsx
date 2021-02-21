@@ -1,7 +1,7 @@
 import { Box, Center, Flex, Spinner } from "@chakra-ui/react";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import createFile from "app/files/mutations/createFile";
 import getFiles from "app/files/queries/getFiles";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
 import { setFile } from "app/slices/file";
 import { invoke, useMutation, useParam, useQuery, useRouter } from "blitz";
 import React, { FC, useCallback, useState } from "react";

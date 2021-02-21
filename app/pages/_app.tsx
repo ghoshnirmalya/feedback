@@ -1,7 +1,7 @@
 import { Button, Center } from "@chakra-ui/react";
 import AuthenticationForm from "app/auth/components/AuthenticationForm";
-import ErrorState from "app/components/ErrorState";
-import PublicLayout from "app/layouts/PublicLayout";
+import ErrorState from "app/core/components/ErrorState";
+import PublicLayout from "app/core/layouts/PublicLayout";
 import { wrapper } from "app/store";
 import {
   AppProps,

@@ -1,6 +1,6 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import { Comment, User } from "@prisma/client";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import CommentCardHeading from "app/projects/components/DetailsSidebar/CommentList/CommentCardHeading";
 import RepliesList from "app/projects/components/RepliesList";
 import ReplyForm from "app/replies/components/ReplyForm";

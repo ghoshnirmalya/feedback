@@ -2,7 +2,7 @@ import { Box, Center, Text } from "@chakra-ui/react";
 import CommentForm from "app/comments/components/CommentForm";
 import createComment from "app/comments/mutations/createComment";
 import getComments from "app/comments/queries/getComments";
-import { useCurrentUser } from "app/hooks/useCurrentUser";
+import { useCurrentUser } from "app/core/hooks/useCurrentUser";
 import { getCommentCoordinates, getFileData } from "app/selectors/file";
 import { invalidateQuery, useMutation } from "blitz";
 import { Prisma } from "db";
