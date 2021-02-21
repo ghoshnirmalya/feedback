@@ -34,7 +34,7 @@ const Container = ({ children }: ContainerProps) => {
           heading="Unauthorized"
           text="You need to sign in to view this content."
           buttons={[
-            <Link href="/auth" passHref>
+            <Link href="/auth" passHref key="authButton">
               <Button colorScheme="yellow" size="lg" leftIcon={<MdLock />}>
                 Sign in
               </Button>

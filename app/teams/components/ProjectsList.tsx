@@ -33,7 +33,11 @@ const ProjectsList: FC = () => {
         text="Get started by creating a new project for your team. You can
       add files to a project."
         buttons={[
-          <Link href={`/teams/${teamId}/projects/new`} passHref>
+          <Link
+            href={`/teams/${teamId}/projects/new`}
+            passHref
+            key="teamButton"
+          >
             <Button as="a" colorScheme="yellow" size="lg" leftIcon={<MdAdd />}>
               Create a new Project
             </Button>

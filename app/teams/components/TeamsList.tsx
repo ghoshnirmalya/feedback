@@ -47,7 +47,7 @@ const TeamsList = () => {
         text="Get started by creating a new team for your organization. You can
       add projects to a team."
         buttons={[
-          <Link href="/teams/new" passHref>
+          <Link href="/teams/new" passHref key="newTeamButton">
             <Button as="a" colorScheme="yellow" size="lg" leftIcon={<MdAdd />}>
               Create a new Team
             </Button>

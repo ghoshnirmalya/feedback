@@ -59,7 +59,7 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
           text="Sorry, you are not authorized to access this"
           icon="/illustrations/Online protection_Monochromatic.svg"
           buttons={[
-            <Link href="/auth" passHref>
+            <Link href="/auth" passHref key="authButton">
               <Button colorScheme="yellow" type="submit" size="lg">
                 Go to the login page
               </Button>
@@ -81,9 +81,9 @@ function RootErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
             }
             icon="/illustrations/Online protection_Monochromatic.svg"
             buttons={[
-              <Link href="/teams" passHref>
+              <Link href="/auth" passHref key="authButton">
                 <Button colorScheme="yellow" type="submit" size="lg">
-                  Go to the teams page
+                  Go to the login page
                 </Button>
               </Link>,
             ]}

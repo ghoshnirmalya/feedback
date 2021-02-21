@@ -20,7 +20,7 @@ const ErrorPage: BlitzPage<IProps> = ({ statusCode }) => {
         }
         icon="/illustrations/Online protection_Monochromatic.svg"
         buttons={[
-          <Link href="/" passHref>
+          <Link href="/" passHref key="indexButton">
             <Button colorScheme="yellow" type="submit" size="lg">
               Go to the home page
             </Button>

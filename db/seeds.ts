@@ -40,6 +40,7 @@ const seed = async () => {
             name: faker.commerce.productMaterial(),
             url: faker.image.imageUrl(),
             thumbnailUrl: faker.image.imageUrl(),
+            filePath: faker.image.imageUrl(),
             height: 480,
             width: 640,
             project: { connect: { id: project.id } },

@@ -15,7 +15,7 @@ const Page404: BlitzPage = () => {
         text="This page could not be found"
         icon="/illustrations/Online protection_Monochromatic.svg"
         buttons={[
-          <Link href="/" passHref>
+          <Link href="/" passHref key="indexButton">
             <Button colorScheme="yellow" type="submit" size="lg">
               Go to the home page
             </Button>

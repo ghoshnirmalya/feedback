@@ -1,8 +1,8 @@
 import { Box, Center, Image, Spinner, VStack } from "@chakra-ui/react";
+import { File } from "@prisma/client";
 import getFiles from "app/files/queries/getFiles";
 import { getFileData } from "app/selectors/file";
 import { setFile } from "app/slices/file";
-import File from "app/types/file";
 import { usePaginatedQuery, useParam, useRouter } from "blitz";
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
